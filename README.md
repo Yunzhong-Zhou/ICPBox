@@ -23,25 +23,25 @@ samples, guidance on mobile development, and a full API reference.
 * 终端快捷键： 热加载 r 、 切换平台 o 、 展示/隐藏网格 p 、退出预览 q  、 清屏 c
 
 
-///根目录下
+| 根目录下 |
 
-//保存图片  imgs
-//保存Icon文件  fonts
-//将Json转成Dart Model类  jsons
-//保存各国语言对应的arb文件  l10n-arb
+| 保存图片   | imgs |
+| 保存Icon文件   | fonts |
+| 将Json转成Dart Model类  |  jsons |
+| 保存各国语言对应的arb文件  |  l10n-arb |
 
 
-///lib文件下
+| lib文件下 |
 
-//view      页面类
-//api       接口URl
-//utils    一些工具类，如通用方法类、网络接口类、保存全局变量的静态类等
-//l10n      国际化相关的类
-//models    Json文件对应的Dart Model类
-//net       网络请求与封装类
-//routes    存放所有路由页面类
-//states    保存APP中需要跨组件共享的状态类
-//widgets   APP内封装的一些Widget组件都在该目录下
+| view       | 页面类 |
+| api        | 接口URl |
+| utils      |  一些工具类，如通用方法类、网络接口类、保存全局变量的静态类等 |
+| l10n       | 国际化相关的类 |
+| models     | Json文件对应的Dart Model类 |
+| net        | 网络请求与封装类 |
+| routes     | 存放所有路由页面类 |
+| states     | 保存APP中需要跨组件共享的状态类 |
+| widgets    | APP内封装的一些Widget组件都在该目录下 |
 
 | 第三方库 | 释义 |
 | --- | --- |
