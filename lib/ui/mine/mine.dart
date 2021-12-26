@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
+import 'package:icpbox/ui/mine/about.dart';
+import 'package:icpbox/utils/CurrentLocale.dart';
 import 'package:provider/provider.dart';
 
 ///我的
@@ -15,7 +18,7 @@ class _MinePage extends State<MinePage> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60.0,
-        title: Text('我的',
+        title: Text(S.of(context).mine1,
             style: TextStyle(
               fontSize: 20.0,
               // color: Color.fromARGB(255, 250, 3, 3),
@@ -83,7 +86,7 @@ class _MyVerticalList extends State<MyVerticalList> {
             },
             leading: Image.asset("imgs/ic_mine1.png", width: 22, height: 22),
             title: new Text(
-              "地址簿",
+              S.of(context).mine2,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
@@ -96,7 +99,7 @@ class _MyVerticalList extends State<MyVerticalList> {
             onTap: () {},
             leading: Image.asset("imgs/ic_mine2.png", width: 22, height: 22),
             title: new Text(
-              "通知公告",
+              S.of(context).mine3,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
@@ -109,7 +112,7 @@ class _MyVerticalList extends State<MyVerticalList> {
             onTap: () {},
             leading: Image.asset("imgs/ic_mine3.png", width: 22, height: 22),
             title: new Text(
-              "帮助中心",
+              S.of(context).mine4,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
@@ -133,7 +136,7 @@ class _MyVerticalList extends State<MyVerticalList> {
             onTap: () {},
             leading: Image.asset("imgs/ic_mine4.png", width: 22, height: 22),
             title: new Text(
-              "分享钱包",
+              S.of(context).mine5,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
@@ -143,10 +146,17 @@ class _MyVerticalList extends State<MyVerticalList> {
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
-            onTap: () {},
+            onTap: () {
+              //跳转 关于我们
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutPage(),
+                  ));
+            },
             leading: Image.asset("imgs/ic_mine5.png", width: 22, height: 22),
             title: new Text(
-              "关于我们",
+              S.of(context).mine6,
               style: TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
@@ -167,7 +177,7 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("语言设置",
+                Text(S.of(context).mine7,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
                 Text("${list_yuyan[select_yuyan]}",
@@ -189,7 +199,7 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("货币单位",
+                Text(S.of(context).mine8,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
                 Text("${list_huobi[select_huobi]}",
@@ -217,7 +227,7 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("官方推特",
+                Text(S.of(context).mine9,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
                 Text("www.ewrd@twiter.com",
@@ -236,7 +246,7 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("官方电报",
+                Text(S.of(context).mine10,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
                 Text("www.ewrd@twiter.com",
@@ -255,7 +265,7 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("官方邮箱",
+                Text(S.of(context).mine11,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 //填充组件
                 // Expanded(child: Container()),
@@ -270,7 +280,7 @@ class _MyVerticalList extends State<MyVerticalList> {
         ListTile(
             onTap: () {
               Fluttertoast.showToast(
-                msg: "官方网站",
+                msg: S.of(context).mine12,
                 // toastLength: Toast.LENGTH_SHORT,
                 // textColor: Colors.white,
                 // gravity: ToastGravity.CENTER
@@ -282,7 +292,7 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisSize: MainAxisSize.max,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text("官方网站",
+                Text(S.of(context).mine12,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
                 Text("www.ewrd@twiter.com",
@@ -358,6 +368,26 @@ class _buildBottomSheetWidget_yuyan
                     onTap: () {
                       setState(() {
                         select_yuyan = index;
+                        switch(select_yuyan){
+                          case 0:
+
+                            break;
+                          case 1:
+
+                            break;
+                          case 2:
+
+                            break;
+                          case 3:
+                            Provider.of<CurrentLocale>(context, listen: false)
+                                .setLocale(const Locale('en', "US"));
+                            break;
+                          case 4:
+                            Provider.of<CurrentLocale>(context, listen: false)
+                                .setLocale(const Locale('zh', "CH"));
+                            break;
+                        }
+
                       });
                       Navigator.of(context).pop(index);
                     },
@@ -387,7 +417,7 @@ class _buildBottomSheetWidget_yuyan
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: Text(
-                  "取消",
+                  S.of(context).cancel,
                   style: TextStyle(fontSize: 16, color: Color(0xFF4F4F4F)),
                 ),
               ),
@@ -446,6 +476,7 @@ class _buildBottomSheetWidget_huobi
                       select_huobi = index;
                     });
                     Navigator.of(context).pop(index);
+
                   },
                   leading:
                       Image.asset(list_huobiicon[index], width: 30, height: 30),
@@ -474,7 +505,7 @@ class _buildBottomSheetWidget_huobi
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: Text(
-                  "取消",
+                    S.of(context).cancel,
                   style: TextStyle(fontSize: 16, color: Color(0xFF4F4F4F)),
                 ),
               ),

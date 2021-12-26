@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:icpbox/generated/l10n.dart';
+import 'package:provider/provider.dart';
 
 import 'ui/Information/information.dart';
 import 'ui/dapp/dapp.dart';
@@ -11,8 +12,14 @@ import 'ui/mine/mine.dart';
 import 'ui/wallet/wallet.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
+import 'utils/CurrentLocale.dart';
+
 void main() {
-  runApp(MyApp());
+  //切换语言
+  runApp(MultiProvider(
+    providers: [ChangeNotifierProvider(create: (context) => CurrentLocale())],
+    child: MyApp(),
+  ));
   if (Platform.isAndroid) {
     SystemUiOverlayStyle style = const SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -29,10 +36,37 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+
+    return Consumer<CurrentLocale>(
+      builder: (context, currentLocale, child) {
+        return MaterialApp(
+          //调试是否显示debug
+          debugShowCheckedModeBanner: false,
+          localizationsDelegates: [
+            GlobalMaterialLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            S.delegate
+          ],
+          locale: currentLocale.value,
+          supportedLocales: [
+            const Locale('zh', 'CN'),
+            const Locale('en', 'US'),
+            ...S.delegate.supportedLocales
+          ],
+          //主题色
+          theme: ThemeData(
+            primaryColor: Colors.white,
+          ),
+          title: 'ICPBox',
+          home: BottomNavigationWidget(),
+        );
+      },
+    );
+
+    /*return MaterialApp(
       //多语言
       localizationsDelegates: const [
         S.delegate,
@@ -52,7 +86,7 @@ class MyApp extends StatelessWidget {
       ),
       title: 'ICPBox',
       home: BottomNavigationWidget(),
-    );
+    );*/
   }
 }
 

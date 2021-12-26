@@ -50,6 +50,16 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `ICPBox`
+  String get appName {
+    return Intl.message(
+      'ICPBox',
+      name: 'appName',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Wallet`
   String get tab1 {
     return Intl.message(
@@ -85,6 +95,586 @@ class S {
     return Intl.message(
       'Mine',
       name: 'tab4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `确认`
+  String get confirm {
+    return Intl.message(
+      '确认',
+      name: 'confirm',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `取消`
+  String get cancel {
+    return Intl.message(
+      '取消',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet1 {
+    return Intl.message(
+      '',
+      name: 'wallet1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet2 {
+    return Intl.message(
+      '',
+      name: 'wallet2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet3 {
+    return Intl.message(
+      '',
+      name: 'wallet3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet4 {
+    return Intl.message(
+      '',
+      name: 'wallet4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet5 {
+    return Intl.message(
+      '',
+      name: 'wallet5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet6 {
+    return Intl.message(
+      '',
+      name: 'wallet6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet7 {
+    return Intl.message(
+      '',
+      name: 'wallet7',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet8 {
+    return Intl.message(
+      '',
+      name: 'wallet8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet9 {
+    return Intl.message(
+      '',
+      name: 'wallet9',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet10 {
+    return Intl.message(
+      '',
+      name: 'wallet10',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet11 {
+    return Intl.message(
+      '',
+      name: 'wallet11',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet12 {
+    return Intl.message(
+      '',
+      name: 'wallet12',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet13 {
+    return Intl.message(
+      '',
+      name: 'wallet13',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet14 {
+    return Intl.message(
+      '',
+      name: 'wallet14',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet15 {
+    return Intl.message(
+      '',
+      name: 'wallet15',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet16 {
+    return Intl.message(
+      '',
+      name: 'wallet16',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp1 {
+    return Intl.message(
+      '',
+      name: 'dapp1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp2 {
+    return Intl.message(
+      '',
+      name: 'dapp2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp3 {
+    return Intl.message(
+      '',
+      name: 'dapp3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp4 {
+    return Intl.message(
+      '',
+      name: 'dapp4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp5 {
+    return Intl.message(
+      '',
+      name: 'dapp5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp6 {
+    return Intl.message(
+      '',
+      name: 'dapp6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp7 {
+    return Intl.message(
+      '',
+      name: 'dapp7',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp8 {
+    return Intl.message(
+      '',
+      name: 'dapp8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp9 {
+    return Intl.message(
+      '',
+      name: 'dapp9',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp10 {
+    return Intl.message(
+      '',
+      name: 'dapp10',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation1 {
+    return Intl.message(
+      '',
+      name: 'infomation1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation2 {
+    return Intl.message(
+      '',
+      name: 'infomation2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation3 {
+    return Intl.message(
+      '',
+      name: 'infomation3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation4 {
+    return Intl.message(
+      '',
+      name: 'infomation4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation5 {
+    return Intl.message(
+      '',
+      name: 'infomation5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation6 {
+    return Intl.message(
+      '',
+      name: 'infomation6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation7 {
+    return Intl.message(
+      '',
+      name: 'infomation7',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation8 {
+    return Intl.message(
+      '',
+      name: 'infomation8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation9 {
+    return Intl.message(
+      '',
+      name: 'infomation9',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get infomation10 {
+    return Intl.message(
+      '',
+      name: 'infomation10',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `我的`
+  String get mine1 {
+    return Intl.message(
+      '我的',
+      name: 'mine1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `地址簿`
+  String get mine2 {
+    return Intl.message(
+      '地址簿',
+      name: 'mine2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `通知公告`
+  String get mine3 {
+    return Intl.message(
+      '通知公告',
+      name: 'mine3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `帮助中心`
+  String get mine4 {
+    return Intl.message(
+      '帮助中心',
+      name: 'mine4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `分享钱包`
+  String get mine5 {
+    return Intl.message(
+      '分享钱包',
+      name: 'mine5',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `关于我们`
+  String get mine6 {
+    return Intl.message(
+      '关于我们',
+      name: 'mine6',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `语言设置`
+  String get mine7 {
+    return Intl.message(
+      '语言设置',
+      name: 'mine7',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `货币单位`
+  String get mine8 {
+    return Intl.message(
+      '货币单位',
+      name: 'mine8',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `官方推特`
+  String get mine9 {
+    return Intl.message(
+      '官方推特',
+      name: 'mine9',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `官方电报`
+  String get mine10 {
+    return Intl.message(
+      '官方电报',
+      name: 'mine10',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `官方邮箱`
+  String get mine11 {
+    return Intl.message(
+      '官方邮箱',
+      name: 'mine11',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `官方网站`
+  String get mine12 {
+    return Intl.message(
+      '官方网站',
+      name: 'mine12',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine13 {
+    return Intl.message(
+      '',
+      name: 'mine13',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine14 {
+    return Intl.message(
+      '',
+      name: 'mine14',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine15 {
+    return Intl.message(
+      '',
+      name: 'mine15',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine16 {
+    return Intl.message(
+      '',
+      name: 'mine16',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine17 {
+    return Intl.message(
+      '',
+      name: 'mine17',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine18 {
+    return Intl.message(
+      '',
+      name: 'mine18',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine19 {
+    return Intl.message(
+      '',
+      name: 'mine19',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine20 {
+    return Intl.message(
+      '',
+      name: 'mine20',
       desc: '',
       args: [],
     );

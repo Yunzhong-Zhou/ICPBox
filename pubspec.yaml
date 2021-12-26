@@ -44,6 +44,8 @@ dependencies:
   flutter_easy_permission: ^1.1.1
   # 扫码
   flutter_scankit: ^1.2.2
+#  应用版本号/版本名字等
+  package_info: ^2.0.2
 #  跨组件数据共享
   provider: ^6.0.1
 #  本地配置文件存储

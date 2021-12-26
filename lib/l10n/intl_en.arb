@@ -1,7 +1,75 @@
 {
+  "appName": "ICPBox",
+
   "tab1": "Wallet",
   "tab2": "DAPP",
   "tab3": "Infomation",
-  "tab4": "Mine"
+  "tab4": "Mine",
+
+  "confirm": "确认",
+  "cancel": "取消",
+
+  "wallet1": "",
+  "wallet2": "",
+  "wallet3": "",
+  "wallet4": "",
+  "wallet5": "",
+  "wallet6": "",
+  "wallet7": "",
+  "wallet8": "",
+  "wallet9": "",
+  "wallet10": "",
+  "wallet11": "",
+  "wallet12": "",
+  "wallet13": "",
+  "wallet14": "",
+  "wallet15": "",
+  "wallet16": "",
+
+
+  "dapp1": "",
+  "dapp2": "",
+  "dapp3": "",
+  "dapp4": "",
+  "dapp5": "",
+  "dapp6": "",
+  "dapp7": "",
+  "dapp8": "",
+  "dapp9": "",
+  "dapp10": "",
+
+
+  "infomation1": "",
+  "infomation2": "",
+  "infomation3": "",
+  "infomation4": "",
+  "infomation5": "",
+  "infomation6": "",
+  "infomation7": "",
+  "infomation8": "",
+  "infomation9": "",
+  "infomation10": "",
+
+
+  "mine1": "我的",
+  "mine2": "地址簿",
+  "mine3": "通知公告",
+  "mine4": "帮助中心",
+  "mine5": "分享钱包",
+  "mine6": "关于我们",
+  "mine7": "语言设置",
+  "mine8": "货币单位",
+  "mine9": "官方推特",
+  "mine10": "官方电报",
+  "mine11": "官方邮箱",
+  "mine12": "官方网站",
+  "mine13": "",
+  "mine14": "",
+  "mine15": "",
+  "mine16": "",
+  "mine17": "",
+  "mine18": "",
+  "mine19": "",
+  "mine20": ""
 
 }
