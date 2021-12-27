@@ -6,8 +6,11 @@
   "tab3": "Infomation",
   "tab4": "Mine",
 
-  "confirm": "确认",
-  "cancel": "取消",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
+  "copysuccess": "Copy Successfully",
+  "sreachinfo": "Enter search content",
+
 
   "wallet1": "",
   "wallet2": "",

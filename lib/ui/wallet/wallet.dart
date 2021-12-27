@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
 
 ///钱包
@@ -142,7 +143,7 @@ class MyVerticalList extends StatelessWidget {
         ListTile(
             onTap: () {},
             title: new Text(
-              "钱包地址",
+              S().wallet1,
               style: TextStyle(
                 fontSize: 14.0,
                 color: Color(0xFFC7C7C7),
@@ -162,7 +163,7 @@ class MyVerticalList extends StatelessWidget {
               onTap: () {
                 //复制文本到粘贴板
                 Clipboard.setData(ClipboardData(text: '内容'));
-                Fluttertoast.showToast(msg: "复制成功");
+                Fluttertoast.showToast(msg: S().copysuccess);
               },
             )),
         ListTile(
@@ -188,7 +189,7 @@ class MyVerticalList extends StatelessWidget {
               onTap: () {
                 //复制文本到粘贴板
                 Clipboard.setData(ClipboardData(text: '内容'));
-                Fluttertoast.showToast(msg: "复制成功");
+                Fluttertoast.showToast(msg: S().copysuccess);
               },
             )),
         Row(
@@ -272,7 +273,7 @@ class _MyTabs extends State<MyTabs> {
                     Image.asset("imgs/ic_zhuanzhang.png",
                         width: 18.0, height: 18.0),
                     Text(
-                      "转账",
+                      S().wallet2,
                       style: TextStyle(fontSize: 12, color: Colors.white),
                     ),
                   ],
@@ -292,7 +293,7 @@ class _MyTabs extends State<MyTabs> {
                     Image.asset("imgs/ic_shoukuan.png",
                         width: 18.0, height: 18.0),
                     Text(
-                      "收款",
+                      S().wallet3,
                       style: TextStyle(fontSize: 12, color: Colors.white),
                     ),
                   ],
@@ -311,7 +312,7 @@ class _MyTabs extends State<MyTabs> {
                     Image.asset("imgs/ic_santui.png",
                         width: 18.0, height: 18.0),
                     Text(
-                      "闪兑",
+                      S().wallet4,
                       style: TextStyle(fontSize: 12, color: Colors.white),
                     ),
                   ],
@@ -357,7 +358,7 @@ class _MyTabs extends State<MyTabs> {
                 //         begin: Alignment.centerLeft, end: Alignment.centerRight)),
                 tabs: <Widget>[
                   Tab(
-                    text: "资产",
+                    text: S().wallet5,
                   ),
                   Tab(
                     text: "NFTS",

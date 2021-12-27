@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easy_permission/easy_permissions.dart';
 import 'package:flutter_scankit/flutter_scankit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/widgets/customized_view.dart';
 
 import 'grid_page.dart';
@@ -123,7 +124,7 @@ class _DappPage extends State<DappPage> {
               //不需要输入框下划线
               border: InputBorder.none,
               //提示
-              hintText: "请输入搜索内容",
+              hintText: S().sreachinfo,
               hintStyle: TextStyle(fontSize: 14, color: Color(0xFFC1C1C5)),
               //左边图标设置
               icon: Padding(
@@ -208,7 +209,7 @@ class _DappPage extends State<DappPage> {
                 alignment: Alignment.centerLeft,
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 14, top: 7),
-                child: Text("热点项目",
+                child: Text(S().dapp1,
                     style: TextStyle(fontSize: 14, color: Color(0xFF4F4F4F)))),
             Container(
               height: 150,
@@ -230,7 +231,7 @@ class _DappPage extends State<DappPage> {
                 alignment: Alignment.centerLeft,
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 14, top: 7),
-                child: Text("最新项目",
+                child: Text(S().dapp2,
                     style: TextStyle(fontSize: 14, color: Color(0xFF4F4F4F)))),
             Container(
               height: 150,

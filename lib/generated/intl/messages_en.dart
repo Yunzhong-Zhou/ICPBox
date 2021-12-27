@@ -23,8 +23,10 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
         "appName": MessageLookupByLibrary.simpleMessage("ICPBox"),
-        "cancel": MessageLookupByLibrary.simpleMessage("取消"),
-        "confirm": MessageLookupByLibrary.simpleMessage("确认"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
+        "confirm": MessageLookupByLibrary.simpleMessage("Confirm"),
+        "copysuccess":
+            MessageLookupByLibrary.simpleMessage("Copy Successfully"),
         "dapp1": MessageLookupByLibrary.simpleMessage(""),
         "dapp10": MessageLookupByLibrary.simpleMessage(""),
         "dapp2": MessageLookupByLibrary.simpleMessage(""),
@@ -65,6 +67,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "mine7": MessageLookupByLibrary.simpleMessage("语言设置"),
         "mine8": MessageLookupByLibrary.simpleMessage("货币单位"),
         "mine9": MessageLookupByLibrary.simpleMessage("官方推特"),
+        "sreachinfo":
+            MessageLookupByLibrary.simpleMessage("Enter search content"),
         "tab1": MessageLookupByLibrary.simpleMessage("Wallet"),
         "tab2": MessageLookupByLibrary.simpleMessage("DAPP"),
         "tab3": MessageLookupByLibrary.simpleMessage("Infomation"),

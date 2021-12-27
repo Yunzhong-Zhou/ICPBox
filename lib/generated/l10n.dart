@@ -100,21 +100,41 @@ class S {
     );
   }
 
-  /// `确认`
+  /// `Confirm`
   String get confirm {
     return Intl.message(
-      '确认',
+      'Confirm',
       name: 'confirm',
       desc: '',
       args: [],
     );
   }
 
-  /// `取消`
+  /// `Cancel`
   String get cancel {
     return Intl.message(
-      '取消',
+      'Cancel',
       name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Copy Successfully`
+  String get copysuccess {
+    return Intl.message(
+      'Copy Successfully',
+      name: 'copysuccess',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Enter search content`
+  String get sreachinfo {
+    return Intl.message(
+      'Enter search content',
+      name: 'sreachinfo',
       desc: '',
       args: [],
     );

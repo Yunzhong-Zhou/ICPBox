@@ -96,6 +96,7 @@ int _currentIndex = 0;
 @override
 void initState() {
   //生命周期
+  print("生命周期initState");
 }
 
 //底部导航栏

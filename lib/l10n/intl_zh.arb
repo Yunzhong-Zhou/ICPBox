@@ -8,13 +8,16 @@
 
   "confirm": "确认",
   "cancel": "取消",
+  "copysuccess": "复制成功",
+  "sreachinfo": "请输入搜索内容",
 
 
-  "wallet1": "",
-  "wallet2": "",
-  "wallet3": "",
-  "wallet4": "",
-  "wallet5": "",
+
+  "wallet1": "钱包地址",
+  "wallet2": "转账",
+  "wallet3": "收账",
+  "wallet4": "闪兑",
+  "wallet5": "资产",
   "wallet6": "",
   "wallet7": "",
   "wallet8": "",
@@ -28,8 +31,8 @@
   "wallet16": "",
 
 
-  "dapp1": "",
-  "dapp2": "",
+  "dapp1": "热点项目",
+  "dapp2": "最新项目",
   "dapp3": "",
   "dapp4": "",
   "dapp5": "",
@@ -40,11 +43,11 @@
   "dapp10": "",
 
 
-  "infomation1": "",
-  "infomation2": "",
-  "infomation3": "",
-  "infomation4": "",
-  "infomation5": "",
+  "infomation1": "快讯",
+  "infomation2": "文章",
+  "infomation3": "点击查看全文",
+  "infomation4": "链闻",
+  "infomation5": "分享",
   "infomation6": "",
   "infomation7": "",
   "infomation8": "",

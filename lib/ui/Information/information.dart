@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icpbox/generated/l10n.dart';
 
 ///资讯
 class InformationPage extends StatefulWidget {
@@ -40,10 +41,10 @@ class _InformationPage extends State<InformationPage> {
 //                indicator: BoxDecoration(),//用于设定选中状态下的展示样式
             tabs: <Widget>[
               Tab(
-                text: "快讯",
+                text: S().infomation1,
               ),
               Tab(
-                text: "文章",
+                text: S().infomation2,
               ),
             ],
             onTap: (i) {
@@ -221,7 +222,7 @@ class MyItem1 extends StatelessWidget {
               Container(
                 // width: MediaQuery.of(context).size.width, // 屏幕宽度
                 margin: EdgeInsets.only(top: 15),
-                child: Text("点击查看全文",
+                child: Text(S().infomation3,
                     style: TextStyle(fontSize: 14, color: Color(0xFF3555FF))),
               ),
               Container(
@@ -234,7 +235,7 @@ class MyItem1 extends StatelessWidget {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("链闻",
+                    Text(S().infomation4,
                         style:
                             TextStyle(fontSize: 14, color: Color(0xFFDCDCDC))),
                     Container(
@@ -261,7 +262,7 @@ class MyItem1 extends StatelessWidget {
                           border:
                               Border.all(width: 1, color: Color(0xFF3555FF)),
                         ),
-                        child: Text("分享",
+                        child: Text(S().infomation5,
                             style: TextStyle(
                                 fontSize: 14, color: Color(0xFF3555FF)))),
                   ],
