@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
 import 'package:icpbox/ui/mine/about.dart';
+import 'package:icpbox/ui/mine/notice.dart';
 import 'package:icpbox/utils/CurrentLocale.dart';
 import 'package:provider/provider.dart';
 
@@ -96,7 +97,14 @@ class _MyVerticalList extends State<MyVerticalList> {
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
-            onTap: () {},
+            onTap: () {
+              //跳转 通知公告
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NoticePage(),
+                  ));
+            },
             leading: Image.asset("imgs/ic_mine2.png", width: 22, height: 22),
             title: new Text(
               S.of(context).mine3,
