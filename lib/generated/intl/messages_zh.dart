@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "add": MessageLookupByLibrary.simpleMessage("添加"),
         "appName": MessageLookupByLibrary.simpleMessage("ICPBox"),
         "cancel": MessageLookupByLibrary.simpleMessage("取消"),
         "confirm": MessageLookupByLibrary.simpleMessage("确认"),
@@ -52,7 +53,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mine12": MessageLookupByLibrary.simpleMessage("官方网站"),
         "mine13": MessageLookupByLibrary.simpleMessage("检查更新"),
         "mine14": MessageLookupByLibrary.simpleMessage("用户协议"),
-        "mine15": MessageLookupByLibrary.simpleMessage(""),
+        "mine15": MessageLookupByLibrary.simpleMessage("暂无地址簿"),
         "mine16": MessageLookupByLibrary.simpleMessage(""),
         "mine17": MessageLookupByLibrary.simpleMessage(""),
         "mine18": MessageLookupByLibrary.simpleMessage(""),

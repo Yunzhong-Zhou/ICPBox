@@ -3,6 +3,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
 import 'package:icpbox/ui/mine/about.dart';
+import 'package:icpbox/ui/mine/address.dart';
 import 'package:icpbox/ui/mine/notice.dart';
 import 'package:icpbox/utils/CurrentLocale.dart';
 import 'package:provider/provider.dart';
@@ -78,11 +79,11 @@ class _MyVerticalList extends State<MyVerticalList> {
       children: <Widget>[
         ListTile(
             onTap: () {
-              //跳转
+              //跳转 地址薄
               Navigator.push(
                   context,
                   new MaterialPageRoute(
-                    builder: (context) => new PublshDappPage(),
+                    builder: (context) => new AddressPage(),
                   ));
             },
             leading: Image.asset("imgs/ic_mine1.png", width: 22, height: 22),
