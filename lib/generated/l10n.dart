@@ -120,6 +120,16 @@ class S {
     );
   }
 
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Copy Successfully`
   String get copysuccess {
     return Intl.message(
@@ -630,70 +640,70 @@ class S {
     );
   }
 
-  /// ``
+  /// `检查更新`
   String get mine13 {
     return Intl.message(
-      '',
+      '检查更新',
       name: 'mine13',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `用户协议`
   String get mine14 {
     return Intl.message(
-      '',
+      '用户协议',
       name: 'mine14',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `暂无地址簿`
   String get mine15 {
     return Intl.message(
-      '',
+      '暂无地址簿',
       name: 'mine15',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `添加地址薄`
   String get mine16 {
     return Intl.message(
-      '',
+      '添加地址薄',
       name: 'mine16',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `名称`
   String get mine17 {
     return Intl.message(
-      '',
+      '名称',
       name: 'mine17',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `地址`
   String get mine18 {
     return Intl.message(
-      '',
+      '地址',
       name: 'mine18',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `备注(可选)`
   String get mine19 {
     return Intl.message(
-      '',
+      '备注(可选)',
       name: 'mine19',
       desc: '',
       args: [],
@@ -705,6 +715,106 @@ class S {
     return Intl.message(
       '',
       name: 'mine20',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine21 {
+    return Intl.message(
+      '',
+      name: 'mine21',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine22 {
+    return Intl.message(
+      '',
+      name: 'mine22',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine23 {
+    return Intl.message(
+      '',
+      name: 'mine23',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine24 {
+    return Intl.message(
+      '',
+      name: 'mine24',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine25 {
+    return Intl.message(
+      '',
+      name: 'mine25',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine26 {
+    return Intl.message(
+      '',
+      name: 'mine26',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine27 {
+    return Intl.message(
+      '',
+      name: 'mine27',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine28 {
+    return Intl.message(
+      '',
+      name: 'mine28',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine29 {
+    return Intl.message(
+      '',
+      name: 'mine29',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get mine30 {
+    return Intl.message(
+      '',
+      name: 'mine30',
       desc: '',
       args: [],
     );
