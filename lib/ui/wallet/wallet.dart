@@ -21,74 +21,69 @@ class _WalletPage extends State<WalletPage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      //主题色
-      theme: ThemeData(
-        primaryColor: Colors.black,
-      ),
-      home: Scaffold(
-        appBar: AppBar(
-          //去掉阴影效果
-          elevation: 0.0,
-          title: picAndTextButton("imgs/bg_wallet1.png", "ICP-1"),
-          //右边动作按钮
-          actions: [
-            IconButton(
-              onPressed: () {},
-              icon: Image.asset("imgs/ic_more_white.png",
-                  width: 22.0, height: 22.0),
-            ),
-          ],
-          //背景渐变
-          flexibleSpace: Container(
-            //修饰器
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                Color(0xFF15204C),
-                Color(0xFF273469),
-                Color(0xFF3E4F8F),
-              ], begin: Alignment.centerLeft, end: Alignment.centerRight),
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        //去掉阴影效果
+        elevation: 0.0,
+        title: picAndTextButton("imgs/bg_wallet1.png", "ICP-1"),
+        //右边动作按钮
+        actions: [
+          IconButton(
+            onPressed: () {},
+            icon: Image.asset("imgs/ic_more_white.png",
+                width: 22.0, height: 22.0),
+          ),
+        ],
+        //背景渐变
+        flexibleSpace: Container(
+          //修饰器
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color(0xFF15204C),
+              Color(0xFF273469),
+              Color(0xFF3E4F8F),
+            ], begin: Alignment.centerLeft, end: Alignment.centerRight),
           ),
         ),
-        body: Scaffold(
-          //FAB按钮位置
-          floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-          //按钮
-          floatingActionButton: FloatingActionButton(
-            backgroundColor: Colors.transparent,
-            //前景色
-            // foregroundColor: Colors.transparent,
-            //未点击的时候的阴影
-            elevation: 0.0,
-            //点击时阴影值，默认 12.0
-            highlightElevation: 0.0,
-            //点击事件回调
-            onPressed: () {
-              //跳转
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                    builder: (context) => new PublshDappPage(),
-                  ));
-            },
-            child: Image(
-                height: 50.0,
-                width: 50.0,
-                image: AssetImage("imgs/ic_xinzeng.png")),
+      ),
+      body: Scaffold(
+        //FAB按钮位置
+        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+        //按钮
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.transparent,
+          //前景色
+          // foregroundColor: Colors.transparent,
+          //未点击的时候的阴影
+          elevation: 0.0,
+          //点击时阴影值，默认 12.0
+          highlightElevation: 0.0,
+          //点击事件回调
+          onPressed: () {
+            //跳转
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                  builder: (context) => new PublshDappPage(),
+                ));
+          },
+          child: Image(
+              height: 50.0,
+              width: 50.0,
+              image: AssetImage("imgs/ic_xinzeng.png")),
+        ),
+        //可滑动布局
+        body: Container(
+          //修饰器-蓝色渐变
+          decoration: BoxDecoration(
+            gradient: LinearGradient(colors: [
+              Color(0xFF15204C),
+              Color(0xFF273469),
+              Color(0xFF3E4F8F),
+            ], begin: Alignment.centerLeft, end: Alignment.centerRight),
           ),
-          //可滑动布局
-          body: Container(
-            //修饰器-蓝色渐变
-            decoration: BoxDecoration(
-              gradient: LinearGradient(colors: [
-                Color(0xFF15204C),
-                Color(0xFF273469),
-                Color(0xFF3E4F8F),
-              ], begin: Alignment.centerLeft, end: Alignment.centerRight),
-            ),
-            //必须用 Sliver系列组件
-            /*child: CustomScrollView(
+          //必须用 Sliver系列组件
+          /*child: CustomScrollView(
               scrollDirection: Axis.vertical,
               ///反弹效果
               physics: BouncingScrollPhysics(),
@@ -102,13 +97,12 @@ class _WalletPage extends State<WalletPage> {
                         : myListView3(),
               ],
             ),*/
-            child: Column(
-              children: [
-                MyVerticalList(),
-                //底部列表-放在tab后面，切换tab只改变子组件
-                Expanded(child: MyTabs())
-              ],
-            ),
+          child: Column(
+            children: [
+              MyVerticalList(),
+              //底部列表-放在tab后面，切换tab只改变子组件
+              Expanded(child: MyTabs())
+            ],
           ),
         ),
       ),

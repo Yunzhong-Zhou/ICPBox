@@ -14,7 +14,7 @@ class _InformationPage extends State<InformationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: new AppBar(
+      appBar: AppBar(
         backgroundColor: Colors.white,
         //去掉阴影效果
         elevation: 0.0,

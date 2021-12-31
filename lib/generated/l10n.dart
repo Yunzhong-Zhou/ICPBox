@@ -160,6 +160,16 @@ class S {
     );
   }
 
+  /// `Next`
+  String get next {
+    return Intl.message(
+      'Next',
+      name: 'next',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get wallet1 {
     return Intl.message(
@@ -321,100 +331,340 @@ class S {
   }
 
   /// ``
-  String get dapp1 {
+  String get wallet17 {
     return Intl.message(
       '',
+      name: 'wallet17',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet18 {
+    return Intl.message(
+      '',
+      name: 'wallet18',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet19 {
+    return Intl.message(
+      '',
+      name: 'wallet19',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get wallet20 {
+    return Intl.message(
+      '',
+      name: 'wallet20',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `热点项目`
+  String get dapp1 {
+    return Intl.message(
+      '热点项目',
       name: 'dapp1',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `最新项目`
   String get dapp2 {
     return Intl.message(
-      '',
+      '最新项目',
       name: 'dapp2',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `申请人`
   String get dapp3 {
     return Intl.message(
-      '',
+      '申请人',
       name: 'dapp3',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `团队`
   String get dapp4 {
     return Intl.message(
-      '',
+      '团队',
       name: 'dapp4',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `申请人信息`
   String get dapp5 {
     return Intl.message(
-      '',
+      '申请人信息',
       name: 'dapp5',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `申请人姓名`
   String get dapp6 {
     return Intl.message(
-      '',
+      '申请人姓名',
       name: 'dapp6',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `请填写申请人姓名`
   String get dapp7 {
     return Intl.message(
-      '',
+      '请填写申请人姓名',
       name: 'dapp7',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `邮箱`
   String get dapp8 {
     return Intl.message(
-      '',
+      '邮箱',
       name: 'dapp8',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `请填写邮箱地址`
   String get dapp9 {
     return Intl.message(
-      '',
+      '请填写邮箱地址',
       name: 'dapp9',
       desc: '',
       args: [],
     );
   }
 
-  /// ``
+  /// `联系电话`
   String get dapp10 {
     return Intl.message(
-      '',
+      '联系电话',
       name: 'dapp10',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请填写联系电话`
+  String get dapp11 {
+    return Intl.message(
+      '请填写联系电话',
+      name: 'dapp11',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DAPP信息`
+  String get dapp12 {
+    return Intl.message(
+      'DAPP信息',
+      name: 'dapp12',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DAPP名称`
+  String get dapp13 {
+    return Intl.message(
+      'DAPP名称',
+      name: 'dapp13',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请填写申请人姓名`
+  String get dapp14 {
+    return Intl.message(
+      '请填写申请人姓名',
+      name: 'dapp14',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DAPP图片`
+  String get dapp15 {
+    return Intl.message(
+      'DAPP图片',
+      name: 'dapp15',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DAPP链接地址`
+  String get dapp16 {
+    return Intl.message(
+      'DAPP链接地址',
+      name: 'dapp16',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请填写链接地址`
+  String get dapp17 {
+    return Intl.message(
+      '请填写链接地址',
+      name: 'dapp17',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DAPP合约地址`
+  String get dapp18 {
+    return Intl.message(
+      'DAPP合约地址',
+      name: 'dapp18',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请填写合约地址`
+  String get dapp19 {
+    return Intl.message(
+      '请填写合约地址',
+      name: 'dapp19',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DAPP宣传语`
+  String get dapp20 {
+    return Intl.message(
+      'DAPP宣传语',
+      name: 'dapp20',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请填写宣传语`
+  String get dapp21 {
+    return Intl.message(
+      '请填写宣传语',
+      name: 'dapp21',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DAPP简介`
+  String get dapp22 {
+    return Intl.message(
+      'DAPP简介',
+      name: 'dapp22',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请填写简介`
+  String get dapp23 {
+    return Intl.message(
+      '请填写简介',
+      name: 'dapp23',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `团队信息`
+  String get dapp24 {
+    return Intl.message(
+      '团队信息',
+      name: 'dapp24',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `团队简介`
+  String get dapp25 {
+    return Intl.message(
+      '团队简介',
+      name: 'dapp25',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `请填写团队简介`
+  String get dapp26 {
+    return Intl.message(
+      '请填写团队简介',
+      name: 'dapp26',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `社群信息`
+  String get dapp27 {
+    return Intl.message(
+      '社群信息',
+      name: 'dapp27',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `其他合作钱包`
+  String get dapp28 {
+    return Intl.message(
+      '其他合作钱包',
+      name: 'dapp28',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `该DApp其他合作钱包，多个请用；隔开`
+  String get dapp29 {
+    return Intl.message(
+      '该DApp其他合作钱包，多个请用；隔开',
+      name: 'dapp29',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp30 {
+    return Intl.message(
+      '',
+      name: 'dapp30',
       desc: '',
       args: [],
     );
