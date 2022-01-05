@@ -4,6 +4,7 @@ import 'package:flutter_easy_permission/easy_permissions.dart';
 import 'package:flutter_scankit/flutter_scankit.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/ui/dapp/search.dart';
 import 'package:icpbox/widgets/customized_view.dart';
 
 import 'grid_page.dart';
@@ -105,6 +106,18 @@ class _DappPage extends State<DappPage> {
               borderRadius: BorderRadius.circular(20)),
           padding: EdgeInsets.only(left: 10),
           child: TextField(
+            //只读
+            readOnly: true,
+            //不可编辑
+            // enableInteractiveSelection: false,
+            onTap: (){
+              //跳转
+              Navigator.push(
+                  context,
+                  new MaterialPageRoute(
+                    builder: (context) => new SearchPage(),
+                  ));
+            },
             maxLines: 1,
             style: TextStyle(fontSize: 14, color: Colors.black),
             //隐藏文本-密码

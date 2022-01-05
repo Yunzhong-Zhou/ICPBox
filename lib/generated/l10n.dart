@@ -671,6 +671,106 @@ class S {
   }
 
   /// ``
+  String get dapp31 {
+    return Intl.message(
+      '',
+      name: 'dapp31',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp32 {
+    return Intl.message(
+      '',
+      name: 'dapp32',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp33 {
+    return Intl.message(
+      '',
+      name: 'dapp33',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp34 {
+    return Intl.message(
+      '',
+      name: 'dapp34',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp35 {
+    return Intl.message(
+      '',
+      name: 'dapp35',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp36 {
+    return Intl.message(
+      '',
+      name: 'dapp36',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp37 {
+    return Intl.message(
+      '',
+      name: 'dapp37',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp38 {
+    return Intl.message(
+      '',
+      name: 'dapp38',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp39 {
+    return Intl.message(
+      '',
+      name: 'dapp39',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get dapp40 {
+    return Intl.message(
+      '',
+      name: 'dapp40',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
   String get infomation1 {
     return Intl.message(
       '',
