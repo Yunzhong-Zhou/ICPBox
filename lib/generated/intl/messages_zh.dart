@@ -130,8 +130,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "wallet3": MessageLookupByLibrary.simpleMessage("收账"),
         "wallet4": MessageLookupByLibrary.simpleMessage("闪兑"),
         "wallet5": MessageLookupByLibrary.simpleMessage("资产"),
-        "wallet6": MessageLookupByLibrary.simpleMessage(""),
-        "wallet7": MessageLookupByLibrary.simpleMessage(""),
+        "wallet6": MessageLookupByLibrary.simpleMessage("用户协议"),
+        "wallet7": MessageLookupByLibrary.simpleMessage("接受"),
         "wallet8": MessageLookupByLibrary.simpleMessage(""),
         "wallet9": MessageLookupByLibrary.simpleMessage("")
       };

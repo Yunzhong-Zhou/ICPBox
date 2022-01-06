@@ -4,6 +4,8 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
 
+import 'agreement.dart';
+
 ///钱包
 class WalletPage extends StatefulWidget {
   @override
@@ -14,9 +16,17 @@ int _tab_index = 0;
 List list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 class _WalletPage extends State<WalletPage> {
+  ///生命周期-开始
   @override
   void initState() {
     super.initState();
+  }
+
+  @override
+  void didChangeDependencies() {
+    // TODO: implement didChangeDependencies
+    super.didChangeDependencies();
+    // Fluttertoast.showToast(msg: "didChangeDependencies");
   }
 
   @override
@@ -64,7 +74,7 @@ class _WalletPage extends State<WalletPage> {
             Navigator.push(
                 context,
                 new MaterialPageRoute(
-                  builder: (context) => new PublshDappPage(),
+                  builder: (context) => new AgreementPage(),
                 ));
           },
           child: Image(
@@ -108,6 +118,23 @@ class _WalletPage extends State<WalletPage> {
       ),
     );
   }
+
+  @override
+  void didUpdateWidget(covariant WalletPage oldWidget) {
+    // TODO: implement didUpdateWidget
+    super.didUpdateWidget(oldWidget);
+    // Fluttertoast.showToast(msg: "didUpdateWidget");
+  }
+
+  @override
+  void deactivate() {
+    // TODO: implement deactivate
+    super.deactivate();
+    // Fluttertoast.showToast(msg: "deactivate");
+  }
+
+  ///生命周期-结束
+
 }
 
 Widget picAndTextButton(String imgpath, String text) {
