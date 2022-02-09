@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 ///默认静态页面  优先使用
+///快捷创建类  stless
 class BaseStatelessPage extends StatelessWidget {
   const BaseStatelessPage({Key? key}) : super(key: key);
   @override
@@ -12,6 +13,7 @@ class BaseStatelessPage extends StatelessWidget {
       body: Center(
         child: Text(
           "默认静态页面",
+
           style: TextStyle(fontSize: 30, color: Colors.blue),
         ),
       ),

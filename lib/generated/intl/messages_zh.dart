@@ -90,9 +90,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "mine19": MessageLookupByLibrary.simpleMessage("备注(可选)"),
         "mine2": MessageLookupByLibrary.simpleMessage("地址簿"),
         "mine20": MessageLookupByLibrary.simpleMessage("修改地址薄"),
-        "mine21": MessageLookupByLibrary.simpleMessage(""),
-        "mine22": MessageLookupByLibrary.simpleMessage(""),
-        "mine23": MessageLookupByLibrary.simpleMessage(""),
+        "mine21": MessageLookupByLibrary.simpleMessage("请输入名称"),
+        "mine22": MessageLookupByLibrary.simpleMessage("请输入地址"),
+        "mine23": MessageLookupByLibrary.simpleMessage("请输入备注（可选）"),
         "mine24": MessageLookupByLibrary.simpleMessage(""),
         "mine25": MessageLookupByLibrary.simpleMessage(""),
         "mine26": MessageLookupByLibrary.simpleMessage(""),
@@ -115,8 +115,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "tab3": MessageLookupByLibrary.simpleMessage("资讯"),
         "tab4": MessageLookupByLibrary.simpleMessage("我的"),
         "wallet1": MessageLookupByLibrary.simpleMessage("钱包地址"),
-        "wallet10": MessageLookupByLibrary.simpleMessage(""),
-        "wallet11": MessageLookupByLibrary.simpleMessage(""),
+        "wallet10": MessageLookupByLibrary.simpleMessage("设置名称"),
+        "wallet11": MessageLookupByLibrary.simpleMessage("钱包名称用于帮助您区分不同的钱包账户"),
         "wallet12": MessageLookupByLibrary.simpleMessage(""),
         "wallet13": MessageLookupByLibrary.simpleMessage(""),
         "wallet14": MessageLookupByLibrary.simpleMessage(""),
@@ -132,7 +132,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "wallet5": MessageLookupByLibrary.simpleMessage("资产"),
         "wallet6": MessageLookupByLibrary.simpleMessage("用户协议"),
         "wallet7": MessageLookupByLibrary.simpleMessage("接受"),
-        "wallet8": MessageLookupByLibrary.simpleMessage(""),
-        "wallet9": MessageLookupByLibrary.simpleMessage("")
+        "wallet8": MessageLookupByLibrary.simpleMessage("创建钱包"),
+        "wallet9": MessageLookupByLibrary.simpleMessage("步骤")
       };
 }

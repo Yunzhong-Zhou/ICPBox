@@ -45,13 +45,23 @@ dependencies:
   flutter_easy_permission: ^1.1.1
   # 扫码
   flutter_scankit: ^1.2.2
-#  应用版本号/版本名字等
+  #应用版本号/版本名字等
   package_info: ^2.0.2
-#  跨组件数据共享
+  #跨组件数据共享
   provider: ^6.0.1
-#  本地配置文件存储
+  #本地配置文件存储
   shared_preferences: ^2.0.11
 
+  #网络请求
+  dio: ^4.0.4
+  #字符加密
+  crypto: ^3.0.1
+  #简单的加载loading
+  flutter_easyloading: ^3.0.3
+
+  connectivity_plus: ^1.1.0
+
+  convert: ^3.0.1
 
 
 

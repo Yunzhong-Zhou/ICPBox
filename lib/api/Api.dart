@@ -1,5 +1,9 @@
 class Api {
-  static const String BASE_URL = "https://www.wanandroid.com/";
+  static const String BASE_URL = "http://icpbox.fbixfbi.com";
+
+  static String OTHER_URL = "http://icpbox.fbixfbi.com";
+
+  static String TEST_URL = "http://icpbox.fbixfbi.com";
 
   //首页banner
   static const String BANNER_URL = "banner/json";

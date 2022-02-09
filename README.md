@@ -22,6 +22,15 @@ samples, guidance on mobile development, and a full API reference.
 *
 * 终端快捷键： 热加载 r 、 切换平台 o 、 展示/隐藏网格 p 、退出预览 q  、 清屏 c
 
+## 快捷操作
+-快捷创建有状态的页面  stful  
+-快捷创建无状态的页面  stless
+-快捷创建页面刷新方法  ss   (仅限有状态的页面可用)
+
+
+
+
+
 
 | 根目录 | 包名 |
 | --- | --- |
@@ -57,3 +66,15 @@ samples, guidance on mobile development, and a full API reference.
 | flutter_swiper | 轮播 |
 | image_picker | 图像选择 |
 | image_cropper| 图像裁剪 |
+
+
+net下：
+Api 对应项目中业务开发时候的调用接口
+Code定义了常见请求状态，例如网络错误、超时、成功等
+DataHelper定义了数据加密工具代码
+DioLogInterceptor页面Loading拦截器，用于网络数据返回加工预处理
+HttpManager核心工具类，提供get和post请求入口
+Loading网络请求等待页面处理
+ResponseInterceptors拦截器，用于网络数据返回加工预处理
+ResultData网络返回数据二次封装
+UrlPath对业务URL统一管理

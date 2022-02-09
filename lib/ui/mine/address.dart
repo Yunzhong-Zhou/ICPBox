@@ -15,6 +15,7 @@ class AddressPage extends StatefulWidget {
 List list = [1111, 22222, 33333];
 
 class _AddressPage extends State<AddressPage> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

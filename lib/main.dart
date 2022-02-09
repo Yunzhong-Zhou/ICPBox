@@ -44,6 +44,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           //调试是否显示debug
           debugShowCheckedModeBanner: false,
+          //多语言
           localizationsDelegates: [
             GlobalMaterialLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
