@@ -4,28 +4,48 @@ import 'package:icpbox/generated/l10n.dart';
 
 ///添加地址薄
 class AddAddressPage extends StatefulWidget {
-  int type = 1;//1、增加、2修改
-  AddAddressPage(this.type,{Key? key}) : super(key: key);
+  int type = 1; //1、增加、2修改
+  String? id, name, address, beizhu;
+  AddAddressPage(
+      {Key? key,
+      required this.type,
+      this.id,
+      this.name,
+      this.address,
+      this.beizhu})
+      : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _AddAddressPage();
 }
 
 class _AddAddressPage extends State<AddAddressPage> {
   final GlobalKey _key = GlobalKey<FormState>();
-  TextEditingController _name = TextEditingController();
-  TextEditingController _address = TextEditingController();
-  TextEditingController _beizhu = TextEditingController();
+  TextEditingController? _name;
+  TextEditingController? _address = TextEditingController();
+  TextEditingController? _beizhu = TextEditingController();
+
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      _name = TextEditingController(text: widget.name);
+      _address = TextEditingController(text: widget.address);
+      _beizhu = TextEditingController(text: widget.beizhu);
+    });
+  }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     //释放
-    _name.dispose();
-    _address.dispose();
-    _beizhu.dispose();
-
+    _name?.dispose();
+    _address?.dispose();
+    _beizhu?.dispose();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +58,7 @@ class _AddAddressPage extends State<AddAddressPage> {
               onPressed: () {
                 Navigator.of(context).pop();
               }),
-          title:Text( widget.type ==1? S().mine16 : S().mine20,
+          title: Text(widget.type == 1 ? S().mine16 : S().mine20,
               style: TextStyle(fontSize: 20, color: Colors.black)),
           centerTitle: true,
           elevation: 0,
@@ -58,6 +78,7 @@ class _AddAddressPage extends State<AddAddressPage> {
                 ),
                 child: Column(
                   children: [
+                    //名称
                     Container(
                       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                       child: TextFormField(
@@ -69,11 +90,12 @@ class _AddAddressPage extends State<AddAddressPage> {
                           border: InputBorder.none,
                           hintText: S().mine21,
                           hintStyle:
-                          TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
+                              TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
                           labelText: S().mine17,
                           labelStyle:
-                          TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
+                              TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
                         ),
+                        textInputAction: TextInputAction.next,
                         /*
                         //校验输入
                         validator: (v){
@@ -94,6 +116,7 @@ class _AddAddressPage extends State<AddAddressPage> {
                       thickness: 1.0,
                       color: Color(0xFFF7F7F7),
                     ),
+                    //地址
                     Container(
                       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                       child: Row(children: [
@@ -111,6 +134,7 @@ class _AddAddressPage extends State<AddAddressPage> {
                               labelStyle: TextStyle(
                                   fontSize: 14, color: Color(0xFFAAAAAA)),
                             ),
+                            textInputAction: TextInputAction.next,
                             /*
                             //校验输入
                             validator: (v){
@@ -119,10 +143,11 @@ class _AddAddressPage extends State<AddAddressPage> {
                               }
                             },*/
                           ),
-
                         ),
                         Image.asset(
-                          widget.type ==1? "imgs/ic_scan.png":"imgs/ic_cha.png",
+                          widget.type == 1
+                              ? "imgs/ic_scan.png"
+                              : "imgs/ic_cha.png",
                           width: 20,
                           height: 20,
                         )
@@ -139,6 +164,7 @@ class _AddAddressPage extends State<AddAddressPage> {
                       thickness: 1.0,
                       color: Color(0xFFF7F7F7),
                     ),
+                    //备注
                     Container(
                       padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
                       child: TextField(
@@ -150,10 +176,10 @@ class _AddAddressPage extends State<AddAddressPage> {
                           border: InputBorder.none,
                           hintText: S().mine23,
                           hintStyle:
-                          TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
+                              TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
                           labelText: S().mine19,
                           labelStyle:
-                          TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
+                              TextStyle(fontSize: 14, color: Color(0xFFAAAAAA)),
                         ),
                       ),
                     )
@@ -163,7 +189,7 @@ class _AddAddressPage extends State<AddAddressPage> {
               Container(
                 width: MediaQuery.of(context).size.width,
                 // 屏幕宽度
-                margin: EdgeInsets.fromLTRB(33,33,33,0),
+                margin: EdgeInsets.fromLTRB(33, 33, 33, 0),
                 height: 48,
                 //在此设置
                 decoration: BoxDecoration(
@@ -179,17 +205,21 @@ class _AddAddressPage extends State<AddAddressPage> {
                     //校验输入
                     /*if((_key.currentState as FormState).validate()){
                     }*/
-                    if(_name.text ==null || _name.text.isEmpty){
+                    if (_name?.text == null || _name!.text.isEmpty) {
                       Fluttertoast.showToast(msg: S().mine21);
                       return;
                     }
-                    if(_address.text ==null || _address.text.isEmpty){
+                    if (_address?.text == null || _address!.text.isEmpty) {
                       Fluttertoast.showToast(msg: S().mine22);
                       return;
                     }
+                    if (widget.type == 1) {
+                      //增加-保存数据到本地
 
+                    } else {
+                      //修改-修改本地数据
 
-
+                    }
                   },
                   child: Text(
                     S().save,
@@ -200,14 +230,12 @@ class _AddAddressPage extends State<AddAddressPage> {
                     elevation: MaterialStateProperty.all(0),
                     //将按钮背景设置为透明
                     backgroundColor:
-                    MaterialStateProperty.all(Colors.transparent),
+                        MaterialStateProperty.all(Colors.transparent),
                   ),
                 ),
               ),
             ],
           ),
-        )
-
-    );
+        ));
   }
 }

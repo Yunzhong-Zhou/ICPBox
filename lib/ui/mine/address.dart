@@ -39,7 +39,7 @@ class _AddressPage extends State<AddressPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => AddAddressPage(1),
+                    builder: (context) => AddAddressPage(type: 1,),
                   ));
             },
             icon: Icon(Icons.add_circle_outline),
@@ -91,7 +91,7 @@ class NoAddress extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddAddressPage(1),
+                      builder: (context) => AddAddressPage(type: 1,),
                     ));
               },
               child: Text(
@@ -170,7 +170,7 @@ class _MyListView extends State<MyListView> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => AddAddressPage(2),
+                                builder: (context) => AddAddressPage(type: 2,name: list[index].toString(),),
                               ));
                         },
                         child: Container(

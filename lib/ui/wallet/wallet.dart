@@ -73,8 +73,8 @@ class _WalletPage extends State<WalletPage> {
             //跳转
             Navigator.push(
                 context,
-                new MaterialPageRoute(
-                  builder: (context) => new AgreementPage(),
+                MaterialPageRoute(
+                  builder: (context) => const AgreementPage(),
                 ));
           },
           child: Image(
