@@ -52,6 +52,9 @@ dependencies:
   #本地配置文件存储
   shared_preferences: ^2.0.11
 
+  #数据库
+  sqflite: ^2.0.2
+
   #网络请求
   dio: ^4.0.4
   #字符加密

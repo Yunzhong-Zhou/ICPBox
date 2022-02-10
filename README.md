@@ -12,32 +12,50 @@ A few resources to get you started if this is your first Flutter project:
 - [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
 
 For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+[online documentation](https://flutter.dev/docs), which offers tutorials, samples, guidance on
+mobile development, and a full API reference.
 
-# 终端运行
+### 终端运行
+
 * 1、source ~/.bash_profile
 * flutter doctor
 * 2、flutter run
 *
-* 终端快捷键： 热加载 r 、 切换平台 o 、 展示/隐藏网格 p 、退出预览 q  、 清屏 c
+* 终端快捷键： 热加载 r 、 切换平台 o 、 展示/隐藏网格 p 、退出预览 q 、 清屏 c
 
-## 快捷操作
--快捷创建有状态的页面  stful  
--快捷创建无状态的页面  stless
--快捷创建页面刷新方法  ss   (仅限有状态的页面可用)
+### 快捷操作
 
-
+-快捷创建有状态的页面 stful  
+-快捷创建无状态的页面 stless -快捷创建页面刷新方法 ss   (仅限有状态的页面可用)
 
 
-
+### Flutter和原生Android控件对比：
+|Flutter控件|    Android控件|
+| --- | --- |
+| AppBar    | ActionBar/ToolBar
+| ListView    | ListView/RecyclerView
+| Text    | TextView
+| Center    | ViewGroup
+| FloatingActionButton|    FloatingActionButton(design库里面的)
+| BottomNavigationBar    | BottomNavigation(design库里面的)
+| RaisedButton/Button    | Button
+| Column|    LinearLayout的android:orientation="vertical"
+| Row    | android:orientation="horizontal"
+| DecorationImage    | ImageView
+| Image    | ImageView
+| Stack|    FrameLayout/RelativeLayout
+| Container    | RelativeLayout
+| CustomMultiChildLayout    | RelativeLayout
+| Algin    | alginParentXXX属性
+| resizeToAvoidBottomPadding    | android:windowSoftInputMode=”adjustResize属性
+| SingleChildScrollView    | ScrollView
+| CustomScrollerView    | Recyclerview
 
 | 根目录 | 包名 |
 | --- | --- |
 | 保存图片   | imgs |
 | 保存Icon文件   | fonts |
 | 将Json转成Dart Model类  |  jsons |
-
 
 | lib文件下 | 释义|
 | --- | --- |
@@ -67,14 +85,6 @@ samples, guidance on mobile development, and a full API reference.
 | image_picker | 图像选择 |
 | image_cropper| 图像裁剪 |
 
-
-net下：
-Api 对应项目中业务开发时候的调用接口
-Code定义了常见请求状态，例如网络错误、超时、成功等
-DataHelper定义了数据加密工具代码
-DioLogInterceptor页面Loading拦截器，用于网络数据返回加工预处理
-HttpManager核心工具类，提供get和post请求入口
-Loading网络请求等待页面处理
-ResponseInterceptors拦截器，用于网络数据返回加工预处理
-ResultData网络返回数据二次封装
-UrlPath对业务URL统一管理
+net下： Api 对应项目中业务开发时候的调用接口 Code定义了常见请求状态，例如网络错误、超时、成功等 DataHelper定义了数据加密工具代码
+DioLogInterceptor页面Loading拦截器，用于网络数据返回加工预处理 HttpManager核心工具类，提供get和post请求入口 Loading网络请求等待页面处理
+ResponseInterceptors拦截器，用于网络数据返回加工预处理 ResultData网络返回数据二次封装 UrlPath对业务URL统一管理

@@ -240,7 +240,8 @@ class _DappPage extends State<DappPage> {
               color: Color(0xFFF7F7F7),
             ),
             Container(
-                width: MediaQuery.of(context).size.width,
+                // width: MediaQuery.of(context).size.width,
+              width: double.infinity,
                 alignment: Alignment.centerLeft,
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 14, top: 7),
