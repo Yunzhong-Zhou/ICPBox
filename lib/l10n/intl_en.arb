@@ -13,7 +13,10 @@
   "sreachinfo": "Enter search content",
   "add": "Add",
   "next": "Next",
-
+  "hint": "Hint",
+  "hint1": "Confirm add?",
+  "hint2": "Confirm delete?",
+  "hint3": "Confirm modify?",
 
   "wallet1": "",
   "wallet2": "",

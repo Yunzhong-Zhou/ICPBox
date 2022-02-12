@@ -170,6 +170,46 @@ class S {
     );
   }
 
+  /// `Hint`
+  String get hint {
+    return Intl.message(
+      'Hint',
+      name: 'hint',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm add?`
+  String get hint1 {
+    return Intl.message(
+      'Confirm add?',
+      name: 'hint1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm delete?`
+  String get hint2 {
+    return Intl.message(
+      'Confirm delete?',
+      name: 'hint2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Confirm modify?`
+  String get hint3 {
+    return Intl.message(
+      'Confirm modify?',
+      name: 'hint3',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// ``
   String get wallet1 {
     return Intl.message(

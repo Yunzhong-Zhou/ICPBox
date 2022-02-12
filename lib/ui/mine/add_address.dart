@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
@@ -6,6 +7,7 @@ import 'package:icpbox/generated/l10n.dart';
 class AddAddressPage extends StatefulWidget {
   int type = 1; //1、增加、2修改
   String? id, name, address, beizhu;
+
   AddAddressPage(
       {Key? key,
       required this.type,
@@ -22,9 +24,8 @@ class AddAddressPage extends StatefulWidget {
 class _AddAddressPage extends State<AddAddressPage> {
   final GlobalKey _key = GlobalKey<FormState>();
   TextEditingController? _name;
-  TextEditingController? _address = TextEditingController();
-  TextEditingController? _beizhu = TextEditingController();
-
+  TextEditingController? _address;
+  TextEditingController? _beizhu;
 
   @override
   void initState() {
@@ -144,12 +145,22 @@ class _AddAddressPage extends State<AddAddressPage> {
                             },*/
                           ),
                         ),
-                        Image.asset(
-                          widget.type == 1
-                              ? "imgs/ic_scan.png"
-                              : "imgs/ic_cha.png",
-                          width: 20,
-                          height: 20,
+                        InkWell(
+                          onTap: () {
+                            if (widget.type == 1) {
+                              //扫码
+
+                            } else {
+                              setState(() {});
+                            }
+                          },
+                          child: Image.asset(
+                            widget.type == 1
+                                ? "imgs/ic_scan.png"
+                                : "imgs/ic_cha.png",
+                            width: 20,
+                            height: 20,
+                          ),
                         )
                       ]),
                     ),
@@ -213,13 +224,13 @@ class _AddAddressPage extends State<AddAddressPage> {
                       Fluttertoast.showToast(msg: S().mine22);
                       return;
                     }
+
                     if (widget.type == 1) {
                       //增加-保存数据到本地
-
-
+                      _showAlrt(S().hint, S().hint1);
                     } else {
                       //修改-修改本地数据
-
+                      _showAlrt(S().hint, S().hint3);
                     }
                   },
                   child: Text(
@@ -238,5 +249,32 @@ class _AddAddressPage extends State<AddAddressPage> {
             ],
           ),
         ));
+  }
+
+  void _showAlrt(var _title, var _content) async {
+    var result = await showDialog(
+        //点击空白区域是否关闭对话框
+        barrierDismissible: true,
+        context: context,
+        builder: (BuildContext context) {
+          //ios风格的组件Cupertino开头
+          return CupertinoAlertDialog(
+            title: Text(_title),
+            content: Text(_content),
+            actions: [
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, false);
+                  },
+                  child: Text(S().cancel)),
+              TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, true);
+                  },
+                  child: Text(S().confirm))
+            ],
+          );
+        });
+    print(result);
   }
 }

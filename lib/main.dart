@@ -121,7 +121,7 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         unselectedFontSize: 10.0,
         selectedItemColor: Color(0xFF3555FF),
         unselectedItemColor: Color(0xFF525252),
-        // type: BottomNavigationBarType.shifting,
+        // type: BottomNavigationBarType.shifting, 如果为4个会不显示
         type: BottomNavigationBarType.fixed,
         //底部导航栏的创建需要对应的功能标签作为子项，这里我就写了3个，每个子项包含一个图标和一个title。
         items: [

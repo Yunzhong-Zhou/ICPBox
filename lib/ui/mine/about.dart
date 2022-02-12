@@ -7,7 +7,9 @@ class AboutPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _AboutPage();
 }
+
 String version = "1.0.0";
+
 class _AboutPage extends State<AboutPage> {
   @override
   Widget build(BuildContext context) {
@@ -50,27 +52,35 @@ class _AboutPage extends State<AboutPage> {
               child: Text("v${version}",
                   style: TextStyle(fontSize: 14, color: Color(0xFF5E6A71))),
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
-              child: Row(
-                children: [
-                  Text(S.of(context).mine13,
-                      style: TextStyle(fontSize: 12, color: Color(0xFF4D4D4D))),
-                  //圆形
-                  Container(
-                      width: 6,
-                      height: 6,
-                      margin: EdgeInsets.only(left: 4),
-                      // alignment: Alignment.topCenter,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFFF0000),
-                        shape: BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
-                      )),
-                  Spacer(), //使用Spacer填充尽可能大的空间
-                  Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)
-                ],
+            //检查更新
+            InkWell(
+              onTap: () {
+
+              },
+              child: Container(
+                padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
+                child: Row(
+                  children: [
+                    Text(S.of(context).mine13,
+                        style:
+                            TextStyle(fontSize: 12, color: Color(0xFF4D4D4D))),
+                    //圆形
+                    Container(
+                        width: 6,
+                        height: 6,
+                        margin: EdgeInsets.only(left: 4),
+                        // alignment: Alignment.topCenter,
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFF0000),
+                          shape: BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
+                        )),
+                    Spacer(), //使用Spacer填充尽可能大的空间
+                    Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)
+                  ],
+                ),
               ),
             ),
+
             //分割线
             Divider(
               //缩进
@@ -82,19 +92,27 @@ class _AboutPage extends State<AboutPage> {
               thickness: 1.0,
               color: Color(0xFFF7F7F7),
             ),
-            Container(
-                padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
-                child: Row(
-                  children: [
-                    Text(S.of(context).mine14,
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFF4D4D4D))),
-                    Spacer(), //使用Spacer填充尽可能大的空间
-                    Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)
-                  ],
-                )),
+            //用户协议
+            InkWell(
+              onTap: () {},
+              child: Container(
+                  padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
+                  child: Row(
+                    children: [
+                      Text(S.of(context).mine14,
+                          style: TextStyle(
+                              fontSize: 12, color: Color(0xFF4D4D4D))),
+                      Spacer(), //使用Spacer填充尽可能大的空间
+                      Image.asset("imgs/ic_next_gray.png",
+                          width: 12, height: 12)
+                    ],
+                  )),
+            ),
             //填充组件
-            Expanded(child: Container(color: Color(0xFFF6F6F6),))
+            Expanded(
+                child: Container(
+              color: Color(0xFFF6F6F6),
+            ))
           ],
         ),
       ),
@@ -103,18 +121,18 @@ class _AboutPage extends State<AboutPage> {
 }
 
 /// 获取APP信息
-void getAppInfo(){
+void getAppInfo() {
   //同步
   PackageInfo.fromPlatform().then((PackageInfo packageInfo) {
-      //APP名称
-      // String appName = packageInfo.appName;
-      //包名
-      // String packageName = packageInfo.packageName;
-      //版本名
-     version = packageInfo.version;
-      //版本号
-      // String buildNumber = packageInfo.buildNumber;
-    });
+    //APP名称
+    // String appName = packageInfo.appName;
+    //包名
+    // String packageName = packageInfo.packageName;
+    //版本名
+    version = packageInfo.version;
+    //版本号
+    // String buildNumber = packageInfo.buildNumber;
+  });
   //异步
   // PackageInfo packageInfo = await PackageInfo.fromPlatform();
   // String appName = packageInfo.appName;

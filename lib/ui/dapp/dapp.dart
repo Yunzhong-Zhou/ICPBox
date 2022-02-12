@@ -28,7 +28,7 @@ List list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 class _DappPage extends State<DappPage> {
   //输入监听
-  var _controller;
+  TextEditingController? _controller;
 
   //扫码
   late FlutterScankit scanKit;
@@ -39,7 +39,7 @@ class _DappPage extends State<DappPage> {
     super.initState();
     //输入监听
     _controller = TextEditingController();
-    _controller.addListener(() {});
+    _controller?.addListener(() {});
 
     //扫码
     scanKit = FlutterScankit();
@@ -157,9 +157,9 @@ class _DappPage extends State<DappPage> {
               //关闭软键盘
               FocusScope.of(context).requestFocus(FocusNode());
               //输入完成时
-              Fluttertoast.showToast(msg: _controller.text);
+              Fluttertoast.showToast(msg: _controller!.text.toString());
               //清空输入框
-              _controller.text = "";
+              _controller?.text = "";
             },
           ),
         ),

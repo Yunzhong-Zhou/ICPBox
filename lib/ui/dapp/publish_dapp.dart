@@ -4,6 +4,7 @@ import 'package:icpbox/widgets/DottedLine.dart';
 
 ///发布
 class PublshDappPage extends StatefulWidget {
+  List widgets = [MyListView1(),MyListView2(),MyListView3()];
   @override
   State<StatefulWidget> createState() => _PublshDappPage();
 }
@@ -57,11 +58,16 @@ class _PublshDappPage extends State<PublshDappPage> {
             color: Color(0xFFF3F6FC),
             borderRadius: BorderRadius.vertical(top: Radius.elliptical(30, 30)),
           ),
-          child: index == 1
+          /*child: index == 1
               ? MyListView1()
               : index == 2
                   ? MyListView2()
-                  : MyListView3(),
+                  : MyListView3(),*/
+          /*child: Visibility(
+            visible: true,
+            child: MyListView1(),
+          ),*/
+          child: widget.widgets[index-1],
         ),
       ),
     );
