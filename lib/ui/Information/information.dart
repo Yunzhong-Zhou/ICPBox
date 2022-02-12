@@ -1,4 +1,6 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
 
 ///资讯
@@ -11,6 +13,14 @@ int _tab_index = 0;
 List list = [1, 2, 3];
 
 class _InformationPage extends State<InformationPage> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("数据获取");
+    _request;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -321,7 +331,8 @@ class MyItem2 extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text("TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle",
+                Text(
+                    "TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle",
                     style: TextStyle(fontSize: 14, color: Color(0xFF4A4A4A)),
                     maxLines: 2,
                     textAlign: TextAlign.left,
@@ -354,4 +365,16 @@ class MyItem2 extends StatelessWidget {
       ),
     );
   }
+}
+
+///*******************************数据请求**************************************
+void _request() async {
+  var result = await Dio().get(
+    Api.INFORMATION, //url
+    queryParameters: {"page": "1", "count": "10"}, //传参
+    options: Options(
+      headers: {"token": ""},//header
+    ),
+  );
+  print("数据返回：" + result.toString());
 }

@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-// 本地存储
+/// 本地存储
 class SpUtil {
   SpUtil._internal();
   static final SpUtil _instance = SpUtil._internal();

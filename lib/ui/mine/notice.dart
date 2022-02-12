@@ -1,5 +1,9 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/provider/AppDataProvider.dart';
+import 'package:provider/provider.dart';
 
 ///通知
 class NoticePage extends StatefulWidget {
@@ -58,6 +62,7 @@ class myListView extends StatefulWidget {
 }
 
 class _myListViewState extends State<myListView> {
+  int _page = 1;
   @override
   Widget build(BuildContext context) {
     return RefreshIndicator(
@@ -105,12 +110,22 @@ class _myListViewState extends State<myListView> {
   }
 
   Future _onRefresh() async {
-    await Future.delayed(
+    /*await Future.delayed(
       //延时3秒
       const Duration(seconds: 3),
           () {
         print("延时结束");
       },
+    );*/
+    var result = await Dio().get(
+      Api.NOTICE, //url
+      queryParameters: {"page": _page,
+        "count": Provider.of<AppDataProvider>(context,listen: false).Count,
+      "lang":Provider.of<AppDataProvider>(context,listen: false).Language,}, //传参
+      options: Options(
+        headers: {"token": Provider.of<AppDataProvider>(context,listen: false).Token},//header
+      ),
     );
+    print("数据返回：" + result.toString());
   }
 }

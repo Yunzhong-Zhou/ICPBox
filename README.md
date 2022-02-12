@@ -28,6 +28,11 @@ mobile development, and a full API reference.
 -快捷创建有状态的页面 stful  
 -快捷创建无状态的页面 stless -快捷创建页面刷新方法 ss   (仅限有状态的页面可用)
 
+### MVVM设计模式
+view层调用viewmodel，viewmodel通知model层，
+model再发送请求返回给viewmodel，viewmodel处理返回结果并刷新view
+
+
 
 ### Flutter和原生Android控件对比：
 |Flutter控件|    Android控件|
@@ -59,12 +64,14 @@ mobile development, and a full API reference.
 
 | lib文件下 | 释义|
 | --- | --- |
-| view       | 页面类 |
+| ui         | 页面类（view） |
 | api        | 接口URl |
+| provider   | 全局状态管理类 |
 | utils      | 一些工具类，如通用方法类、网络接口类、保存全局变量的静态类等 |
 | generated  | 国际化自动生成 |
 | l10n       | 国际化相关的类 |
-| models     | Json文件对应的Dart Model类 |
+| model      | Model类 |
+| viewmodel  | viewmodel类 |
 | net        | 网络请求与封装类 |
 | routes     | 存放所有路由页面类 |
 | states     | 保存APP中需要跨组件共享的状态类 |

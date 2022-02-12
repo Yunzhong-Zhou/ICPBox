@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/provider/AppDataProvider.dart';
+import 'package:icpbox/viewmodel/MVVMDemoViewModel.dart';
 import 'package:provider/provider.dart';
 
 import 'ui/Information/information.dart';
@@ -14,10 +16,18 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'utils/CurrentLocale.dart';
 
+///程序入口
 void main() {
-  //切换语言
+  //跨组件数据共享-使用 Provider.of<AppDataProvider>(context).Token;
   runApp(MultiProvider(
-    providers: [ChangeNotifierProvider(create: (context) => CurrentLocale())],
+    providers: [
+      //多语言
+      ChangeNotifierProvider(create: (context) => CurrentLocale()),
+      //应用数据
+      ChangeNotifierProvider(create: (context) => AppDataProvider()),
+      //MVVM
+      ChangeNotifierProvider(create: (context) => MVVMDemoViewModel()),
+    ],
     child: MyApp(),
   ));
   if (Platform.isAndroid) {

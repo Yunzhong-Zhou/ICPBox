@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
 import 'package:icpbox/ui/mine/about.dart';
 import 'package:icpbox/ui/mine/address.dart';
@@ -377,26 +378,46 @@ class _buildBottomSheetWidget_yuyan
                     onTap: () {
                       setState(() {
                         select_yuyan = index;
-                        switch(select_yuyan){
-                          case 0:
 
+                        ///语言（1.中文2.英文3.西班牙4.日文5.俄语）
+                        switch (select_yuyan) {
+                          case 0:
+                            //俄语
+                            Provider.of<AppDataProvider>(context,listen: false)
+                                .setLanguage("5");
+                            Provider.of<CurrentLocale>(context, listen: false)
+                                .setLocale(const Locale('ru', "RU"));
                             break;
                           case 1:
-
+                            //日文
+                            Provider.of<AppDataProvider>(context,listen: false)
+                                .setLanguage("4");
+                            Provider.of<CurrentLocale>(context, listen: false)
+                                .setLocale(const Locale('ja', "JP"));
                             break;
                           case 2:
+                            //西班牙
+                            Provider.of<AppDataProvider>(context,listen: false)
+                                .setLanguage("3");
 
+                            Provider.of<CurrentLocale>(context, listen: false)
+                                .setLocale(const Locale('es', "ES"));
                             break;
                           case 3:
+                            //英文
+                            Provider.of<AppDataProvider>(context,listen: false)
+                                .setLanguage("2");
                             Provider.of<CurrentLocale>(context, listen: false)
                                 .setLocale(const Locale('en', "US"));
                             break;
                           case 4:
+                            //中文
+                            Provider.of<AppDataProvider>(context,listen: false)
+                                .setLanguage("1");
                             Provider.of<CurrentLocale>(context, listen: false)
                                 .setLocale(const Locale('zh', "CH"));
                             break;
                         }
-
                       });
                       Navigator.of(context).pop(index);
                     },
@@ -483,9 +504,11 @@ class _buildBottomSheetWidget_huobi
                   onTap: () {
                     setState(() {
                       select_huobi = index;
+                      //保存货币
+                      Provider.of<AppDataProvider>(context,listen: false)
+                          .setHuoBi(list_huobi[select_huobi]);
                     });
                     Navigator.of(context).pop(index);
-
                   },
                   leading:
                       Image.asset(list_huobiicon[index], width: 30, height: 30),
@@ -514,7 +537,7 @@ class _buildBottomSheetWidget_huobi
               child: Padding(
                 padding: EdgeInsets.all(12),
                 child: Text(
-                    S.of(context).cancel,
+                  S.of(context).cancel,
                   style: TextStyle(fontSize: 16, color: Color(0xFF4F4F4F)),
                 ),
               ),

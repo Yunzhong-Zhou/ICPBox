@@ -1,82 +1,34 @@
 class Api {
-  static const String BASE_URL = "http://icpbox.fbixfbi.com";
+  ///测试地址
+  static const String HOST = "http://icpbox.fbixfbi.com";
 
-  static String OTHER_URL = "http://icpbox.fbixfbi.com";
+  ///正式地址
+//   static const String HOST = "http://icpbox.fbixfbi.com";
 
-  static String TEST_URL = "http://icpbox.fbixfbi.com";
+  static const String PROJECT_NAME = "";
 
-  //首页banner
-  static const String BANNER_URL = "banner/json";
+  static const String API = "/api/";
 
-  //置顶文章
-  static const String ARTICLE_TOP = "article/top/json";
+  ///headrs验证信息
+  static const String APIKEY =
+      "773EDB6D2715FACF9C93354CAC5B1A3372872DC4D5AC085867C7490E9984D33E";
+  static const String HVERSION = "1.0";
 
-  //首页文章
-  static const String HOME_ARTICLE_LIST = "article/list/";
+  //更新
+   static const String Upgrade = HOST + "article/sys-upgrade";
 
-  //搜索热词
-  static const String HOT_KEY = "hotkey/json";
+  /// ********************************钱包**************************************
+  static const String WALLET = HOST + API  + "index/index";
 
-  //搜索
-  static const String SEARCH_RESULT_LIST = "article/query/";
+  /// ********************************DAPP**************************************
+  static const String DAPP = HOST + API  + "dapp/index";
 
-  //收藏站内文章
-  static const String COLLECT = "lg/collect/";
+  /// ********************************资讯**************************************
+  static const String INFORMATION = HOST + API  + "articleFast/index";
 
-  //取消收藏-文章列表
-  static const String UN_COLLECT_ORIGIN_ID = "lg/uncollect_originId/";
+  /// ********************************我的**************************************
+  static const String MINE = HOST + API + "index/center";
+  //通知
+  static const String NOTICE = HOST + API + "notice/index";
 
-  //登录
-  static const String LOGIN = "user/login";
-
-  //退出登录
-  static const String LOGIN_OUT_JSON = 'user/logout/json';
-
-  //注册
-  static const String REGISTER = "user/register";
-
-  //获取公众号Tab
-  static const String WECHAT_TAB = "wxarticle/chapters/json";
-
-  //获取公众号文章
-  static const String WECHAT_LIST = "wxarticle/list/";
-
-  //获取项目分类
-  static const String PROJECT_TAB = "project/tree/json";
-
-  //获取项目列表数据
-  static const String PROJECT_LIST = "project/list/";
-
-  //获取体系数据
-  static const String TREE = "tree/json";
-
-  //获取导航数据
-  static const String NAVIGATION = "navi/json";
-
-  //获取用户积分数据
-  static const String COIN_INFO = "lg/coin/userinfo/json";
-
-  //获取收藏文章列表
-  static const String COLLECT_LIST = "lg/collect/list/";
-
-  //取消收藏
-  static const String UN_COLLECT = "lg/uncollect/";
-
-  //添加站外收藏
-  static const String ADD_COLLECT_ARTICLE = "lg/collect/add/json";
-
-  //获取广场数据
-  static const String SQUARE_LIST = "user_article/list/";
-
-  //获取积分列表
-  static const String RANK_LIST = "coin/rank/";
-
-  //获取问答列表
-  static const String WENDA_LIST = "wenda/list/";
-
-  //分享文章
-  static const String SHARE_ARTICLE = "lg/user_article/add/json";
-
-  //分享文章列表
-  static const String SHARE_ARTICLE_LIST = "user/lg/private_articles/";
 }
