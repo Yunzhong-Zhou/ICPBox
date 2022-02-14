@@ -1,13 +1,16 @@
 class Api {
   ///测试地址
-  static const String HOST = "http://icpbox.fbixfbi.com";
-
+  static const String BASEURL = "http://icpbox.fbixfbi.com";
+  // static const String HOST = "http://icpbox.fbixfbi.com";
   ///正式地址
+//   static const String BASEURL = "http://icpbox.fbixfbi.com";
 //   static const String HOST = "http://icpbox.fbixfbi.com";
 
   static const String PROJECT_NAME = "";
 
   static const String API = "/api/";
+
+
 
   ///headrs验证信息
   static const String APIKEY =
@@ -15,20 +18,20 @@ class Api {
   static const String HVERSION = "1.0";
 
   //更新
-   static const String Upgrade = HOST + "article/sys-upgrade";
+   static const String Upgrade =  "article/sys-upgrade";
 
   /// ********************************钱包**************************************
-  static const String WALLET = HOST + API  + "index/index";
+  static const String WALLET = API  + "index/index";
 
   /// ********************************DAPP**************************************
-  static const String DAPP = HOST + API  + "dapp/index";
+  static const String DAPP = API  + "dapp/index";
 
   /// ********************************资讯**************************************
-  static const String INFORMATION = HOST + API  + "articleFast/index";
+  static const String INFORMATION = API  + "articleFast/index";
 
   /// ********************************我的**************************************
-  static const String MINE = HOST + API + "index/center";
+  static const String MINE = API + "index/center";
   //通知
-  static const String NOTICE = HOST + API + "notice/index";
+  static const String NOTICE = API + "notice/index";
 
 }

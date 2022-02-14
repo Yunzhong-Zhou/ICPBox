@@ -2,9 +2,12 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:icpbox/api/Api.dart';
 
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/global/Global.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
+import 'package:icpbox/request/http_utils.dart';
 import 'package:icpbox/viewmodel/MVVMDemoViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -45,13 +48,29 @@ void main() {
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
 }
 
-class MyApp extends StatelessWidget {
+final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+class MyApp extends StatefulWidget {
+  const MyApp({Key? key}) : super(key: key);
+
+  @override
+  _MyAppState createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    HttpUtils.init(baseUrl: Api.BASEURL);
+  }
+
   @override
   Widget build(BuildContext context) {
-
     return Consumer<CurrentLocale>(
       builder: (context, currentLocale, child) {
         return MaterialApp(
+          navigatorKey: navigatorKey,
           //调试是否显示debug
           debugShowCheckedModeBanner: false,
           //多语言
@@ -104,11 +123,6 @@ class MyApp extends StatelessWidget {
 List<Widget> pages = [WalletPage(), DappPage(), InformationPage(), MinePage()];
 int _currentIndex = 0;
 
-@override
-void initState() {
-  //生命周期
-  print("生命周期initState");
-}
 
 //底部导航栏
 class BottomNavigationWidget extends StatefulWidget {

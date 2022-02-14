@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/global/Global.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
 import 'package:icpbox/ui/mine/about.dart';
@@ -73,6 +74,16 @@ class MyVerticalList extends StatefulWidget {
 }
 
 class _MyVerticalList extends State<MyVerticalList> {
+  @override
+  void initState() {
+    //生命周期
+    print("生命周期initState");
+    loadData();
+  }
+  void loadData() async{
+   var result = await Global.getInstance()?.dio.get("/api/index/remark");
+    print("数据返回："+result.toString());
+  }
   @override
   Widget build(BuildContext context) {
     return ListView(
