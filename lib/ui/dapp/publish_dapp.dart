@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/widgets/DottedLine.dart';
+import 'package:icpbox/widgets/dottedline.dart';
 
 ///发布
 class PublshDappPage extends StatefulWidget {

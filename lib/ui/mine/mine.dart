@@ -1,8 +1,10 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/global/Global.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
+import 'package:icpbox/request/http_utils.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
 import 'package:icpbox/ui/mine/about.dart';
 import 'package:icpbox/ui/mine/address.dart';
@@ -80,10 +82,22 @@ class _MyVerticalList extends State<MyVerticalList> {
     print("生命周期initState");
     loadData();
   }
-  void loadData() async{
-   var result = await Global.getInstance()?.dio.get("/api/index/remark");
-    print("数据返回："+result.toString());
+
+  void loadData() async {
+    var result = await Global.getInstance()?.dio?.get("/api/index/remark");
+    print("数据返回：" + result.toString());
+
+    var result1 = HttpUtils.get(
+      "/api/index/remark",
+      params: {"page": "1", "count": "10"},
+      options: Options(
+        headers: {"token": ""}, //header
+      ),
+    );
+    print("数据返回：" + result1.toString());
+
   }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -394,21 +408,21 @@ class _buildBottomSheetWidget_yuyan
                         switch (select_yuyan) {
                           case 0:
                             //俄语
-                            Provider.of<AppDataProvider>(context,listen: false)
+                            Provider.of<AppDataProvider>(context, listen: false)
                                 .setLanguage("5");
                             Provider.of<CurrentLocale>(context, listen: false)
                                 .setLocale(const Locale('ru', "RU"));
                             break;
                           case 1:
                             //日文
-                            Provider.of<AppDataProvider>(context,listen: false)
+                            Provider.of<AppDataProvider>(context, listen: false)
                                 .setLanguage("4");
                             Provider.of<CurrentLocale>(context, listen: false)
                                 .setLocale(const Locale('ja', "JP"));
                             break;
                           case 2:
                             //西班牙
-                            Provider.of<AppDataProvider>(context,listen: false)
+                            Provider.of<AppDataProvider>(context, listen: false)
                                 .setLanguage("3");
 
                             Provider.of<CurrentLocale>(context, listen: false)
@@ -416,14 +430,14 @@ class _buildBottomSheetWidget_yuyan
                             break;
                           case 3:
                             //英文
-                            Provider.of<AppDataProvider>(context,listen: false)
+                            Provider.of<AppDataProvider>(context, listen: false)
                                 .setLanguage("2");
                             Provider.of<CurrentLocale>(context, listen: false)
                                 .setLocale(const Locale('en', "US"));
                             break;
                           case 4:
                             //中文
-                            Provider.of<AppDataProvider>(context,listen: false)
+                            Provider.of<AppDataProvider>(context, listen: false)
                                 .setLanguage("1");
                             Provider.of<CurrentLocale>(context, listen: false)
                                 .setLocale(const Locale('zh', "CH"));
@@ -516,7 +530,7 @@ class _buildBottomSheetWidget_huobi
                     setState(() {
                       select_huobi = index;
                       //保存货币
-                      Provider.of<AppDataProvider>(context,listen: false)
+                      Provider.of<AppDataProvider>(context, listen: false)
                           .setHuoBi(list_huobi[select_huobi]);
                     });
                     Navigator.of(context).pop(index);
