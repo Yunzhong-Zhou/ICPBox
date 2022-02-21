@@ -23,6 +23,7 @@ class _NoticePage extends State<NoticePage> {
     for (var i = 0; i < 100; i++) {
       list.add(i);
     }
+
   }
 
   @override

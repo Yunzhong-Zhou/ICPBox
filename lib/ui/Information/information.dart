@@ -2,6 +2,10 @@ import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/global/Global.dart';
+import 'package:icpbox/provider/AppDataProvider.dart';
+import 'package:icpbox/request/http_utils.dart';
+import 'package:provider/provider.dart';
 
 ///资讯
 class InformationPage extends StatefulWidget {
@@ -9,6 +13,7 @@ class InformationPage extends StatefulWidget {
   State<StatefulWidget> createState() => _InformationPage();
 }
 
+int _page = 1;
 int _tab_index = 0;
 List list = [1, 2, 3];
 
@@ -17,8 +22,7 @@ class _InformationPage extends State<InformationPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print("数据获取");
-    _request;
+    _request();
   }
 
   @override
@@ -69,6 +73,39 @@ class _InformationPage extends State<InformationPage> {
       body: _tab_index == 0 ? myListView1() : myListView2(),
     );
   }
+
+  ///*******************************数据请求**************************************
+  void _request() async {
+    var result1 = await HttpUtils.get(
+      Api.INFORMATION1,
+      params:{"page": _page,
+        "count": Provider.of<AppDataProvider>(context,listen: false).Count,
+        "lang":Provider.of<AppDataProvider>(context,listen: false).Language,}, //传参
+      options: Options(
+        headers: {"token": Provider.of<AppDataProvider>(context,listen: false).Token},//header
+      ),
+    );
+    print("数据返回1：" + result1.toString());
+
+    var result2 = await Dio().get(
+      Api.INFORMATION2, //url
+      queryParameters: {"page": _page,
+        "count": Provider.of<AppDataProvider>(context,listen: false).Count,
+        "lang":Provider.of<AppDataProvider>(context,listen: false).Language,}, //传参
+      options: Options(
+        headers: {"token": Provider.of<AppDataProvider>(context,listen: false).Token},//header
+      ),
+    );
+    print("数据返回2：" + result2.toString());
+
+    var result = await Global.getInstance()?.dio?.get(Api.INFO);
+    print("数据返回：" + result.toString());
+    /*var result = await Dio().get(
+      Api.INFO, //url
+    );
+    print("数据返回：" + result.toString());*/
+  }
+
 }
 
 class myListView1 extends StatelessWidget {
@@ -367,14 +404,3 @@ class MyItem2 extends StatelessWidget {
   }
 }
 
-///*******************************数据请求**************************************
-void _request() async {
-  var result = await Dio().get(
-    Api.INFORMATION, //url
-    queryParameters: {"page": "1", "count": "10"}, //传参
-    options: Options(
-      headers: {"token": ""},//header
-    ),
-  );
-  print("数据返回：" + result.toString());
-}

@@ -16,12 +16,9 @@ class DappPage extends StatefulWidget {
   State<StatefulWidget> createState() => _DappPage();
 }
 
-const _permissions = const [
-  Permissions.READ_EXTERNAL_STORAGE,
-  Permissions.CAMERA
-];
+const _permissions = [Permissions.READ_EXTERNAL_STORAGE, Permissions.CAMERA];
 
-const _permissionGroup = const [PermissionGroup.Camera, PermissionGroup.Photos];
+const _permissionGroup = [PermissionGroup.Camera, PermissionGroup.Photos];
 
 int _tab_index = 0;
 List list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
@@ -110,13 +107,14 @@ class _DappPage extends State<DappPage> {
             readOnly: true,
             //不可编辑
             // enableInteractiveSelection: false,
-            onTap: (){
+            onTap: () {
               //跳转
-              Navigator.push(
+              /*Navigator.push(
                   context,
-                  new MaterialPageRoute(
-                    builder: (context) => new SearchPage(),
-                  ));
+                  MaterialPageRoute(
+                    builder: (context) => SearchPage(),
+                  ));*/
+              Navigator.of(context).pushNamed("search");
             },
             maxLines: 1,
             style: TextStyle(fontSize: 14, color: Colors.black),
@@ -241,7 +239,7 @@ class _DappPage extends State<DappPage> {
             ),
             Container(
                 // width: MediaQuery.of(context).size.width,
-              width: double.infinity,
+                width: double.infinity,
                 alignment: Alignment.centerLeft,
                 color: Colors.white,
                 padding: EdgeInsets.only(left: 14, top: 7),
@@ -326,6 +324,7 @@ class _DappPage extends State<DappPage> {
                       _tab_index = i;
                     });
                   },
+
                 ),
               ),
             ),

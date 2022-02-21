@@ -1,6 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/global/Global.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
@@ -84,15 +85,16 @@ class _MyVerticalList extends State<MyVerticalList> {
   }
 
   void loadData() async {
+    print("数据获取");
     var result = await Global.getInstance()?.dio?.get("/api/index/remark");
     print("数据返回：" + result.toString());
 
-    var result1 = HttpUtils.get(
-      "/api/index/remark",
-      params: {"page": "1", "count": "10"},
-      options: Options(
-        headers: {"token": ""}, //header
-      ),
+    var result1 = await HttpUtils.get(
+      Api.MINE,
+      // params: {"page": "1", "count": "10"},
+      // options: Options(
+      //   headers: {"token": ""}, //header
+      // ),
     );
     print("数据返回：" + result1.toString());
 

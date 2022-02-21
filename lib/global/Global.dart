@@ -2,12 +2,12 @@ import 'package:dio/dio.dart';
 import 'package:icpbox/api/Api.dart';
 
 class Global {
-  static Global? _instance;
+  static  Global? _instance;
   Dio? dio;
 
   static Global? getInstance() {
-    if (_instance == null) _instance = Global();
-    // _instance ??= Global();
+    // if (_instance == null) _instance = Global();
+    _instance ??= Global();
     return _instance;
   }
 
