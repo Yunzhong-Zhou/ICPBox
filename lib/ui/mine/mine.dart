@@ -108,11 +108,12 @@ class _MyVerticalList extends State<MyVerticalList> {
         ListTile(
             onTap: () {
               //跳转 地址薄
-              Navigator.push(
+              /*Navigator.push(
                   context,
                   new MaterialPageRoute(
                     builder: (context) => new AddressPage(),
-                  ));
+                  ));*/
+              Navigator.of(context).pushNamed("Address");
             },
             leading: Image.asset("imgs/ic_mine1.png", width: 22, height: 22),
             title: new Text(
@@ -128,11 +129,12 @@ class _MyVerticalList extends State<MyVerticalList> {
         ListTile(
             onTap: () {
               //跳转 通知公告
-              Navigator.push(
+              /*Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => NoticePage(),
-                  ));
+                  ));*/
+              Navigator.of(context).pushNamed("Notice");
             },
             leading: Image.asset("imgs/ic_mine2.png", width: 22, height: 22),
             title: new Text(

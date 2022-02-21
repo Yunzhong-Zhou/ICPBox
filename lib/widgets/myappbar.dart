@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:icpbox/main.dart';
 
-AppBar MyAppBar(String title){
+///标题栏
+AppBar MyAppBar(BuildContext context, String title) {
   return AppBar(
     leading: IconButton(
       icon: Icon(Icons.arrow_back_ios_new_rounded),
       color: Colors.black,
       onPressed: () {
-        // Navigator.of(navigatorKey.currentContext).pop();
+        Navigator.of(context).pop();
         // Navigator().onPopPage;
       },
     ),

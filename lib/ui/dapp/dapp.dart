@@ -114,7 +114,7 @@ class _DappPage extends State<DappPage> {
                   MaterialPageRoute(
                     builder: (context) => SearchPage(),
                   ));*/
-              Navigator.of(context).pushNamed("search");
+              Navigator.of(context).pushNamed("Search");
             },
             maxLines: 1,
             style: TextStyle(fontSize: 14, color: Colors.black),
@@ -196,11 +196,12 @@ class _DappPage extends State<DappPage> {
           //点击事件回调
           onPressed: () {
             //跳转
-            Navigator.push(
+            /*Navigator.push(
                 context,
                 new MaterialPageRoute(
                   builder: (context) => new PublshDappPage(),
-                ));
+                ));*/
+            Navigator.of(context).pushNamed("PublshDapp");
           },
           child: Image(
               height: 50.0, width: 50.0, image: AssetImage("imgs/ic_fabu.png")),

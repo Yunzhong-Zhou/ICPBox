@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/widgets/myappbar.dart';
 
 ///添加地址薄
 class AddAddressPage extends StatefulWidget {
@@ -51,19 +52,7 @@ class _AddAddressPage extends State<AddAddressPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFF6F6F6),
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back_ios_new_rounded),
-              color: Colors.black,
-              onPressed: () {
-                Navigator.of(context).pop();
-              }),
-          title: Text(widget.type == 1 ? S().mine16 : S().mine20,
-              style: TextStyle(fontSize: 20, color: Colors.black)),
-          centerTitle: true,
-          elevation: 0,
-        ),
+        appBar: MyAppBar(context,widget.type == 1 ? S().mine16 : S().mine20),
         // body: NoAddress(),
         body: Form(
           key: _key,

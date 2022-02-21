@@ -89,7 +89,7 @@ class _MyAppState extends State<MyApp> {
           ],
           //主题色
           theme: ThemeData(
-            primaryColor: Colors.white,
+            primaryColor: Colors.black,
           ),
           title: 'ICPBox',
           //路由

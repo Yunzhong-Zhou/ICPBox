@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
+import 'package:icpbox/widgets/myappbar.dart';
 import 'package:provider/provider.dart';
 
 ///通知
@@ -37,19 +38,7 @@ class _NoticePage extends State<NoticePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new_rounded),
-            color: Colors.black,
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-        title: Text(S().mine3,
-            style: TextStyle(fontSize: 20, color: Colors.black)),
-        centerTitle: true,
-        elevation: 0,
-      ),
+      appBar: MyAppBar(context, S.of(context).mine3),
       body: myListView(),
     );
   }

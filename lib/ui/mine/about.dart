@@ -16,25 +16,7 @@ class _AboutPage extends State<AboutPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
-      /*appBar: AppBar(
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
-          color: Colors.black,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
-        title: Text(
-          S.of(context).mine6,
-          style: TextStyle(fontSize: 20, color: Colors.black),
-        ),
-        backgroundColor: Colors.white,
-        //去掉阴影效果
-        elevation: 0.0,
-        //文字标题居中
-        centerTitle: true,
-      ),*/
-      appBar: MyAppBar(S.of(context).mine6),
+      appBar: MyAppBar(context, S.of(context).mine6),
       body: Container(
         color: Colors.white,
         child: Column(
@@ -56,9 +38,7 @@ class _AboutPage extends State<AboutPage> {
             ),
             //检查更新
             InkWell(
-              onTap: () {
-
-              },
+              onTap: () {},
               child: Container(
                 padding: EdgeInsets.fromLTRB(20, 16, 20, 16),
                 child: Row(
