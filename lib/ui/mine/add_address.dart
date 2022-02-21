@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:weui/input/index.dart';
 
 ///添加地址薄
 class AddAddressPage extends StatefulWidget {
