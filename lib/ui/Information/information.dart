@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/global/Global.dart';
@@ -22,7 +23,12 @@ class _InformationPage extends State<InformationPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _request();
+    if(_tab_index == 0){
+      _request1();
+    }else{
+      _request2();
+    }
+
   }
 
   @override
@@ -65,6 +71,11 @@ class _InformationPage extends State<InformationPage> {
               //刷新组件
               setState(() {
                 _tab_index = i;
+                if(_tab_index == 0){
+                  _request1();
+                }else{
+                  _request2();
+                }
               });
             },
           ),
@@ -75,7 +86,7 @@ class _InformationPage extends State<InformationPage> {
   }
 
   ///*******************************数据请求**************************************
-  void _request() async {
+  void _request1() async {
     var result1 = await HttpUtils.get(
       Api.INFORMATION1,
       params:{"page": _page,
@@ -86,7 +97,10 @@ class _InformationPage extends State<InformationPage> {
       ),
     );
     print("数据返回1：" + result1.toString());
+    EasyLoading.dismiss();
 
+  }
+  void _request2() async {
     var result2 = await Dio().get(
       Api.INFORMATION2, //url
       queryParameters: {"page": _page,
@@ -98,14 +112,13 @@ class _InformationPage extends State<InformationPage> {
     );
     print("数据返回2：" + result2.toString());
 
-    var result = await Global.getInstance()?.dio?.get(Api.INFO);
-    print("数据返回：" + result.toString());
+    // var result = await Global.getInstance()?.dio?.get(Api.INFO);
+    // print("数据返回：" + result.toString());
     /*var result = await Dio().get(
       Api.INFO, //url
     );
     print("数据返回：" + result.toString());*/
   }
-
 }
 
 class myListView1 extends StatelessWidget {

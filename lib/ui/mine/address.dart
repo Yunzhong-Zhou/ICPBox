@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/ui/mine/add_address.dart';
+import 'package:icpbox/widgets/myappbar.dart';
 
 import '../base_stateful_page.dart';
 
@@ -15,38 +16,26 @@ class AddressPage extends StatefulWidget {
 List list = [1111, 22222, 33333];
 
 class _AddressPage extends State<AddressPage> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFF6F6F6),
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_new_rounded),
-            color: Colors.black,
-            onPressed: () {
-              Navigator.of(context).pop();
-            }),
-        title: Text(S().mine2,
-            style: TextStyle(fontSize: 20, color: Colors.black)),
-        centerTitle: true,
-        elevation: 0,
-        actions: [
-          IconButton(
-            onPressed: () {
-              //跳转
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => AddAddressPage(type: 1,),
-                  ));
-            },
-            icon: Icon(Icons.add_circle_outline),
-            color: Colors.black,
-          )
-        ],
-      ),
+      appBar: MyAppBarActions(context, S().mine2, [
+        IconButton(
+          onPressed: () {
+            //跳转
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AddAddressPage(
+                    type: 1,
+                  ),
+                ));
+          },
+          icon: Icon(Icons.add_circle_outline),
+          color: Colors.black,
+        )
+      ]),
       // body: NoAddress(),
       body: MyListView(),
     );
@@ -91,7 +80,9 @@ class NoAddress extends StatelessWidget {
                 Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => AddAddressPage(type: 1,),
+                      builder: (context) => AddAddressPage(
+                        type: 1,
+                      ),
                     ));
               },
               child: Text(
@@ -111,6 +102,7 @@ class NoAddress extends StatelessWidget {
     );
   }
 }
+
 class MyListView extends StatefulWidget {
   @override
   State<StatefulWidget> createState() => _MyListView();
@@ -170,7 +162,10 @@ class _MyListView extends State<MyListView> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => AddAddressPage(type: 2,name: list[index].toString(),),
+                                builder: (context) => AddAddressPage(
+                                  type: 2,
+                                  name: list[index].toString(),
+                                ),
                               ));
                         },
                         child: Container(
@@ -192,7 +187,8 @@ class _MyListView extends State<MyListView> {
                         onTap: () {
                           //复制文本到粘贴板
                           Clipboard.setData(ClipboardData(text: '内容'));
-                          Fluttertoast.showToast(msg: S().copysuccess);
+                          EasyLoading.showToast(S().copysuccess);
+                          // Fluttertoast.showToast(msg: S().copysuccess);
                         },
                         child: Container(
                           padding:

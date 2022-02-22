@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easy_permission/easy_permissions.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_scankit/flutter_scankit.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/ui/dapp/search.dart';
 import 'package:icpbox/widgets/customized_view.dart';
@@ -41,7 +41,8 @@ class _DappPage extends State<DappPage> {
     //扫码
     scanKit = FlutterScankit();
     scanKit.addResultListen((val) {
-      Fluttertoast.showToast(msg: "扫码返回：" + val.toString());
+      // Fluttertoast.showToast(msg: "扫码返回：" + val.toString());
+      EasyLoading.showToast("扫码返回：" + val.toString());
       setState(() {
         code = val;
       });
@@ -155,7 +156,8 @@ class _DappPage extends State<DappPage> {
               //关闭软键盘
               FocusScope.of(context).requestFocus(FocusNode());
               //输入完成时
-              Fluttertoast.showToast(msg: _controller!.text.toString());
+              EasyLoading.showToast(_controller!.text.toString());
+              // Fluttertoast.showToast(msg: _controller!.text.toString());
               //清空输入框
               _controller?.text = "";
             },
@@ -365,7 +367,8 @@ class _DappPage extends State<DappPage> {
             ],
           ),
           onTap: () {
-            Fluttertoast.showToast(msg: "item $i on click");
+            EasyLoading.showToast("item $i on click");
+            // Fluttertoast.showToast(msg: "item $i on click");
           },
         ),
       );

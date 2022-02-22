@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/api/Api.dart';
 
 import 'package:icpbox/generated/l10n.dart';
@@ -88,13 +89,16 @@ class _MyAppState extends State<MyApp> {
             ...S.delegate.supportedLocales
           ],
           //主题色
-          theme: ThemeData(
+          theme: ThemeData.light().copyWith(
             primaryColor: Colors.black,
           ),
           title: 'ICPBox',
           //路由
           routes: routes,
           // home: BottomNavigationWidget(),
+
+          builder: EasyLoading.init(),
+
         );
       },
     );

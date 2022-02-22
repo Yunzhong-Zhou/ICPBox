@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/widgets/myappbar.dart';
 
@@ -206,11 +206,13 @@ class _AddAddressPage extends State<AddAddressPage> {
                     /*if((_key.currentState as FormState).validate()){
                     }*/
                     if (_name?.text == null || _name!.text.isEmpty) {
-                      Fluttertoast.showToast(msg: S().mine21);
+                      EasyLoading.showToast(S().mine21);
+                      // Fluttertoast.showToast(msg: S().mine21);
                       return;
                     }
                     if (_address?.text == null || _address!.text.isEmpty) {
-                      Fluttertoast.showToast(msg: S().mine22);
+                      EasyLoading.showToast(S().mine22);
+                      // Fluttertoast.showToast(msg: S().mine22);
                       return;
                     }
 

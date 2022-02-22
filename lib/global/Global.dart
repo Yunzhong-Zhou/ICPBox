@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/api/Api.dart';
 
 class Global {
@@ -35,6 +36,7 @@ class Global {
     dio?.interceptors.add(
       InterceptorsWrapper(
         onRequest: (options, handler) {
+          EasyLoading.show(status: "正在加载...");
           print("请求url：" +
               options.uri.toString() +
               "\n请求数据Header：" +
@@ -43,6 +45,7 @@ class Global {
               options.queryParameters.toString());
         },
         onResponse: (e, header) {
+          EasyLoading.showSuccess("获取成功");
           print("返回：" + e.toString());
         },
         onError: (e, header) {
@@ -50,15 +53,19 @@ class Global {
           switch (e.type) {
             case DioErrorType.cancel:
               // 请求取消
+              EasyLoading.showError("请求取消");
               break;
             case DioErrorType.connectTimeout:
               // 连接超时
+              EasyLoading.showError("连接超时");
               break;
             case DioErrorType.sendTimeout:
               // 请求超时
+              EasyLoading.showError("请求超时");
               break;
             case DioErrorType.receiveTimeout:
               // 响应超时
+              EasyLoading.showError("响应超时");
               break;
           }
         },

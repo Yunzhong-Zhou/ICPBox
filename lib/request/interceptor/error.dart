@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:dio/dio.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../app_exceptions.dart';
 // 异常
@@ -53,6 +54,7 @@ class ErrorInterceptor extends Interceptor {
     AppException appException = AppException.create(err);
     // 错误提示
     debugPrint('DioError===: ${appException.toString()}');
+    EasyLoading.showError(appException.toString());
     err.error = appException;
     return super.onError(err, errCb);
   }

@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:icpbox/generated/l10n.dart';
 
 import 'http_request.dart';
 import 'interceptor/cache.dart';
@@ -32,6 +34,7 @@ class HttpUtils {
     String? cacheKey,
     bool cacheDisk = false,
   }) async {
+    EasyLoading.show(status: S().loading2);
     return await Http().get(
       path,
       params: params,
@@ -50,6 +53,7 @@ class HttpUtils {
     Options? options,
     CancelToken? cancelToken,
   }) async {
+    EasyLoading.show(status: S().loading3);
     return await Http().post(
       path,
       data: data,
@@ -66,6 +70,7 @@ class HttpUtils {
     Options? options,
     CancelToken? cancelToken,
   }) async {
+    EasyLoading.show(status: S().loading1);
     return await Http().put(
       path,
       data: data,
@@ -82,6 +87,7 @@ class HttpUtils {
     Options? options,
     CancelToken? cancelToken,
   }) async {
+    EasyLoading.show(status: S().loading1);
     return await Http().patch(
       path,
       data: data,
@@ -98,6 +104,7 @@ class HttpUtils {
     Options? options,
     CancelToken? cancelToken,
   }) async {
+    EasyLoading.show(status: S().loading1);
     return await Http().delete(
       path,
       data: data,

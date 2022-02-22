@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
 
@@ -184,7 +184,8 @@ class MyVerticalList extends StatelessWidget {
               onTap: () {
                 //复制文本到粘贴板
                 Clipboard.setData(ClipboardData(text: '内容'));
-                Fluttertoast.showToast(msg: S().copysuccess);
+                EasyLoading.showToast(S().copysuccess);
+                // Fluttertoast.showToast(msg: S().copysuccess);
               },
             )),
         ListTile(
@@ -210,7 +211,8 @@ class MyVerticalList extends StatelessWidget {
               onTap: () {
                 //复制文本到粘贴板
                 Clipboard.setData(ClipboardData(text: '内容'));
-                Fluttertoast.showToast(msg: S().copysuccess);
+                EasyLoading.showToast(S().copysuccess);
+                // Fluttertoast.showToast(msg: S().copysuccess);
               },
             )),
         Row(

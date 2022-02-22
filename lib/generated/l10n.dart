@@ -100,6 +100,36 @@ class S {
     );
   }
 
+  /// `正在加载...`
+  String get loading1 {
+    return Intl.message(
+      '正在加载...',
+      name: 'loading1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `正在获取数据...`
+  String get loading2 {
+    return Intl.message(
+      '正在获取数据...',
+      name: 'loading2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `正在提交数据...`
+  String get loading3 {
+    return Intl.message(
+      '正在提交数据...',
+      name: 'loading3',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm`
   String get confirm {
     return Intl.message(

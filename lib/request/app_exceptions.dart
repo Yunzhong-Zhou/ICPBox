@@ -101,6 +101,7 @@ class AppException implements Exception {
 /// 请求错误
 class BadRequestException extends AppException {
   BadRequestException(int code, String message) : super(code, message);
+
 }
 
 /// 未认证异常

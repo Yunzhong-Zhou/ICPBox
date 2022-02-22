@@ -1,6 +1,6 @@
 import 'package:english_words/english_words.dart';
 import 'package:flutter/material.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/generated/l10n.dart';
 
 ///搜素
@@ -79,7 +79,8 @@ class _SearchPage extends State<SearchPage> {
               //关闭软键盘
               FocusScope.of(context).requestFocus(FocusNode());
               //输入完成时
-              Fluttertoast.showToast(msg: _controller.text);
+              EasyLoading.showToast(_controller.text);
+              // Fluttertoast.showToast(msg: _controller.text);
               //清空输入框
               _controller.text = "";
             },

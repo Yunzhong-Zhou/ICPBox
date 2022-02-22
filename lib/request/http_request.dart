@@ -1,5 +1,8 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dio/dio.dart';
+import 'package:icpbox/main.dart';
+import 'package:icpbox/provider/AppDataProvider.dart';
+import 'package:provider/provider.dart';
 
 import 'interceptor/cache.dart';
 import 'interceptor/error.dart';
@@ -8,6 +11,8 @@ import 'interceptor/retry.dart';
 // 拦截器
 
 class Http {
+  var loading;
+
   static final Http _instance = Http._internal();
   factory Http() => _instance;
 
@@ -86,6 +91,7 @@ class Http {
     // 从getx或者sputils中获取
     // String accessToken = Global.accessToken;
     // String accessToken = "";
+    // String accessToken =  Provider.of<AppDataProvider>(navigatorKey.currentContext,listen: false).Token;
     // if (accessToken != null) {
     //   headers = {
     //     'Authorization': 'Bearer $accessToken',
@@ -124,7 +130,6 @@ class Http {
       options: requestOptions,
       cancelToken: cancelToken ?? _cancelToken,
     );
-
     return response.data;
   }
 
