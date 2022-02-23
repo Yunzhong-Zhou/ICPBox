@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:icpbox/main.dart';
 
 ///标题栏
 AppBar MyAppBar(BuildContext context, String title) {
@@ -8,7 +9,7 @@ AppBar MyAppBar(BuildContext context, String title) {
       color: Colors.black,
       onPressed: () {
         Navigator.of(context).pop();
-        // Navigator().onPopPage;
+        // Navigator.of(navigatorKey.currentState!.context).pop();
       },
     ),
     title: Text(

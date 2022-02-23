@@ -1,9 +1,9 @@
-import 'package:dio/dio.dart';
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/global/Global.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/request/http_utils.dart';
 import 'package:icpbox/ui/dapp/publish_dapp.dart';
@@ -19,7 +19,42 @@ class MinePage extends StatefulWidget {
   State<StatefulWidget> createState() => _MinePage();
 }
 
+Map<String, dynamic>? _result;
+String _twitter = "",_telegram = "",_email = "",_site = "";
+
 class _MinePage extends State<MinePage> {
+  @override
+  void initState() {
+    //生命周期
+    if(_twitter.isEmpty){
+      loadData();
+    }
+  }
+  void loadData() async {
+    _result = await HttpUtils.get(
+      Api.MINE,
+    );
+    EasyLoading.dismiss();
+    print("数据返回Map：" + _result.toString());
+
+    setState(() {
+      _twitter = _result?['data']['twitter'];
+      _telegram = _result?['data']['telegram'];
+      _email = _result?['data']['email'];
+      _site = _result?['data']['site'];
+    });
+
+    // String data = json.encode(_result);
+    // print("map转json：" + data);
+    // print("取值：" + data["data"]);
+
+    /*var data = await HttpUtils.get(
+      Api.MINE,
+    );
+    print("数据返回：" + data.toString());
+    print("map转json：" + json.encode(data));*/
+    // print("json转map：" + json.decode(data));
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,26 +112,6 @@ class MyVerticalList extends StatefulWidget {
 }
 
 class _MyVerticalList extends State<MyVerticalList> {
-  @override
-  void initState() {
-    //生命周期
-    print("生命周期initState");
-    loadData();
-  }
-
-  void loadData() async {
-    print("数据获取");
-
-    var result1 = await HttpUtils.get(
-      Api.MINE,
-    );
-    print("数据返回：" + result1.toString());
-    EasyLoading.dismiss();
-    // var result = await Global.getInstance()?.dio?.get("/api/index/remark");
-    // print("数据返回：" + result.toString());
-
-  }
-
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -266,7 +281,7 @@ class _MyVerticalList extends State<MyVerticalList> {
                 Text(S.of(context).mine9,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
-                Text("www.ewrd@twiter.com",
+                Text("$_twitter",
                     style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
@@ -285,7 +300,7 @@ class _MyVerticalList extends State<MyVerticalList> {
                 Text(S.of(context).mine10,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
-                Text("www.ewrd@twiter.com",
+                Text(_telegram,
                     style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
@@ -305,7 +320,7 @@ class _MyVerticalList extends State<MyVerticalList> {
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 //填充组件
                 // Expanded(child: Container()),
-                Text("www.ewrd@twiter.com",
+                Text(_email,
                     style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
@@ -315,7 +330,7 @@ class _MyVerticalList extends State<MyVerticalList> {
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
             onTap: () {
-              EasyLoading.showToast(S.of(context).mine12);
+              // EasyLoading.showToast(S.of(context).mine12);
               /*Fluttertoast.showToast(
                 msg: S.of(context).mine12,
                 // toastLength: Toast.LENGTH_SHORT,
@@ -332,7 +347,7 @@ class _MyVerticalList extends State<MyVerticalList> {
                 Text(S.of(context).mine12,
                     style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
-                Text("www.ewrd@twiter.com",
+                Text(_site,
                     style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
@@ -373,12 +388,37 @@ List list_yuyanicon = [
 ];
 
 class buildBottomSheetWidget_yuyan extends StatefulWidget {
+
   @override
   State<StatefulWidget> createState() => _buildBottomSheetWidget_yuyan();
 }
 
 class _buildBottomSheetWidget_yuyan
     extends State<buildBottomSheetWidget_yuyan> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    print("语言："+Provider.of<AppDataProvider>(context,listen: false).Language);
+    ///语言（1.中文2.英文3.西班牙4.日文5.俄语）
+    switch(Provider.of<AppDataProvider>(context,listen: false).Language){
+      case "1":
+        select_yuyan = 4;
+        break;
+      case "2":
+        select_yuyan = 3;
+        break;
+      case "3":
+        select_yuyan = 2;
+        break;
+      case "4":
+        select_yuyan = 1;
+        break;
+      case "5":
+        select_yuyan = 0;
+        break;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -505,6 +545,11 @@ class buildBottomSheetWidget_huobi extends StatefulWidget {
 
 class _buildBottomSheetWidget_huobi
     extends State<buildBottomSheetWidget_huobi> {
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Container(

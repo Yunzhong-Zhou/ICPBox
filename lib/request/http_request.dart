@@ -91,12 +91,12 @@ class Http {
     // 从getx或者sputils中获取
     // String accessToken = Global.accessToken;
     // String accessToken = "";
-    // String accessToken =  Provider.of<AppDataProvider>(navigatorKey.currentContext,listen: false).Token;
-    // if (accessToken != null) {
-    //   headers = {
-    //     'Authorization': 'Bearer $accessToken',
-    //   };
-    // }
+    String accessToken =  Provider.of<AppDataProvider>(navigatorKey.currentState!.context,listen: false).Token;
+    if (accessToken != null) {
+      headers = {
+        'Authorization': 'Bearer $accessToken',
+      };
+    }
     return headers;
   }
 

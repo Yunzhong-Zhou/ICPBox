@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -17,18 +19,18 @@ class InformationPage extends StatefulWidget {
 int _page = 1;
 int _tab_index = 0;
 List list = [1, 2, 3];
+List list2 = [];
 
 class _InformationPage extends State<InformationPage> {
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    if(_tab_index == 0){
+    if (_tab_index == 0) {
       _request1();
-    }else{
+    } else {
       _request2();
     }
-
   }
 
   @override
@@ -71,9 +73,9 @@ class _InformationPage extends State<InformationPage> {
               //刷新组件
               setState(() {
                 _tab_index = i;
-                if(_tab_index == 0){
+                if (_tab_index == 0) {
                   _request1();
-                }else{
+                } else {
                   _request2();
                 }
               });
@@ -87,30 +89,70 @@ class _InformationPage extends State<InformationPage> {
 
   ///*******************************数据请求**************************************
   void _request1() async {
-    var result1 = await HttpUtils.get(
+    Map<String, dynamic> result1 = await HttpUtils.get(
       Api.INFORMATION1,
-      params:{"page": _page,
-        "count": Provider.of<AppDataProvider>(context,listen: false).Count,
-        "lang":Provider.of<AppDataProvider>(context,listen: false).Language,}, //传参
+      params: {
+        "page": _page,
+        "count": Provider.of<AppDataProvider>(context, listen: false).Count,
+        "lang": Provider.of<AppDataProvider>(context, listen: false).Language,
+      }, //传参
       options: Options(
-        headers: {"token": Provider.of<AppDataProvider>(context,listen: false).Token},//header
+        headers: {
+          "token": Provider.of<AppDataProvider>(context, listen: false).Token
+        }, //header
       ),
     );
-    print("数据返回1：" + result1.toString());
-    EasyLoading.dismiss();
+    print("数据返回1 map转json：" + json.encode(result1));
+    print("取值：${result1["data"]["list"]}");
+    print("取值：${result1["data"]["list"][""]}");
 
+    // List list = result1["data"]["list"];
+    // print("list:${list.length}");
+    EasyLoading.dismiss();
   }
+
   void _request2() async {
-    var result2 = await Dio().get(
+    /*var result2 = await Dio().get(
       Api.INFORMATION2, //url
-      queryParameters: {"page": _page,
-        "count": Provider.of<AppDataProvider>(context,listen: false).Count,
-        "lang":Provider.of<AppDataProvider>(context,listen: false).Language,}, //传参
+      queryParameters: {
+        "page": _page,
+        "count": Provider.of<AppDataProvider>(context, listen: false).Count,
+        "lang": Provider.of<AppDataProvider>(context, listen: false).Language,
+      }, //传参
       options: Options(
-        headers: {"token": Provider.of<AppDataProvider>(context,listen: false).Token},//header
+        headers: {
+          "token": Provider.of<AppDataProvider>(context, listen: false).Token
+        }, //header
+      ),
+    );
+    print("数据返回2：" + result2.data.toString());
+    print("取值：${result2.data["data"]["list"]}");
+
+    setState(() {
+      list2 = result2.data["data"]["list"];
+    });
+    */
+    Map<String, dynamic> result2 = await HttpUtils.get(
+      Api.INFORMATION2,
+      params: {
+        "page": _page,
+        "count": Provider.of<AppDataProvider>(context, listen: false).Count,
+        "lang": Provider.of<AppDataProvider>(context, listen: false).Language,
+      }, //传参
+      options: Options(
+        headers: {
+          "token": Provider.of<AppDataProvider>(context, listen: false).Token
+        }, //header
       ),
     );
     print("数据返回2：" + result2.toString());
+    print("取值：${result2["data"]["list"]}");
+    EasyLoading.dismiss();
+    setState(() {
+      list2 = result2["data"]["list"];
+    });
+
+    // print("map转json：" + json.encode(result2.data));
 
     // var result = await Global.getInstance()?.dio?.get(Api.INFO);
     // print("数据返回：" + result.toString());
@@ -337,6 +379,7 @@ class MyItem1 extends StatelessWidget {
 }
 
 class myListView2 extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -345,75 +388,67 @@ class myListView2 extends StatelessWidget {
         //内容适配
         shrinkWrap: true,
         //item 数量
-        itemCount: list.length,
+        itemCount: list2.length,
         itemBuilder: (context, index) {
-          return MyItem2();
-        });
-  }
-}
-
-class MyItem2 extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.fromLTRB(24, 6, 15, 6),
-      color: Colors.white,
-      margin: EdgeInsets.only(top: 1, bottom: 9),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          //圆角图片
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Image.asset(
-              "imgs/icp.png",
-              width: 96,
-              height: 80,
-            ),
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width - 151, // 屏幕宽度
-            padding: EdgeInsets.only(left: 10, top: 10, bottom: 7),
-            child: Column(
+          return Container(
+            padding: EdgeInsets.fromLTRB(24, 6, 15, 6),
+            color: Colors.white,
+            margin: EdgeInsets.only(top: 1, bottom: 9),
+            child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(
-                    "TitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitleTitle",
-                    style: TextStyle(fontSize: 14, color: Color(0xFF4A4A4A)),
-                    maxLines: 2,
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis),
+                //圆角图片
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: Image.network(
+                    "${list2[index]["cover"]}",
+                    width: 96,
+                    height: 80,
+                  ),
+                ),
                 Container(
                   width: MediaQuery.of(context).size.width - 151, // 屏幕宽度
-                  padding: EdgeInsets.only(top: 6),
-                  child: Row(
+                  padding: EdgeInsets.only(left: 10, top: 10, bottom: 7),
+                  child: Column(
                     mainAxisSize: MainAxisSize.max,
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "name",
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFFCACACA)),
-                      ),
-                      Text(
-                        "time",
-                        style:
-                            TextStyle(fontSize: 12, color: Color(0xFFCACACA)),
+                          "${list2[index]["title"]}",
+                          style: TextStyle(fontSize: 14, color: Color(0xFF4A4A4A)),
+                          maxLines: 2,
+                          textAlign: TextAlign.left,
+                          overflow: TextOverflow.ellipsis),
+                      Container(
+                        width: MediaQuery.of(context).size.width - 151, // 屏幕宽度
+                        padding: EdgeInsets.only(top: 6),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "${list2[index]["keywords"]}",
+                              style:
+                              TextStyle(fontSize: 12, color: Color(0xFFCACACA)),
+                            ),
+                            Text(
+                              "${list2[index]["createdAt"]}",
+                              style:
+                              TextStyle(fontSize: 12, color: Color(0xFFCACACA)),
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),
                 )
               ],
             ),
-          )
-        ],
-      ),
-    );
+          );
+        });
   }
 }
-
