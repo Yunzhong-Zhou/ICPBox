@@ -12,7 +12,7 @@ class HttpUtils {
     int receiveTimeout = 15000,
     List<Interceptor>? interceptors,
   }) {
-    Http().init(
+    HttpRequest().init(
       baseUrl: baseUrl,
       connectTimeout: connectTimeout,
       receiveTimeout: receiveTimeout,
@@ -21,7 +21,7 @@ class HttpUtils {
   }
 
   static void cancelRequests({required CancelToken token}) {
-    Http().cancelRequests(token: token);
+    HttpRequest().cancelRequests(token: token);
   }
 
   static Future get(
@@ -35,7 +35,7 @@ class HttpUtils {
     bool cacheDisk = false,
   }) async {
     EasyLoading.show(status: S().loading2);
-    return await Http().get(
+    return await HttpRequest().get(
       path,
       params: params,
       options: options,
@@ -54,7 +54,7 @@ class HttpUtils {
     CancelToken? cancelToken,
   }) async {
     EasyLoading.show(status: S().loading3);
-    return await Http().post(
+    return await HttpRequest().post(
       path,
       data: data,
       params: params,
@@ -62,6 +62,23 @@ class HttpUtils {
       cancelToken: cancelToken,
     );
   }
+
+  static Future postForm(
+      String path, {
+        Map<String, dynamic>? params,
+        Options? options,
+        CancelToken? cancelToken,
+      }) async {
+    EasyLoading.show(status: S().loading3);
+    return await HttpRequest().post(
+      path,
+      data: FormData.fromMap(params!),
+      params: params,
+      options: options,
+      cancelToken: cancelToken,
+    );
+  }
+
 
   static Future put(
     String path, {
@@ -71,7 +88,7 @@ class HttpUtils {
     CancelToken? cancelToken,
   }) async {
     EasyLoading.show(status: S().loading1);
-    return await Http().put(
+    return await HttpRequest().put(
       path,
       data: data,
       params: params,
@@ -88,7 +105,7 @@ class HttpUtils {
     CancelToken? cancelToken,
   }) async {
     EasyLoading.show(status: S().loading1);
-    return await Http().patch(
+    return await HttpRequest().patch(
       path,
       data: data,
       params: params,
@@ -105,7 +122,7 @@ class HttpUtils {
     CancelToken? cancelToken,
   }) async {
     EasyLoading.show(status: S().loading1);
-    return await Http().delete(
+    return await HttpRequest().delete(
       path,
       data: data,
       params: params,

@@ -6,8 +6,8 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 import '../app_exceptions.dart';
-// 异常
 
+/// 异常
 class MyDioSocketException extends SocketException {
   @override
   late String message;

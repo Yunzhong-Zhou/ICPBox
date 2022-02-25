@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/global/Global.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/request/http_utils.dart';
 import 'package:provider/provider.dart';
@@ -102,10 +101,13 @@ class _InformationPage extends State<InformationPage> {
         }, //header
       ),
     );
-    print("数据返回1 map转json：" + json.encode(result1));
+    // print("数据返回1 map转json：" + json.encode(result1));
     print("取值：${result1["data"]["list"]}");
-    print("取值：${result1["data"]["list"][""]}");
-
+    Map<String, dynamic> list1 = result1["data"]["list"];
+    list1.forEach((key, value) {
+      print("取值key：${key}");
+      print("取值value：${value}");
+    });
     // List list = result1["data"]["list"];
     // print("list:${list.length}");
     EasyLoading.dismiss();

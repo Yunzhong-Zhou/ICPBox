@@ -6,7 +6,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/api/Api.dart';
 
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/global/Global.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/request/http_utils.dart';
 import 'package:icpbox/routes/Routes.dart';

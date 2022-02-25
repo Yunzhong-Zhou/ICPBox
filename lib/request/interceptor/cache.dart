@@ -1,12 +1,14 @@
 // ignore_for_file: constant_identifier_names, avoid_renaming_method_parameters
 import 'dart:collection';
 import 'package:dio/dio.dart';
+import 'package:flutter/material.dart';
 import 'package:icpbox/utils/storage.dart';
 
 const int CACHE_MAXAGE = 86400000;
 const int CACHE_MAXCOUNT = 1000;
 const bool CACHE_ENABLE = false;
 
+/// 响应拦截
 class CacheObject {
   CacheObject(this.response)
       : timeStamp = DateTime.now().millisecondsSinceEpoch;
@@ -86,6 +88,7 @@ class NetCacheInterceptor extends Interceptor {
     return super.onRequest(options, requestCb);
   }
 
+  // 响应拦截
   @override
   void onResponse(
       Response response, ResponseInterceptorHandler responseCb) async {
@@ -93,6 +96,9 @@ class NetCacheInterceptor extends Interceptor {
     if (CACHE_ENABLE) {
       await _saveCache(response);
     }
+
+    debugPrint("数据返回：" + response.toString());
+
     return super.onResponse(response, responseCb);
   }
 

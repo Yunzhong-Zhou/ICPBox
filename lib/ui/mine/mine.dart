@@ -36,13 +36,15 @@ class _MinePage extends State<MinePage> {
     );
     EasyLoading.dismiss();
     print("数据返回Map：" + _result.toString());
-
-    setState(() {
-      _twitter = _result?['data']['twitter'];
-      _telegram = _result?['data']['telegram'];
-      _email = _result?['data']['email'];
-      _site = _result?['data']['site'];
-    });
+    //mounted 属性是否存在
+    if (mounted) {
+      setState(() {
+        _twitter = _result?['data']['twitter'];
+        _telegram = _result?['data']['telegram'];
+        _email = _result?['data']['email'];
+        _site = _result?['data']['site'];
+      });
+    }
 
     // String data = json.encode(_result);
     // print("map转json：" + data);

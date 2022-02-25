@@ -35,24 +35,32 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         items: [
           BottomNavigationBarItem(
             // icon:Icon(Icons.home),
+            //长按不会弹出文字
+              tooltip: "",
               icon: _currentIndex == 0
                   ? Image.asset("imgs/tab1_on.png", width: 24, height: 24)
                   : Image.asset("imgs/tab1_off.png", width: 24, height: 24),
               label: S.of(context).tab1),
           BottomNavigationBarItem(
             // icon:Icon(Icons.home),
+            //长按不会弹出文字
+              tooltip: "",
               icon: _currentIndex == 1
                   ? Image.asset("imgs/tab2_on.png", width: 24, height: 24)
                   : Image.asset("imgs/tab2_off.png", width: 24, height: 24),
               label: S.of(context).tab2),
           BottomNavigationBarItem(
             // icon:Icon(Icons.home),
+            //长按不会弹出文字
+              tooltip: "",
               icon: _currentIndex == 2
                   ? Image.asset("imgs/tab3_on.png", width: 24, height: 24)
                   : Image.asset("imgs/tab3_off.png", width: 24, height: 24),
               label: S.of(context).tab3),
           BottomNavigationBarItem(
             // icon:Icon(Icons.home),
+            //长按不会弹出文字
+              tooltip: "",
               icon: _currentIndex == 3
                   ? Image.asset("imgs/tab4_on.png", width: 24, height: 24)
                   : Image.asset("imgs/tab4_off.png", width: 24, height: 24),

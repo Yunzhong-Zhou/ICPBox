@@ -10,16 +10,16 @@ import 'interceptor/request.dart';
 import 'interceptor/retry.dart';
 // 拦截器
 
-class Http {
+class HttpRequest {
   var loading;
 
-  static final Http _instance = Http._internal();
-  factory Http() => _instance;
+  static final HttpRequest _instance = HttpRequest._internal();
+  factory HttpRequest() => _instance;
 
   static late final Dio dio;
   final CancelToken _cancelToken = CancelToken();
 
-  Http._internal() {
+  HttpRequest._internal() {
     // BaseOptions、Options、RequestOptions 都可以配置参数，优先级别依次递增，且可以根据优先级别覆盖参数
     BaseOptions options = BaseOptions();
 
@@ -65,7 +65,7 @@ class Http {
     String? baseUrl,
     int connectTimeout = 15000,
     int receiveTimeout = 15000,
-    Map<String, String>? headers,
+    Map<String, dynamic>? headers,
     List<Interceptor>? interceptors,
   }) {
     dio.options = dio.options.copyWith(
@@ -172,6 +172,27 @@ class Http {
       path,
       data: data,
       queryParameters: params,
+      options: requestOptions,
+      cancelToken: cancelToken ?? _cancelToken,
+    );
+    return response.data;
+  }
+  /// restful post form 表单提交操作
+  Future postForm(
+      String path, {
+        Map<String, dynamic>? params,
+        Options? options,
+        CancelToken? cancelToken,
+      }) async {
+    Options requestOptions = options ?? Options();
+    Map<String, dynamic>? _authorization = getAuthorizationHeader();
+    if (_authorization != null) {
+      requestOptions = requestOptions.copyWith(headers: _authorization);
+    }
+
+    Response response = await dio.post(
+      path,
+      data: FormData.fromMap(params!),
       options: requestOptions,
       cancelToken: cancelToken ?? _cancelToken,
     );
