@@ -12,6 +12,7 @@ import 'package:icpbox/routes/Routes.dart';
 import 'package:icpbox/viewmodel/MVVMDemoViewModel.dart';
 import 'package:provider/provider.dart';
 
+import 'config/myapp_theme.dart';
 import 'ui/Information/information.dart';
 import 'ui/dapp/dapp.dart';
 import 'ui/mine/mine.dart';
@@ -50,6 +51,7 @@ void main() {
 }
 
 final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
 class MyApp extends StatefulWidget {
   const MyApp({Key? key}) : super(key: key);
 
@@ -58,7 +60,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   void initState() {
     // TODO: implement initState
@@ -88,20 +89,16 @@ class _MyAppState extends State<MyApp> {
             ...S.delegate.supportedLocales
           ],
           //主题色
-          theme: ThemeData.light().copyWith(
-            primaryColor: Colors.black,
-          ),
+          theme: MyAppTheme,
+
           title: 'ICPBox',
           //路由
           routes: routes,
           // home: BottomNavigationWidget(),
 
           builder: EasyLoading.init(),
-
         );
       },
     );
   }
 }
-
-

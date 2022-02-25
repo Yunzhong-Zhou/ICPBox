@@ -2,6 +2,7 @@
 import 'dart:collection';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/utils/storage.dart';
 
 const int CACHE_MAXAGE = 86400000;
@@ -97,6 +98,7 @@ class NetCacheInterceptor extends Interceptor {
       await _saveCache(response);
     }
 
+    EasyLoading.dismiss();
     debugPrint("数据返回：" + response.toString());
 
     return super.onResponse(response, responseCb);

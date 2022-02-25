@@ -34,7 +34,6 @@ class _MinePage extends State<MinePage> {
     _result = await HttpUtils.get(
       Api.MINE,
     );
-    EasyLoading.dismiss();
     print("数据返回Map：" + _result.toString());
     //mounted 属性是否存在
     if (mounted) {
