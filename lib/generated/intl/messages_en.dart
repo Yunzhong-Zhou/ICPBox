@@ -116,6 +116,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "mine8": MessageLookupByLibrary.simpleMessage("货币单位"),
         "mine9": MessageLookupByLibrary.simpleMessage("官方推特"),
         "next": MessageLookupByLibrary.simpleMessage("Next"),
+        "nomore": MessageLookupByLibrary.simpleMessage("没有更多了"),
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "sreachinfo":
             MessageLookupByLibrary.simpleMessage("Enter search content"),

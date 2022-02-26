@@ -54,7 +54,7 @@ class ErrorInterceptor extends Interceptor {
     AppException appException = AppException.create(err);
     // 错误提示
     debugPrint('DioError===: ${appException.toString()}');
-    EasyLoading.showError(appException.toString());
+    EasyLoading.showError(appException.getMessage());
     err.error = appException;
     return super.onError(err, errCb);
   }

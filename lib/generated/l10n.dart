@@ -130,6 +130,16 @@ class S {
     );
   }
 
+  /// `没有更多了`
+  String get nomore {
+    return Intl.message(
+      '没有更多了',
+      name: 'nomore',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Confirm`
   String get confirm {
     return Intl.message(

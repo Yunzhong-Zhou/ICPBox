@@ -9,6 +9,7 @@
   "loading1": "正在加载...",
   "loading2": "正在获取数据...",
   "loading3": "正在提交数据...",
+  "nomore": "没有更多了",
 
   "confirm": "Confirm",
   "cancel": "Cancel",

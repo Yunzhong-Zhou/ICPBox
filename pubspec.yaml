@@ -43,6 +43,8 @@ dependencies:
 #  fluttertoast: ^8.0.8
   #  简单的加载loading
   flutter_easyloading: ^3.0.3
+  # 下拉刷新、上拉加载更多
+  flutter_easyrefresh: ^2.2.1
 
   #  获取权限
   flutter_easy_permission: ^1.1.1
@@ -88,8 +90,6 @@ dependencies:
   #  屏幕适配
   flutter_screenutil: ^5.3.1
 
-  #  图片显示，可缓存
-  #  ok_image: ^0.4.0
   #  缓存清理
   path_provider: ^2.0.9
 

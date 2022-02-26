@@ -1,63 +1,41 @@
 class InformationList {
-  List<InformationItem>? list;
+  final List<InformationItem> list;
 
-  InformationList({this.list});
+  InformationList(this.list);
 
-  InformationList.fromJson(Map<String, dynamic> json) {
-    if (json['list'] != null) {
-      list = <InformationItem>[];
-      json['list'].forEach((v) {
-        list!.add(InformationItem.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (list != null) {
-      data['list'] = list!.map((v) => v.toJson()).toList();
-    }
-    return data;
+  factory InformationList.fromJson(List<dynamic> list) {
+    return InformationList(
+      list.map((item) => InformationItem.fromJson(item)).toList(),
+    );
   }
 }
 
 class InformationItem {
-  String? id;
-  String? title;
-  String? cover;
-  String? keywords;
-  String? tag;
-  String? digest;
-  String? createdAt;
+  final String id;
+  final String title;
+  final String cover;
+  final String keywords;
+  final String tag;
+  final String digest;
+  final String createdAt;
 
   InformationItem(
-      {this.id,
-        this.title,
-        this.cover,
-        this.keywords,
-        this.tag,
-        this.digest,
-        this.createdAt});
+      {required this.id,
+        required this.title,
+        required this.cover,
+        required this.keywords,
+        required this.tag,
+        required this.digest,
+        required this.createdAt});
 
-  InformationItem.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    title = json['title'];
-    cover = json['cover'];
-    keywords = json['keywords'];
-    tag = json['tag'];
-    digest = json['digest'];
-    createdAt = json['createdAt'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = id;
-    data['title'] = title;
-    data['cover'] = cover;
-    data['keywords'] = keywords;
-    data['tag'] = tag;
-    data['digest'] = digest;
-    data['createdAt'] = createdAt;
-    return data;
+  factory InformationItem.fromJson(dynamic item) {
+    return InformationItem(
+        id: item["id"],
+        title: item["title"],
+        cover: item["cover"],
+        keywords: item["keywords"],
+        tag: item["tag"],
+        digest: item["digest"],
+        createdAt: item["createdAt"]);
   }
 }

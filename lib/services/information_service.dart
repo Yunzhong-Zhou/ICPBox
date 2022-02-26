@@ -29,7 +29,20 @@ class InformationService {
               listen: false)
           .Language,
     });
-    Map<String, dynamic> resut = response;
+    Map<String, dynamic> resut = response["data"];
+    return resut;
+  }
+  Future getNoticeList({int page = 1}) async {
+    var response = await HttpUtils.get(Api.NOTICE, params: {
+      "page": page,
+      "count": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
+          listen: false)
+          .Count,
+      "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
+          listen: false)
+          .Language,
+    });
+    Map<String, dynamic> resut = response["data"];
     return resut;
   }
 }

@@ -1,15 +1,13 @@
 class Api {
   ///测试地址
   static const String BASEURL = "https://api.icpbox.org";
-  static const String HOST = "https://api.icpbox.org";
 
   ///正式地址
 //   static const String BASEURL = "https://api.icpbox.org";
-//   static const String HOST = "https://api.icpbox.org";
 
   static const String PROJECT_NAME = "";
 
-  static const String API = HOST + "/api/";
+  static const String API = "/api/";
 
   ///headrs验证信息
   static const String APIKEY =

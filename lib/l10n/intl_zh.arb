@@ -9,6 +9,7 @@
   "loading1": "正在加载...",
   "loading2": "正在获取数据...",
   "loading3": "正在提交数据...",
+  "nomore": "没有更多了",
 
   "confirm": "确认",
   "cancel": "取消",
@@ -92,7 +93,7 @@
   "infomation1": "快讯",
   "infomation2": "文章",
   "infomation3": "点击查看全文",
-  "infomation4": "链闻",
+  "infomation4": "",
   "infomation5": "分享",
   "infomation6": "",
   "infomation7": "",

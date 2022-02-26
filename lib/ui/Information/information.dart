@@ -39,7 +39,7 @@ class _InformationPage extends State<InformationPage>
     );
     //切换监听
     _tabController?.addListener(() {
-      print("切换到了第${_tabController?.index}项");
+      // print("切换到了第${_tabController?.index}项");
     });
   }
 
