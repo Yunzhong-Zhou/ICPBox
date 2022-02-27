@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:icpbox/config/myapp_colors.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/model/information1_model.dart';
@@ -13,7 +14,10 @@ class InforMation1Page extends StatefulWidget {
   _InforMation1PageState createState() => _InforMation1PageState();
 }
 
-class _InforMation1PageState extends State<InforMation1Page> {
+class _InforMation1PageState extends State<InforMation1Page>
+    with AutomaticKeepAliveClientMixin {
+  late EasyRefreshController _easyRefreshController;
+
   int _page = 1;
 
   // List<InformationItem> _list = InformationList([]).list;
@@ -27,7 +31,7 @@ class _InforMation1PageState extends State<InforMation1Page> {
   void initState() {
     // TODO: implement initState
     super.initState();
-
+    _easyRefreshController = EasyRefreshController();
     //数据请求
     _getDataList();
   }
@@ -38,6 +42,8 @@ class _InforMation1PageState extends State<InforMation1Page> {
       //获取接口数据
       Map<String, dynamic> resut =
           await InformationService().getInformation1List(page: _page);
+
+      hasMore = resut["list"].isNotEmpty;
 
       List<Information1List> list1 = [];
       resut["list"].forEach((key, value) {
@@ -51,8 +57,6 @@ class _InforMation1PageState extends State<InforMation1Page> {
       setState(() {
         //是否有更多数据
         hasMore = list1.isNotEmpty;
-        //页码+1
-        _page++;
         //如果为更多数据
         if (push) {
           _list.addAll(list1);
@@ -68,28 +72,62 @@ class _InforMation1PageState extends State<InforMation1Page> {
     }
   }
 
+  //下拉刷新
+  Future _onRefresh() async {
+    _page = 1;
+    await _getDataList();
+    //重置刷新状态
+    _easyRefreshController.resetLoadState();
+  }
+
+  //上拉加载更多
+  Future _onLoad() async {
+    if (hasMore) {
+      //页码+1
+      _page++;
+      await _getDataList(push: true);
+    }
+    //完成加载更多
+    _easyRefreshController.finishLoad(noMore: !hasMore);
+  }
+
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      //false，如果内容不足，则用户无法滚动 而如果[primary]为true，它们总是可以尝试滚动。
-      primary: true,
-      //内容适配
-      shrinkWrap: true,
-      //item 数量
-      itemCount: _list.length,
-      itemBuilder: (context1, index1) {
-        return Column(
-          children: [
-            Container(
-              width: double.infinity, // 屏幕宽度,
-              color: const Color(0xFFF6F6F6),
-              padding: const EdgeInsets.fromLTRB(9, 5, 9, 5),
-              child: Text(_list[index1].time),
-            ),
-            _MyList(_list[index1].itmelist.list),
-          ],
-        );
-      },
+    super.build(context);
+    return EasyRefresh(
+      controller: _easyRefreshController,
+      //首次刷新
+      firstRefresh: true,
+      //刷新回调
+      onRefresh: _onRefresh,
+      //加载回调
+      onLoad: _onLoad,
+      //头部刷新布局
+      header: ClassicalHeader(),
+      //底部加载更多布局
+      footer: ClassicalFooter(),
+
+      child: ListView.builder(
+        //false，如果内容不足，则用户无法滚动 而如果[primary]为true，它们总是可以尝试滚动。
+        primary: true,
+        //内容适配
+        shrinkWrap: true,
+        //item 数量
+        itemCount: _list.length,
+        itemBuilder: (context1, index1) {
+          return Column(
+            children: [
+              Container(
+                width: double.infinity, // 屏幕宽度,
+                color: const Color(0xFFF6F6F6),
+                padding: const EdgeInsets.fromLTRB(9, 5, 9, 5),
+                child: Text(_list[index1].time),
+              ),
+              _MyList(_list[index1].itmelist.list),
+            ],
+          );
+        },
+      ),
     );
   }
 
@@ -272,4 +310,8 @@ class _InforMation1PageState extends State<InforMation1Page> {
           );
         });
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }

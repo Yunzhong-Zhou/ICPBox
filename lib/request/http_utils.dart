@@ -34,7 +34,7 @@ class HttpUtils {
     String? cacheKey,
     bool cacheDisk = false,
   }) async {
-    EasyLoading.show(status: S().loading2);
+    // EasyLoading.show(status: S().loading2);
     return await HttpRequest().get(
       path,
       params: params,

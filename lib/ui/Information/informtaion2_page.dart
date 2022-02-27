@@ -12,7 +12,7 @@ class InforMation2Page extends StatefulWidget {
   _InforMation2PageState createState() => _InforMation2PageState();
 }
 
-class _InforMation2PageState extends State<InforMation2Page> {
+class _InforMation2PageState extends State<InforMation2Page> with AutomaticKeepAliveClientMixin{
   late EasyRefreshController _easyRefreshController;
 
   int _page = 1;
@@ -82,8 +82,11 @@ class _InforMation2PageState extends State<InforMation2Page> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return EasyRefresh(
       controller: _easyRefreshController,
+      //首次刷新
+      firstRefresh: true,
       //刷新回调
       onRefresh: _onRefresh,
       //加载回调
@@ -176,4 +179,8 @@ class _InforMation2PageState extends State<InforMation2Page> {
       ),
     );
   }
+
+  @override
+  // TODO: implement wantKeepAlive
+  bool get wantKeepAlive => true;
 }
