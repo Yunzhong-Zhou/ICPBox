@@ -4,13 +4,19 @@ import 'package:icpbox/ui/dapp/search.dart';
 import 'package:icpbox/ui/mine/about.dart';
 import 'package:icpbox/ui/mine/address.dart';
 import 'package:icpbox/ui/mine/notice.dart';
+import 'package:icpbox/ui/root_page.dart';
+import 'package:icpbox/ui/tansit_page.dart';
 import 'package:icpbox/ui/wallet/addwallet.dart';
 import 'package:icpbox/ui/wallet/agreement.dart';
+import 'package:icpbox/ui/webview_page.dart';
 import 'package:icpbox/widgets/bottomnavigation.dart';
 
 ///路由
 Map<String, WidgetBuilder> routes = {
-  "/": (BuildContext content) => BottomNavigationWidget(), //主页
+  // "/": (BuildContext content) => BottomNavigationWidget(),
+  // "/": (BuildContext content) => TansitPage(), //启动页
+  "/": (BuildContext content) => RootPage(), //主页
+  "WebView": (BuildContext content) => WebViewPage(), //WebView
 
   ///钱包
   "AddWallet": (BuildContext content) => AddWalletPage(), //创建钱包

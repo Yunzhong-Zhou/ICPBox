@@ -6,11 +6,29 @@
   "tab3": "Infomation",
   "tab4": "Mine",
 
-  "loading1": "正在加载...",
+
+  "pullToRefresh":"Pull to refresh",
+  "releaseToRefresh":"Release to refresh",
+  "refreshing":"Refreshing...",
+  "refreshed":"Refresh completed",
+  "refreshFailed":"Refresh failed",
+  "noMore":"No more",
+  "updateAt":"Update at %T",
+
+  "pushToLoad": "Pull to load",
+  "releaseToLoad": "Pull to load",
+  "loading": "Pull to load",
+  "loaded": "Pull to load",
+  "loadFailed": "Pull to load",
+
+
   "loading2": "正在获取数据...",
   "loading3": "正在提交数据...",
-  "nomore": "没有更多了",
 
+  "reLoad": "重新加载",
+  "noData":"暂无数据",
+
+  "jumpover": "跳过",
   "confirm": "Confirm",
   "cancel": "Cancel",
   "save": "Save",

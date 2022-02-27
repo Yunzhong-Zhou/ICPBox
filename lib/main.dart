@@ -8,15 +8,11 @@ import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/request/http_utils.dart';
-import 'package:icpbox/routes/Routes.dart';
+import 'package:icpbox/routes/routes.dart';
 import 'package:icpbox/viewmodel/MVVMDemoViewModel.dart';
 import 'package:provider/provider.dart';
 
 import 'config/myapp_theme.dart';
-import 'ui/Information/information.dart';
-import 'ui/dapp/dapp.dart';
-import 'ui/mine/mine.dart';
-import 'ui/wallet/wallet.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'utils/CurrentLocale.dart';
@@ -64,6 +60,7 @@ class _MyAppState extends State<MyApp> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    //初始化网络请求
     HttpUtils.init(baseUrl: Api.BASEURL);
   }
 

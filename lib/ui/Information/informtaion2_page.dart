@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
+import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/model/information_model.dart';
 import 'package:icpbox/services/information_service.dart';
+import 'package:icpbox/widgets/myclassical.dart';
+import 'package:icpbox/widgets/myemptywidget.dart';
+import 'package:icpbox/widgets/myfirstrefresh.dart';
 import 'package:provider/provider.dart';
 
 //文章
@@ -30,7 +34,12 @@ class _InforMation2PageState extends State<InforMation2Page> with AutomaticKeepA
     super.initState();
     _easyRefreshController = EasyRefreshController();
     //数据请求
-    _getDataList();
+    // _getDataList();
+  }
+  @override
+  void dispose() {
+    super.dispose();
+    _easyRefreshController.dispose();
   }
 
   //数据请求
@@ -85,6 +94,8 @@ class _InforMation2PageState extends State<InforMation2Page> with AutomaticKeepA
     super.build(context);
     return EasyRefresh(
       controller: _easyRefreshController,
+      firstRefreshWidget: MyFirstRefresh(),
+      emptyWidget: MyEmptyWidget(_list.isEmpty, () => _easyRefreshController.callRefresh()),
       //首次刷新
       firstRefresh: true,
       //刷新回调
@@ -92,9 +103,9 @@ class _InforMation2PageState extends State<InforMation2Page> with AutomaticKeepA
       //加载回调
       onLoad: _onLoad,
       //头部刷新布局
-      header: ClassicalHeader(),
+      header:  MyClassicalHeader(),
       //底部加载更多布局
-      footer: ClassicalFooter(),
+      footer: MyClassicalFooter(),
 
       child: ListView.builder(
         //false，如果内容不足，则用户无法滚动 而如果[primary]为true，它们总是可以尝试滚动。

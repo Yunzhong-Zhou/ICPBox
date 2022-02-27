@@ -1,10 +1,14 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
-import 'package:icpbox/config/myapp_colors.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/model/information1_model.dart';
 import 'package:icpbox/model/information_model.dart';
 import 'package:icpbox/services/information_service.dart';
+import 'package:icpbox/widgets/myclassical.dart';
+import 'package:icpbox/widgets/myemptywidget.dart';
+import 'package:icpbox/widgets/myfirstrefresh.dart';
+import 'package:icpbox/widgets/pagefeedback.dart';
 
 ///资讯
 class InforMation1Page extends StatefulWidget {
@@ -23,9 +27,9 @@ class _InforMation1PageState extends State<InforMation1Page>
   // List<InformationItem> _list = InformationList([]).list;
   List<Information1List> _list = [];
   bool hasMore = true;
-
-  bool err = false;
-  String errMsg = "";
+  bool loading = true;
+  bool error = false;
+  String errorMsg = "";
 
   @override
   void initState() {
@@ -33,7 +37,13 @@ class _InforMation1PageState extends State<InforMation1Page>
     super.initState();
     _easyRefreshController = EasyRefreshController();
     //数据请求
-    _getDataList();
+    // _getDataList();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _easyRefreshController.dispose();
   }
 
   //数据请求
@@ -66,14 +76,22 @@ class _InforMation1PageState extends State<InforMation1Page>
       });
     } catch (e) {
       setState(() {
-        err = true;
-        errMsg = e.toString();
+        error = true;
+        // errorMsg = S().noData;
+        errorMsg = "";
+      });
+    }finally {
+      setState(() {
+        loading = false;
       });
     }
   }
 
   //下拉刷新
   Future _onRefresh() async {
+    if (error) {
+      setState(() => error = false);
+    }
     _page = 1;
     await _getDataList();
     //重置刷新状态
@@ -96,6 +114,16 @@ class _InforMation1PageState extends State<InforMation1Page>
     super.build(context);
     return EasyRefresh(
       controller: _easyRefreshController,
+      firstRefreshWidget: MyFirstRefresh(),
+      /*emptyWidget: PageFeedBack(
+        loading: loading,
+        error: error,
+        empty: _list.isEmpty,
+        errorMsg: errorMsg,
+        onErrorTap: () => _easyRefreshController.callRefresh(),
+        onEmptyTap: () => _easyRefreshController.callRefresh(),
+      ).build(),*/
+      emptyWidget: MyEmptyWidget(_list.isEmpty,() => _easyRefreshController.callRefresh()),
       //首次刷新
       firstRefresh: true,
       //刷新回调
@@ -103,9 +131,18 @@ class _InforMation1PageState extends State<InforMation1Page>
       //加载回调
       onLoad: _onLoad,
       //头部刷新布局
-      header: ClassicalHeader(),
+      header: MyClassicalHeader(),
+      // header: ClassicalHeader(),//默认header
+      // header: PhoenixHeader(),//金色校园Header
+      // header: BallPulseHeader(),//球脉冲Header
+      // header: BezierCircleHeader(),//弹出圆圈Header
+      // header: BezierHourGlassHeader(),//风扇转圈Header
+      // header: DeliveryHeader(),//气球快递Header
+      // header: TaurusHeader(),//气球快递Header
       //底部加载更多布局
-      footer: ClassicalFooter(),
+      footer: MyClassicalFooter(),
+      // footer: ClassicalFooter(),
+      // footer: BallPulseFooter(),//冲上云霄Footer
 
       child: ListView.builder(
         //false，如果内容不足，则用户无法滚动 而如果[primary]为true，它们总是可以尝试滚动。

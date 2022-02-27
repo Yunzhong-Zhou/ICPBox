@@ -68,7 +68,7 @@ class _NoticePage extends State<NoticePage> {
         //是否有更多数据
         hasMore = listModel.list!.isNotEmpty;
         if(!hasMore){
-          EasyLoading.showInfo(S().nomore);
+          EasyLoading.showInfo(S().noMore);
         }else{
           //如果为更多数据
           if (push) {

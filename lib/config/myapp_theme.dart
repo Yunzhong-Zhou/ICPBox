@@ -76,9 +76,9 @@ final ThemeData MyAppTheme = ThemeData(
 
   //底部导航栏颜色
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-    backgroundColor: MyAppColor.nav,
-    selectedItemColor: MyAppColor.active,
-    unselectedItemColor: MyAppColor.unactive,
+    backgroundColor: MyAppColor.white,
+    selectedItemColor: MyAppColor.primary,
+    unselectedItemColor: MyAppColor.black2,
     selectedLabelStyle: TextStyle(
       fontSize: 12,
     ),

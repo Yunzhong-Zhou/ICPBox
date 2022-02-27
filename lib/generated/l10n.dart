@@ -100,11 +100,121 @@ class S {
     );
   }
 
-  /// `正在加载...`
-  String get loading1 {
+  /// `Pull to refresh`
+  String get pullToRefresh {
     return Intl.message(
-      '正在加载...',
-      name: 'loading1',
+      'Pull to refresh',
+      name: 'pullToRefresh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Release to refresh`
+  String get releaseToRefresh {
+    return Intl.message(
+      'Release to refresh',
+      name: 'releaseToRefresh',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refreshing...`
+  String get refreshing {
+    return Intl.message(
+      'Refreshing...',
+      name: 'refreshing',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refresh completed`
+  String get refreshed {
+    return Intl.message(
+      'Refresh completed',
+      name: 'refreshed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Refresh failed`
+  String get refreshFailed {
+    return Intl.message(
+      'Refresh failed',
+      name: 'refreshFailed',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `No more`
+  String get noMore {
+    return Intl.message(
+      'No more',
+      name: 'noMore',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Update at %T`
+  String get updateAt {
+    return Intl.message(
+      'Update at %T',
+      name: 'updateAt',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pull to load`
+  String get pushToLoad {
+    return Intl.message(
+      'Pull to load',
+      name: 'pushToLoad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pull to load`
+  String get releaseToLoad {
+    return Intl.message(
+      'Pull to load',
+      name: 'releaseToLoad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pull to load`
+  String get loading {
+    return Intl.message(
+      'Pull to load',
+      name: 'loading',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pull to load`
+  String get loaded {
+    return Intl.message(
+      'Pull to load',
+      name: 'loaded',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Pull to load`
+  String get loadFailed {
+    return Intl.message(
+      'Pull to load',
+      name: 'loadFailed',
       desc: '',
       args: [],
     );
@@ -130,11 +240,31 @@ class S {
     );
   }
 
-  /// `没有更多了`
-  String get nomore {
+  /// `重新加载`
+  String get reLoad {
     return Intl.message(
-      '没有更多了',
-      name: 'nomore',
+      '重新加载',
+      name: 'reLoad',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `暂无数据`
+  String get noData {
+    return Intl.message(
+      '暂无数据',
+      name: 'noData',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `跳过`
+  String get jumpover {
+    return Intl.message(
+      '跳过',
+      name: 'jumpover',
       desc: '',
       args: [],
     );

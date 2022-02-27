@@ -87,7 +87,7 @@ class HttpUtils {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    EasyLoading.show(status: S().loading1);
+    EasyLoading.show(status: S().loading);
     return await HttpRequest().put(
       path,
       data: data,
@@ -104,7 +104,7 @@ class HttpUtils {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    EasyLoading.show(status: S().loading1);
+    EasyLoading.show(status: S().loading);
     return await HttpRequest().patch(
       path,
       data: data,
@@ -121,7 +121,7 @@ class HttpUtils {
     Options? options,
     CancelToken? cancelToken,
   }) async {
-    EasyLoading.show(status: S().loading1);
+    EasyLoading.show(status: S().loading);
     return await HttpRequest().delete(
       path,
       data: data,
