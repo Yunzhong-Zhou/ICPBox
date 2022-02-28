@@ -97,7 +97,7 @@ class _InformationDetailPageState extends State<InformationDetailPage> {
         IconButton(
           onPressed: () {
             //分享
-            Share.share(_article!.title!, subject: _article!.content!);
+            Share.share("https://api.icpbox.org", subject: _article!.title!);
           },
           icon: const Icon(Icons.more_horiz),
           color: Colors.black,
@@ -140,7 +140,6 @@ class _InformationDetailPageState extends State<InformationDetailPage> {
                     decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.circular(10.0)),
-
                     margin: const EdgeInsets.only(left: 10, top: 10, right: 10),
                     padding: const EdgeInsets.all(14),
                     child: Column(
@@ -233,22 +232,20 @@ class _InformationDetailPageState extends State<InformationDetailPage> {
           height: 10,
         ),
         InkWell(
-          onTap: (){
+          onTap: () {
             //关闭当前页面
             Navigator.pop(context);
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => InformationDetailPage(type: widget.type, id: item.id!),
+                  builder: (context) =>
+                      InformationDetailPage(type: widget.type, id: item.id!),
                 ));
             //跳转页面并关闭当前页面 - 返回后是空白页面
             /*Navigator.pushAndRemoveUntil(context,
                 MaterialPageRoute(builder: (BuildContext context) {
                   return InformationDetailPage(type: widget.type, id: item.id!);
                 }), (route) => route == null);*/
-
-
-
           },
           child: Row(
             mainAxisSize: MainAxisSize.max,
@@ -329,7 +326,6 @@ class _InformationDetailPageState extends State<InformationDetailPage> {
           color: Color(0xFFF7F7F7),
         ),
       ],
-
     );
   }
 }

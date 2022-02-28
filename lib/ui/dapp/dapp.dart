@@ -61,8 +61,8 @@ class _DappPage extends State<DappPage> {
    */
   @override
   void dispose() {
-    scanKit.dispose();
     super.dispose();
+    scanKit.dispose();
   }
 
   /**
@@ -71,7 +71,13 @@ class _DappPage extends State<DappPage> {
   Future<void> startScan() async {
     try {
       await scanKit.startScan(scanTypes: [ScanTypes.ALL]);
-    } on PlatformException {}
+    } on PlatformException catch (e) {
+      EasyLoading.showToast(e.message.toString());
+      /*setState(() {
+        err = true;
+        errMsg = e.toString();
+      });*/
+    }
   }
 
   /**

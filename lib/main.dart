@@ -11,6 +11,7 @@ import 'package:icpbox/request/http_utils.dart';
 import 'package:icpbox/routes/routes.dart';
 import 'package:icpbox/ui/root_page.dart';
 import 'package:icpbox/viewmodel/MVVMDemoViewModel.dart';
+import 'package:lifecycle_lite/life_navigator_observer.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -142,7 +143,12 @@ class _MyAppState extends State<MyApp> {
           //主页
           // home: RootPage(),
 
+          //弹窗
           builder: EasyLoading.init(),
+          //page生命周期
+          navigatorObservers: [
+            LifeNavigatorObserver(),
+          ],
         );
       },
     );

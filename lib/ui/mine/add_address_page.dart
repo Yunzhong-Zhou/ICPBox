@@ -1,32 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_easy_permission/easy_permissions.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_scankit/flutter_scankit.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/widgets/myappbar.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'dart:convert' as convert;
 
 ///添加地址薄
 class AddAddressPage extends StatefulWidget {
   int type = 1; //1、增加、2修改
-  String? id, name, address, beizhu;
+  String? name, address, beizhu;
 
   AddAddressPage(
-      {Key? key,
-      required this.type,
-      this.id,
-      this.name,
-      this.address,
-      this.beizhu})
+      {Key? key, required this.type, this.name, this.address, this.beizhu})
       : super(key: key);
 
   @override
   State<StatefulWidget> createState() => _AddAddressPage();
 }
 
+const _permissions = [Permissions.READ_EXTERNAL_STORAGE, Permissions.CAMERA];
+const _permissionGroup = [PermissionGroup.Camera, PermissionGroup.Photos];
+
 class _AddAddressPage extends State<AddAddressPage> {
   final GlobalKey _key = GlobalKey<FormState>();
   TextEditingController? _name;
   TextEditingController? _address;
   TextEditingController? _beizhu;
+
+  //扫码
+  late FlutterScankit scanKit;
 
   @override
   void initState() {
@@ -36,6 +42,24 @@ class _AddAddressPage extends State<AddAddressPage> {
       _address = TextEditingController(text: widget.address);
       _beizhu = TextEditingController(text: widget.beizhu);
     });
+
+    //扫码
+    scanKit = FlutterScankit();
+    scanKit.addResultListen((val) {
+      // Fluttertoast.showToast(msg: "扫码返回：" + val.toString());
+      // EasyLoading.showToast("扫码返回：" + val.toString());
+      setState(() {
+        // code = val;
+        _address!.text = val;
+      });
+    });
+
+    //权限
+    FlutterEasyPermission().addPermissionCallback(
+        onGranted: (requestCode, perms, perm) {
+          startScan();
+        },
+        onDenied: (requestCode, perms, perm, isPermanent) {});
   }
 
   @override
@@ -46,13 +70,30 @@ class _AddAddressPage extends State<AddAddressPage> {
     _name?.dispose();
     _address?.dispose();
     _beizhu?.dispose();
+
+    scanKit.dispose();
+  }
+
+  /**
+   * 直接调用扫码
+   */
+  Future<void> startScan() async {
+    try {
+      await scanKit.startScan(scanTypes: [ScanTypes.ALL]);
+    } on PlatformException catch (e) {
+      EasyLoading.showToast(e.message.toString());
+      /*setState(() {
+        err = true;
+        errMsg = e.toString();
+      });*/
+    }
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Color(0xFFF6F6F6),
-        appBar: MyAppBar(context,widget.type == 1 ? S().mine16 : S().mine20),
+        appBar: MyAppBar(context, widget.type == 1 ? S().mine16 : S().mine20),
         // body: NoAddress(),
         body: Form(
           key: _key,
@@ -135,12 +176,27 @@ class _AddAddressPage extends State<AddAddressPage> {
                           ),
                         ),
                         InkWell(
-                          onTap: () {
+                          onTap: () async {
                             if (widget.type == 1) {
                               //扫码
-
+                              /**
+                               * 扫码
+                               */
+                              if (!await FlutterEasyPermission.has(
+                                  perms: _permissions,
+                                  permsGroup: _permissionGroup)) {
+                                FlutterEasyPermission.request(
+                                    perms: _permissions,
+                                    permsGroup: _permissionGroup);
+                              } else {
+                                startScan();
+                                // newPage(context);
+                              }
                             } else {
-                              setState(() {});
+                              //删除
+                              setState(() {
+                                _address!.text = "";
+                              });
                             }
                           },
                           child: Image.asset(
@@ -260,12 +316,78 @@ class _AddAddressPage extends State<AddAddressPage> {
                   child: Text(S().cancel)),
               TextButton(
                   onPressed: () {
-                    Navigator.pop(context, true);
+                    var json = {
+                      "name": "${_name!.text}",
+                      "address": "${_address!.text}",
+                      "beizhu": "${_beizhu!.text}"
+                    };
+                    String params = convert.jsonEncode(json);
+                    print("提交的数据:" + params);
+                    /*String str = _name!.text +
+                        "," +
+                        _address!.text +
+                        "," +
+                        _beizhu!.text;*/
+                    if (widget.type == 1) {
+                      //添加
+                      _add(params.toString());
+                    } else {
+                      //修改
+                      _change(params.toString());
+                    }
                   },
                   child: Text(S().confirm))
             ],
           );
         });
-    print(result);
+    if (result) {
+      Navigator.of(context).pop();
+    }
+  }
+
+  //增加方法
+  void _add(String str) async {
+    List<String> list = [];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //获取所有的list
+    if (prefs.getStringList('ICPAddress') != null) {
+      list = prefs.getStringList('ICPAddress')!;
+    }
+    for (int i = 0; i < list.length; i++) {
+      print("数据$i:" + list[i]);
+    }
+    //添加一条数据
+    list.add(str);
+    prefs.setStringList('ICPAddress', list);
+
+    Navigator.pop(context, true);
+  }
+
+  //修改方法
+  void _change(String str) async {
+    //旧数据
+    var json = {
+      "name": "${widget.name!}",
+      "address": "${widget.address!}",
+      "beizhu": "${widget.beizhu!}"
+    };
+    String params = convert.jsonEncode(json);
+    List<String> list = [];
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    //获取所有的list
+    if (prefs.getStringList('ICPAddress') != null) {
+      list = prefs.getStringList('ICPAddress')!;
+    }
+    //删除当前数据
+    for (int i = 0; i < list.length; i++) {
+      print("数据$i:" + list[i]);
+      if (list[i] == params) {
+        print("找到$i:" + list[i]);
+        list[i] = str;
+        print("修改后$i:" + list[i]);
+      }
+    }
+    prefs.setStringList('ICPAddress', list);
+    Navigator.pop(context, true);
   }
 }

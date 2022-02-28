@@ -55,6 +55,8 @@ dependencies:
   share: ^2.0.4
   # 加载HTML数据
   flutter_html: ^3.0.0-alpha.2
+  # 监听页面的生命周期
+  lifecycle_lite: ^0.0.3
 
 
   #  获取权限
