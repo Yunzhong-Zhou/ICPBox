@@ -12,6 +12,7 @@ import 'package:icpbox/routes/routes.dart';
 import 'package:icpbox/ui/root_page.dart';
 import 'package:icpbox/viewmodel/MVVMDemoViewModel.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'config/myapp_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -57,12 +58,55 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  late SharedPreferences _prefs;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     //初始化网络请求
     HttpUtils.init(baseUrl: Api.BASEURL);
+    //获取语言
+    getLanguage();
+  }
+
+  //获取语言
+  void getLanguage() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    int? language = prefs.getInt("language");
+    String? languageName = prefs.getString("languageName");
+    print("保存的值：$language:$languageName");
+    if (language != null) {
+      setState(() {
+        Provider.of<AppDataProvider>(context, listen: false)
+            .setLanguage(language.toString());
+        Provider.of<AppDataProvider>(context, listen: false)
+            .setLanguageName(languageName);
+        ///语言（1.中文2.英文3.西班牙4.日文5.俄语）
+        switch (Provider.of<AppDataProvider>(context, listen: false).Language) {
+          case "1":
+            Provider.of<CurrentLocale>(context, listen: false)
+                .setLocale(const Locale('zh', "CH"));
+            break;
+          case "2":
+            Provider.of<CurrentLocale>(context, listen: false)
+                .setLocale(const Locale('en', "US"));
+            break;
+          case "3":
+            Provider.of<CurrentLocale>(context, listen: false)
+                .setLocale(const Locale('es', "ES"));
+            break;
+          case "4":
+            Provider.of<CurrentLocale>(context, listen: false)
+                .setLocale(const Locale('ja', "JP"));
+            break;
+          case "5":
+            Provider.of<CurrentLocale>(context, listen: false)
+                .setLocale(const Locale('ru', "RU"));
+            break;
+        }
+      });
+    }
   }
 
   @override
@@ -84,6 +128,9 @@ class _MyAppState extends State<MyApp> {
           supportedLocales: [
             const Locale('zh', 'CN'),
             const Locale('en', 'US'),
+            const Locale('es', 'ES'),
+            const Locale('ja', 'JP'),
+            const Locale('ru', 'RU'),
             ...S.delegate.supportedLocales
           ],
           //主题色
@@ -93,7 +140,7 @@ class _MyAppState extends State<MyApp> {
           //路由
           routes: routes,
           //主页
-          home: const RootPage(),
+          // home: RootPage(),
 
           builder: EasyLoading.init(),
         );

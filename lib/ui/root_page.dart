@@ -14,14 +14,14 @@ class RootPage extends StatefulWidget {
   _RootPageState createState() => _RootPageState();
 }
 
-Map _bottomNames = {
-  "tab1": S().tab1,
-  "tab2": S().tab2,
-  "tab3": S().tab3,
-  "tab4": S().tab4,
-};
-
 class _RootPageState extends State<RootPage> {
+  final Map _bottomNames = {
+    "tab1": S().tab1,
+    "tab2": S().tab2,
+    "tab3": S().tab3,
+    "tab4": S().tab4,
+  };
+
   //当前选中页面索引
   int _currentIndex = 0;
 

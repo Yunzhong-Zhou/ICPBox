@@ -4,6 +4,7 @@ import 'package:icpbox/ui/Information/information.dart';
 import 'package:icpbox/ui/dapp/dapp.dart';
 import 'package:icpbox/ui/mine/mine.dart';
 import 'package:icpbox/ui/wallet/wallet.dart';
+import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
 
 ///底部导航栏
@@ -24,9 +25,9 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
      */
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        iconSize: 24.0,
-        selectedFontSize: 10.0,
-        unselectedFontSize: 10.0,
+        // iconSize: 24.0,
+        // selectedFontSize: 10.0,
+        // unselectedFontSize: 10.0,
         selectedItemColor: Color(0xFF3555FF),
         unselectedItemColor: Color(0xFF525252),
         // type: BottomNavigationBarType.shifting, 如果为4个会不显示
@@ -77,7 +78,22 @@ class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
         },
       ),
       //主体显示的页面跟随当前导航标签的位标值在pages页面列表中选择。
-      body: _pages[_currentIndex],
+      // body: _pages[_currentIndex],
+      //切换tab不会重新加载页面，有预加载
+      body: IndexedStack(
+        index: _currentIndex,
+        children: _pages,
+      ),
+      //切换tab不会重新加载页面，没有预加载
+      /*body: ProsteIndexedStack(
+        index: _currentIndex,
+        children: [
+          IndexedStackChild(child: WalletPage()),
+          IndexedStackChild(child: DappPage()),
+          IndexedStackChild(child: InformationPage()),
+          IndexedStackChild(child: MinePage()),
+        ],
+      ),*/
     );
   }
 }

@@ -14,7 +14,7 @@ import 'package:icpbox/widgets/bottomnavigation.dart';
 
 ///路由
 Map<String, WidgetBuilder> routes = {
-  // "/": (BuildContext content) => BottomNavigationWidget(),
+  "/": (BuildContext content) => BottomNavigationWidget(),
   // "/": (BuildContext content) => TansitPage(), //启动页
   // "/": (BuildContext content) => RootPage(), //主页
   "WebView": (BuildContext content) => WebViewPage(), //WebView

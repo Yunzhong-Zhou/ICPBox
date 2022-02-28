@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/api/Api.dart';
@@ -10,8 +8,10 @@ import 'package:icpbox/ui/dapp/publish_dapp_page.dart';
 import 'package:icpbox/ui/mine/about_page.dart';
 import 'package:icpbox/ui/mine/address_page.dart';
 import 'package:icpbox/ui/mine/notice_page.dart';
+import 'package:icpbox/ui/wallet/selectlanguage.dart';
 import 'package:icpbox/utils/CurrentLocale.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 ///我的
 class MinePage extends StatefulWidget {
@@ -20,17 +20,24 @@ class MinePage extends StatefulWidget {
 }
 
 Map<String, dynamic>? _result;
-String _twitter = "",_telegram = "",_email = "",_site = "";
+String _twitter = "",
+    _telegram = "",
+    _email = "",
+    _site = "";
 
 class _MinePage extends State<MinePage> {
   @override
   void initState() {
+// TODO: implement initState
+    super.initState();
     //生命周期
-    if(_twitter.isEmpty){
+    if (_twitter.isEmpty) {
       loadData();
     }
   }
+
   void loadData() async {
+    EasyLoading.show(status: S().loading2);
     _result = await HttpUtils.get(
       Api.MINE,
     );
@@ -56,13 +63,14 @@ class _MinePage extends State<MinePage> {
     print("map转json：" + json.encode(data));*/
     // print("json转map：" + json.decode(data));
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60.0,
         title: Text(S.of(context).mine1,
-            style: TextStyle(
+            style: const TextStyle(
               fontSize: 20.0,
               // color: Color.fromARGB(255, 250, 3, 3),
               color: Colors.white,
@@ -74,7 +82,7 @@ class _MinePage extends State<MinePage> {
         //背景渐变
         flexibleSpace: Container(
           //修饰器
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             gradient: LinearGradient(colors: [
               Color(0xFF15204C),
               Color(0xFF273469),
@@ -85,7 +93,7 @@ class _MinePage extends State<MinePage> {
       ),
       body: Container(
         //修饰器-蓝色渐变
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           gradient: LinearGradient(colors: [
             Color(0xFF15204C),
             Color(0xFF273469),
@@ -93,9 +101,9 @@ class _MinePage extends State<MinePage> {
           ], begin: Alignment.centerLeft, end: Alignment.centerRight),
         ),
         child: Container(
-            padding: EdgeInsets.only(left: 10.0),
+            padding: const EdgeInsets.only(left: 10.0),
             //修饰器-顶部圆角
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.white,
               borderRadius:
                   BorderRadius.vertical(top: Radius.elliptical(30, 30)),
@@ -145,7 +153,9 @@ class _MyVerticalList extends State<MyVerticalList> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NoticePage(type: 1,),
+                    builder: (context) => NoticePage(
+                      type: 1,
+                    ),
                   ));
             },
             leading: Image.asset("imgs/ic_mine2.png", width: 22, height: 22),
@@ -164,7 +174,9 @@ class _MyVerticalList extends State<MyVerticalList> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NoticePage(type: 2,),
+                    builder: (context) => NoticePage(
+                      type: 2,
+                    ),
                   ));
             },
             leading: Image.asset("imgs/ic_mine3.png", width: 22, height: 22),
@@ -179,7 +191,7 @@ class _MyVerticalList extends State<MyVerticalList> {
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         //分割线
-        Divider(
+        const Divider(
           //缩进
           indent: 10.0,
           endIndent: 20.0,
@@ -192,14 +204,14 @@ class _MyVerticalList extends State<MyVerticalList> {
         ListTile(
             onTap: () {},
             leading: Image.asset("imgs/ic_mine4.png", width: 22, height: 22),
-            title: new Text(
+            title: Text(
               S.of(context).mine5,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
               ),
             ),
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
@@ -212,14 +224,14 @@ class _MyVerticalList extends State<MyVerticalList> {
                   ));
             },
             leading: Image.asset("imgs/ic_mine5.png", width: 22, height: 22),
-            title: new Text(
+            title: Text(
               S.of(context).mine6,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
               ),
             ),
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
@@ -235,13 +247,17 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(S.of(context).mine7,
-                    style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
-                Text("${list_yuyan[select_yuyan]}",
-                    style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
+                Text(
+                    Provider.of<AppDataProvider>(context, listen: false)
+                        .LanguageName,
+                    style: const TextStyle(
+                        color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
@@ -257,16 +273,18 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(S.of(context).mine8,
-                    style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
                 Text("${list_huobi[select_huobi]}",
-                    style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
-        Divider(
+        const Divider(
           //缩进
           indent: 10.0,
           endIndent: 20.0,
@@ -285,14 +303,16 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(S.of(context).mine9,
-                    style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
-                Text("$_twitter",
-                    style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
+                Text(_twitter,
+                    style: const TextStyle(
+                        color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
             //紧凑程度 -4 ~ 4
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
@@ -304,14 +324,16 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(S.of(context).mine10,
-                    style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
                 Text(_telegram,
-                    style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
             //紧凑程度 -4 ~ 4
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
@@ -323,15 +345,17 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(S.of(context).mine11,
-                    style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFF616061), fontSize: 12.0)),
                 //填充组件
                 // Expanded(child: Container()),
                 Text(_email,
-                    style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
             //紧凑程度 -4 ~ 4
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
@@ -351,14 +375,16 @@ class _MyVerticalList extends State<MyVerticalList> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(S.of(context).mine12,
-                    style: TextStyle(color: Color(0xFF616061), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFF616061), fontSize: 12.0)),
                 // Expanded(child: Container()),
                 Text(_site,
-                    style: TextStyle(color: Color(0xFFC0C0C0), fontSize: 12.0)),
+                    style: const TextStyle(
+                        color: Color(0xFFC0C0C0), fontSize: 12.0)),
               ],
             ),
             //紧凑程度 -4 ~ 4
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
       ],
@@ -374,163 +400,10 @@ void showBottomSheet(BuildContext context, int type) {
   showModalBottomSheet(
       builder: (BuildContext context) {
         //构建弹框中的内容
-        return type == 1
-            ? buildBottomSheetWidget_yuyan()
-            : buildBottomSheetWidget_huobi();
+        return type == 1 ? SelectLanguage() : buildBottomSheetWidget_huobi();
       },
       backgroundColor: Colors.transparent, //重要
       context: context);
-}
-
-///语言底部弹出框的内容
-int select_yuyan = 4;
-List list_yuyan = ["Россия", "にほんこく", "España", "English", "简体中文"];
-List list_yuyanicon = [
-  "imgs/elosi.png",
-  "imgs/jp.png",
-  "imgs/esp.png",
-  "imgs/usa.png",
-  "imgs/china.png"
-];
-
-class buildBottomSheetWidget_yuyan extends StatefulWidget {
-
-  @override
-  State<StatefulWidget> createState() => _buildBottomSheetWidget_yuyan();
-}
-
-class _buildBottomSheetWidget_yuyan
-    extends State<buildBottomSheetWidget_yuyan> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    print("语言："+Provider.of<AppDataProvider>(context,listen: false).Language);
-    ///语言（1.中文2.英文3.西班牙4.日文5.俄语）
-    switch(Provider.of<AppDataProvider>(context,listen: false).Language){
-      case "1":
-        select_yuyan = 4;
-        break;
-      case "2":
-        select_yuyan = 3;
-        break;
-      case "3":
-        select_yuyan = 2;
-        break;
-      case "4":
-        select_yuyan = 1;
-        break;
-      case "5":
-        select_yuyan = 0;
-        break;
-    }
-  }
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        // height: 310,
-        decoration: new BoxDecoration(
-            color: Colors.white,
-            borderRadius: new BorderRadius.only(
-                topLeft: const Radius.circular(15.0),
-                topRight: const Radius.circular(15.0))),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            ListView.builder(
-                //取消滑动
-                // physics: NeverScrollableScrollPhysics(),
-                //false，如果内容不足，则用户无法滚动 而如果[primary]为true，它们总是可以尝试滚动。
-                primary: true,
-                //内容适配
-                shrinkWrap: true,
-                //item 数量
-                itemCount: list_yuyan.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    onTap: () {
-                      setState(() {
-                        select_yuyan = index;
-
-                        ///语言（1.中文2.英文3.西班牙4.日文5.俄语）
-                        switch (select_yuyan) {
-                          case 0:
-                            //俄语
-                            Provider.of<AppDataProvider>(context, listen: false)
-                                .setLanguage("5");
-                            Provider.of<CurrentLocale>(context, listen: false)
-                                .setLocale(const Locale('ru', "RU"));
-                            break;
-                          case 1:
-                            //日文
-                            Provider.of<AppDataProvider>(context, listen: false)
-                                .setLanguage("4");
-                            Provider.of<CurrentLocale>(context, listen: false)
-                                .setLocale(const Locale('ja', "JP"));
-                            break;
-                          case 2:
-                            //西班牙
-                            Provider.of<AppDataProvider>(context, listen: false)
-                                .setLanguage("3");
-
-                            Provider.of<CurrentLocale>(context, listen: false)
-                                .setLocale(const Locale('es', "ES"));
-                            break;
-                          case 3:
-                            //英文
-                            Provider.of<AppDataProvider>(context, listen: false)
-                                .setLanguage("2");
-                            Provider.of<CurrentLocale>(context, listen: false)
-                                .setLocale(const Locale('en', "US"));
-                            break;
-                          case 4:
-                            //中文
-                            Provider.of<AppDataProvider>(context, listen: false)
-                                .setLanguage("1");
-                            Provider.of<CurrentLocale>(context, listen: false)
-                                .setLocale(const Locale('zh', "CH"));
-                            break;
-                        }
-                      });
-                      Navigator.of(context).pop(index);
-                    },
-                    leading: Image.asset(list_yuyanicon[index],
-                        width: 30, height: 30),
-                    title: Text(list_yuyan[index],
-                        style: TextStyle(
-                            color: Color(0xFF687177), fontSize: 16.0)),
-                    //紧凑程度 -4 ~ 4
-                    visualDensity: VisualDensity(horizontal: -4.0),
-                    trailing: Image.asset(
-                        select_yuyan == index
-                            ? "imgs/ic_xuanzhong.png"
-                            : "imgs/ic_weixuan.png",
-                        width: 24,
-                        height: 24),
-                  );
-                }),
-            Divider(
-              //分割线高度
-              height: 1.0,
-              //分割线的厚度
-              thickness: 1.0,
-              color: Color(0xFFF7F7F7),
-            ),
-            InkWell(
-              child: Padding(
-                padding: EdgeInsets.all(12),
-                child: Text(
-                  S.of(context).cancel,
-                  style: TextStyle(fontSize: 16, color: Color(0xFF4F4F4F)),
-                ),
-              ),
-              onTap: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        ));
-  }
 }
 
 ///货币底部弹出框的内容
@@ -545,6 +418,8 @@ List list_huobiicon = [
 ];
 
 class buildBottomSheetWidget_huobi extends StatefulWidget {
+  const buildBottomSheetWidget_huobi({Key? key}) : super(key: key);
+
   @override
   State<StatefulWidget> createState() => _buildBottomSheetWidget_huobi();
 }
@@ -556,15 +431,16 @@ class _buildBottomSheetWidget_huobi
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
         // height: 310,
-        decoration: new BoxDecoration(
+        decoration: const BoxDecoration(
             color: Colors.white,
-            borderRadius: new BorderRadius.only(
-                topLeft: const Radius.circular(15.0),
-                topRight: const Radius.circular(15.0))),
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(15.0),
+                topRight: Radius.circular(15.0))),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -591,10 +467,10 @@ class _buildBottomSheetWidget_huobi
                   leading:
                       Image.asset(list_huobiicon[index], width: 30, height: 30),
                   title: Text(list_huobi[index],
-                      style:
-                          TextStyle(color: Color(0xFF687177), fontSize: 16.0)),
+                      style: const TextStyle(
+                          color: Color(0xFF687177), fontSize: 16.0)),
                   //紧凑程度 -4 ~ 4
-                  visualDensity: VisualDensity(horizontal: -4.0),
+                  visualDensity: const VisualDensity(horizontal: -4.0),
                   trailing: Image.asset(
                       select_huobi == index
                           ? "imgs/ic_xuanzhong.png"
@@ -604,7 +480,7 @@ class _buildBottomSheetWidget_huobi
                 );
               },
             ),
-            Divider(
+            const Divider(
               //分割线高度
               height: 1.0,
               //分割线的厚度
@@ -613,10 +489,11 @@ class _buildBottomSheetWidget_huobi
             ),
             InkWell(
               child: Padding(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 child: Text(
                   S.of(context).cancel,
-                  style: TextStyle(fontSize: 16, color: Color(0xFF4F4F4F)),
+                  style:
+                      const TextStyle(fontSize: 16, color: Color(0xFF4F4F4F)),
                 ),
               ),
               onTap: () {

@@ -36,4 +36,13 @@ class AppDataProvider extends ChangeNotifier {
     _Language = string;
     notifyListeners(); //通知更新
   }
+  ///语言（1.简体中文，2、English，3、西班牙，4、にほんこく，5、Россия）
+  String _LanguageName = "简体中文";
+
+  get LanguageName => _LanguageName;
+
+  void setLanguageName(string) {
+    _LanguageName = string;
+    notifyListeners(); //通知更新
+  }
 }
