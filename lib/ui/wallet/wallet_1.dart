@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:icpbox/ui/dapp/publish_dapp.dart';
+import 'package:icpbox/ui/dapp/publish_dapp_page.dart';
 
 ///钱包
 class WalletPage extends StatefulWidget {

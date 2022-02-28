@@ -6,10 +6,10 @@ import 'package:icpbox/api/Api.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/request/http_utils.dart';
-import 'package:icpbox/ui/dapp/publish_dapp.dart';
-import 'package:icpbox/ui/mine/about.dart';
-import 'package:icpbox/ui/mine/address.dart';
-import 'package:icpbox/ui/mine/notice.dart';
+import 'package:icpbox/ui/dapp/publish_dapp_page.dart';
+import 'package:icpbox/ui/mine/about_page.dart';
+import 'package:icpbox/ui/mine/address_page.dart';
+import 'package:icpbox/ui/mine/notice_page.dart';
 import 'package:icpbox/utils/CurrentLocale.dart';
 import 'package:provider/provider.dart';
 
@@ -129,48 +129,53 @@ class _MyVerticalList extends State<MyVerticalList> {
               Navigator.of(context).pushNamed("Address");
             },
             leading: Image.asset("imgs/ic_mine1.png", width: 22, height: 22),
-            title: new Text(
+            title: Text(
               S.of(context).mine2,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
               ),
             ),
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
             onTap: () {
               //跳转 通知公告
-              /*Navigator.push(
+              Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => NoticePage(),
-                  ));*/
-              Navigator.of(context).pushNamed("Notice");
+                    builder: (context) => NoticePage(type: 1,),
+                  ));
             },
             leading: Image.asset("imgs/ic_mine2.png", width: 22, height: 22),
-            title: new Text(
+            title: Text(
               S.of(context).mine3,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
               ),
             ),
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NoticePage(type: 2,),
+                  ));
+            },
             leading: Image.asset("imgs/ic_mine3.png", width: 22, height: 22),
-            title: new Text(
+            title: Text(
               S.of(context).mine4,
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 12.0,
                 color: Color(0xFF616061),
               ),
             ),
-            visualDensity: VisualDensity(horizontal: -4.0),
+            visualDensity: const VisualDensity(horizontal: -4.0),
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         //分割线

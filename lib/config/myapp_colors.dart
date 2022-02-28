@@ -20,7 +20,7 @@ class MyAppColor {
 
   static const Color un3active = Color(0xffb1b1b1);
 
-  static const Color page = Color(0xfff7f7f7);
+  static const Color page = Color(0xFFF6F6F6);
 
   static const Color nav = Color(0xfffbfbfb);
 

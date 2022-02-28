@@ -27,7 +27,10 @@ class Api {
 
   /// ********************************资讯**************************************
   static const String INFORMATION1 = API + "articleFast/index";
+  static const String INFORMATION1_DETAIL = API + "articleFast/detail";
+
   static const String INFORMATION2 = API + "article/index";
+  static const String INFORMATION2_DETAIL = API + "article/detail";
 
 
   /// ********************************我的**************************************
@@ -35,4 +38,9 @@ class Api {
 
   //通知
   static const String NOTICE = API + "notice/index";
+  static const String NOTICE_DETAIL = API + "notice/detail";
+  //帮助中心
+  static const String HELP = API + "help/index";
+  static const String HELP_DETAIL = API + "help/detail";
+
 }

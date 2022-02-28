@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/ui/mine/add_address.dart';
+import 'package:icpbox/ui/mine/add_address_page.dart';
 import 'package:icpbox/widgets/myappbar.dart';
 
 import '../base_stateful_page.dart';

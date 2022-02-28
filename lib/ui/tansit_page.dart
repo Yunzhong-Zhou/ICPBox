@@ -98,11 +98,11 @@ class _TansitPageState extends State<TansitPage> {
   void _jumpRootPage() {
     //取消计时器
     _timer?.cancel();
-    /*//跳转并关闭当前页面
+    //跳转到起始页并关闭所有页面
     Navigator.pushAndRemoveUntil(context,
         MaterialPageRoute(builder: (BuildContext context) {
       return const RootPage();
-    }), (route) => false);*/
-    Navigator.of(context).pushNamedAndRemoveUntil("root", (route) => false);
+    }), (route) => false);
+    // Navigator.of(context).pushNamedAndRemoveUntil("root", (route) => false);
   }
 }

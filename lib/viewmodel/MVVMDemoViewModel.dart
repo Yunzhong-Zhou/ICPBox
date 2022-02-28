@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:icpbox/model/MVVMDemoModel.dart';
-import 'package:icpbox/ui/mine/notice.dart';
+import 'package:icpbox/ui/mine/notice_page.dart';
 
 import '../main.dart';
 

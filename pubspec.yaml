@@ -51,6 +51,10 @@ dependencies:
   proste_indexed_stack: ^0.2.4
   # webview
   webview_flutter: ^3.0.1
+  # 分享
+  share: ^2.0.4
+  # 加载HTML数据
+  flutter_html: ^3.0.0-alpha.2
 
 
   #  获取权限

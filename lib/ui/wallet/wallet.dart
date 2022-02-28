@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/ui/dapp/publish_dapp.dart';
+import 'package:icpbox/ui/dapp/publish_dapp_page.dart';
 
 import 'agreement.dart';
 
@@ -62,6 +62,7 @@ class _WalletPage extends State<WalletPage> {
         //按钮
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.transparent,
+          heroTag: "wallet",
           //前景色
           // foregroundColor: Colors.transparent,
           //未点击的时候的阴影

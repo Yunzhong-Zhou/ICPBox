@@ -4,11 +4,11 @@ import 'package:flutter_easy_permission/easy_permissions.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_scankit/flutter_scankit.dart';
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/ui/dapp/search.dart';
+import 'package:icpbox/ui/dapp/search_page.dart';
 import 'package:icpbox/widgets/customized_view.dart';
 
 import 'grid_page.dart';
-import 'publish_dapp.dart';
+import 'publish_dapp_page.dart';
 
 ///DAPP
 class DappPage extends StatefulWidget {
@@ -189,6 +189,7 @@ class _DappPage extends State<DappPage> {
         //按钮
         floatingActionButton: FloatingActionButton(
           backgroundColor: Colors.transparent,
+          heroTag: "dapp",
           //前景色
           // foregroundColor: Colors.transparent,
           //未点击的时候的阴影

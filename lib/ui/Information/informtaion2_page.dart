@@ -8,6 +8,8 @@ import 'package:icpbox/widgets/myemptywidget.dart';
 import 'package:icpbox/widgets/myfirstrefresh.dart';
 import 'package:provider/provider.dart';
 
+import 'information_detail_page.dart';
+
 //文章
 class InforMation2Page extends StatefulWidget {
   const InforMation2Page({Key? key}) : super(key: key);
@@ -20,13 +22,8 @@ class _InforMation2PageState extends State<InforMation2Page> with AutomaticKeepA
   late EasyRefreshController _easyRefreshController;
 
   int _page = 1;
-
-  // List<InformationItem> _list = InformationList([]).list;
   List<InformationItem> _list = [];
   bool hasMore = true;
-
-  bool err = false;
-  String errMsg = "";
 
   @override
   void initState() {
@@ -63,10 +60,10 @@ class _InforMation2PageState extends State<InforMation2Page> with AutomaticKeepA
         }
       });
     } catch (e) {
-      setState(() {
+      /*setState(() {
         err = true;
         errMsg = e.toString();
-      });
+      });*/
     }
   }
 
@@ -122,71 +119,80 @@ class _InforMation2PageState extends State<InforMation2Page> with AutomaticKeepA
   }
 
   Widget _item(InformationItem item) {
-    return Container(
-      padding: const EdgeInsets.fromLTRB(24, 6, 15, 6),
-      color: Colors.white,
-      margin: const EdgeInsets.only(top: 1, bottom: 9),
-      child: Row(
-        mainAxisSize: MainAxisSize.max,
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          //圆角
-          ClipRRect(
-            borderRadius: BorderRadius.circular(10),
-            child: FadeInImage.assetNetwork(
-              width: 96,
-              height: 80,
-              placeholder: "imgs/zanwutupian.png",
-              image: item.cover,
-              fit: BoxFit.cover,
+    return InkWell(
+      onTap: (){
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => InformationDetailPage(type: 2, id: item.id),
+            ));
+      },
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(24, 6, 15, 6),
+        color: Colors.white,
+        margin: const EdgeInsets.only(top: 1, bottom: 9),
+        child: Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            //圆角
+            ClipRRect(
+              borderRadius: BorderRadius.circular(10),
+              child: FadeInImage.assetNetwork(
+                width: 96,
+                height: 80,
+                placeholder: "imgs/zanwutupian.png",
+                image: item.cover,
+                fit: BoxFit.cover,
+              ),
+              /*child: Image.network(
+                    _list[index].cover,
+                    width: 96,
+                    height: 80,
+                    fit: BoxFit.cover,
+                  ),*/
             ),
-            /*child: Image.network(
-                  _list[index].cover,
-                  width: 96,
-                  height: 80,
-                  fit: BoxFit.cover,
-                ),*/
-          ),
-          Container(
-            width: MediaQuery.of(context).size.width - 151, // 屏幕宽度
-            padding: const EdgeInsets.only(left: 10, top: 10, bottom: 7),
-            child: Column(
-              mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(item.title,
-                    style:
-                        const TextStyle(fontSize: 14, color: Color(0xFF4A4A4A)),
-                    maxLines: 2,
-                    textAlign: TextAlign.left,
-                    overflow: TextOverflow.ellipsis),
-                Container(
-                  width: MediaQuery.of(context).size.width - 151, // 屏幕宽度
-                  padding: const EdgeInsets.only(top: 6),
-                  child: Row(
-                    mainAxisSize: MainAxisSize.max,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        item.keywords,
-                        style: const TextStyle(
-                            fontSize: 12, color: Color(0xFFCACACA)),
-                      ),
-                      Text(
-                        item.createdAt,
-                        style: const TextStyle(
-                            fontSize: 12, color: Color(0xFFCACACA)),
-                      )
-                    ],
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
+            Container(
+              width: MediaQuery.of(context).size.width - 151, // 屏幕宽度
+              padding: const EdgeInsets.only(left: 10, top: 10, bottom: 7),
+              child: Column(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(item.title,
+                      style:
+                          const TextStyle(fontSize: 14, color: Color(0xFF4A4A4A)),
+                      maxLines: 2,
+                      textAlign: TextAlign.left,
+                      overflow: TextOverflow.ellipsis),
+                  Container(
+                    width: MediaQuery.of(context).size.width - 151, // 屏幕宽度
+                    padding: const EdgeInsets.only(top: 6),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.max,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          item.keywords,
+                          style: const TextStyle(
+                              fontSize: 12, color: Color(0xFFCACACA)),
+                        ),
+                        Text(
+                          item.createdAt,
+                          style: const TextStyle(
+                              fontSize: 12, color: Color(0xFFCACACA)),
+                        )
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
       ),
     );
   }

@@ -5,10 +5,10 @@ import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/model/information1_model.dart';
 import 'package:icpbox/model/information_model.dart';
 import 'package:icpbox/services/information_service.dart';
+import 'package:icpbox/ui/Information/information_detail_page.dart';
 import 'package:icpbox/widgets/myclassical.dart';
 import 'package:icpbox/widgets/myemptywidget.dart';
 import 'package:icpbox/widgets/myfirstrefresh.dart';
-import 'package:icpbox/widgets/pagefeedback.dart';
 
 ///资讯
 class InforMation1Page extends StatefulWidget {
@@ -23,13 +23,9 @@ class _InforMation1PageState extends State<InforMation1Page>
   late EasyRefreshController _easyRefreshController;
 
   int _page = 1;
-
   // List<InformationItem> _list = InformationList([]).list;
   List<Information1List> _list = [];
   bool hasMore = true;
-  bool loading = true;
-  bool error = false;
-  String errorMsg = "";
 
   @override
   void initState() {
@@ -75,23 +71,19 @@ class _InforMation1PageState extends State<InforMation1Page>
         }
       });
     } catch (e) {
-      setState(() {
+      /*setState(() {
         error = true;
         // errorMsg = S().noData;
         errorMsg = "";
-      });
-    }finally {
-      setState(() {
-        loading = false;
-      });
+      });*/
     }
   }
 
   //下拉刷新
   Future _onRefresh() async {
-    if (error) {
+    /*if (error) {
       setState(() => error = false);
-    }
+    }*/
     _page = 1;
     await _getDataList();
     //重置刷新状态
@@ -288,13 +280,23 @@ class _InforMation1PageState extends State<InforMation1Page>
                           style: const TextStyle(
                               fontSize: 14, color: Color(0xFF818181))),
                     ),
-                    Container(
-                      // width: MediaQuery.of(context).size.width, // 屏幕宽度
-                      margin: const EdgeInsets.only(top: 15),
-                      child: Text(S().infomation3,
-                          style: const TextStyle(
-                              fontSize: 14, color: Color(0xFF3555FF))),
-                    ),
+                    InkWell(
+                      onTap: (){
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => InformationDetailPage(type: 1, id: mylist[index2].id),
+                            ));
+                      },
+                      child: Container(
+                        // width: MediaQuery.of(context).size.width, // 屏幕宽度
+                        margin: const EdgeInsets.only(top: 15),
+                        child: Text(S().infomation3,
+                            style: const TextStyle(
+                                fontSize: 14, color: Color(0xFF3555FF))),
+                      ),
+                    )
+                    ,
                     Container(
                       width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
                       padding: const EdgeInsets.only(right: 36),

@@ -9,6 +9,7 @@ import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/request/http_utils.dart';
 import 'package:icpbox/routes/routes.dart';
+import 'package:icpbox/ui/root_page.dart';
 import 'package:icpbox/viewmodel/MVVMDemoViewModel.dart';
 import 'package:provider/provider.dart';
 
@@ -91,7 +92,8 @@ class _MyAppState extends State<MyApp> {
           title: 'ICPBox',
           //路由
           routes: routes,
-          // home: BottomNavigationWidget(),
+          //主页
+          home: const RootPage(),
 
           builder: EasyLoading.init(),
         );

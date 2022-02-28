@@ -32,12 +32,34 @@ class InformationService {
     Map<String, dynamic> resut = response["data"];
     return resut;
   }
-  Future getNoticeList({int page = 1}) async {
-    var response = await HttpUtils.get(Api.NOTICE, params: {
+
+  Future getDetail({required String url,required String id}) async {
+    var response = await HttpUtils.get(url, params: {
+      "id": id,
+      "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
+          listen: false)
+          .Language,
+    });
+    Map<String, dynamic> resut = response["data"];
+    return resut;
+  }
+
+  Future getNoticeList({required String url,int page = 1}) async {
+    var response = await HttpUtils.get(url, params: {
       "page": page,
       "count": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
           listen: false)
           .Count,
+      "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
+          listen: false)
+          .Language,
+    });
+    Map<String, dynamic> resut = response["data"];
+    return resut;
+  }
+  Future getNoticeDetail({required String id}) async {
+    var response = await HttpUtils.get(Api.NOTICE_DETAIL, params: {
+      "id": id,
       "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
           listen: false)
           .Language,
