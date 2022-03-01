@@ -8,14 +8,14 @@ import 'package:proste_indexed_stack/proste_indexed_stack.dart';
 
 
 ///底部导航栏
-class BottomNavigationWidget extends StatefulWidget {
+class MyBottomNavigation extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return BottomNavigationWidgetState();
+    return MyBottomNavigationState();
   }
 }
 
-class BottomNavigationWidgetState extends State<BottomNavigationWidget> {
+class MyBottomNavigationState extends State<MyBottomNavigation> {
   List<Widget> _pages = [WalletPage(), DappPage(), InformationPage(), MinePage()];
   int _currentIndex = 0;
   @override

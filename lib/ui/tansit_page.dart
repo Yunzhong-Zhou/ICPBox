@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/widgets/my_bottomnavigation.dart';
 
 import 'root_page.dart';
 
@@ -14,7 +15,7 @@ class TansitPage extends StatefulWidget {
 
 class _TansitPageState extends State<TansitPage> {
   Timer? _timer;
-  int _down = 5;
+  int _down = 0;
 
   @override
   void initState() {
@@ -49,14 +50,14 @@ class _TansitPageState extends State<TansitPage> {
             // height: double.infinity,
           ),
 
-          Positioned(
+          /*Positioned(
             top: MediaQuery.of(context).padding.top + 10, //状态栏高度
             right: 10,
             child: InkWell(
               child: _countdown(),
               onTap: _jumpRootPage,
             ),
-          ),
+          ),*/
         ],
       ),
     );
@@ -101,7 +102,7 @@ class _TansitPageState extends State<TansitPage> {
     //跳转到起始页并关闭所有页面
     Navigator.pushAndRemoveUntil(context,
         MaterialPageRoute(builder: (BuildContext context) {
-      return const RootPage();
+      return MyBottomNavigation();
     }), (route) => false);
     // Navigator.of(context).pushNamedAndRemoveUntil("root", (route) => false);
   }

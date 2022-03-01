@@ -29,25 +29,28 @@ class _WebViewPageState extends State<WebViewPage> {
 
   @override
   Widget build(BuildContext context) {
-    return WebView(
-      initialUrl: widget.initialUrl,
-      userAgent: 'Android UserAgent',
-      javascriptMode: JavascriptMode.unrestricted,
-      onWebViewCreated: (WebViewController controller) {
-        _webViewController = controller;
-      },
-      onProgress: (int progress) {
-        print('progress=====>$progress');
-      },
-      onPageStarted: (String url) {
-        print('onPageStarted=====>$url');
-      },
-      onPageFinished: (String url) {
-        print('onPageFinished=====>$url');
-      },
-      onWebResourceError: (WebResourceError error) {
-        print('error=====>$error');
-      },
+    return Container(
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),//状态栏高度
+      child: WebView(
+        initialUrl: widget.initialUrl,
+        userAgent: 'Android UserAgent',
+        javascriptMode: JavascriptMode.unrestricted,
+        onWebViewCreated: (WebViewController controller) {
+          _webViewController = controller;
+        },
+        onProgress: (int progress) {
+          print('progress=====>$progress');
+        },
+        onPageStarted: (String url) {
+          print('onPageStarted=====>$url');
+        },
+        onPageFinished: (String url) {
+          print('onPageFinished=====>$url');
+        },
+        onWebResourceError: (WebResourceError error) {
+          print('error=====>$error');
+        },
+      ),
     );
   }
 }

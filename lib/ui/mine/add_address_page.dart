@@ -5,7 +5,7 @@ import 'package:flutter_easy_permission/easy_permissions.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_scankit/flutter_scankit.dart';
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/widgets/myappbar.dart';
+import 'package:icpbox/widgets/my_appbar.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' as convert;
 

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:icpbox/generated/l10n.dart';
-import 'package:icpbox/widgets/myappbar.dart';
+import 'package:icpbox/widgets/my_appbar.dart';
 import 'package:package_info/package_info.dart';
 
 ///关于我们

@@ -10,6 +10,7 @@ import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/request/http_utils.dart';
 import 'package:icpbox/routes/routes.dart';
 import 'package:icpbox/ui/root_page.dart';
+import 'package:icpbox/ui/tansit_page.dart';
 import 'package:icpbox/viewmodel/MVVMDemoViewModel.dart';
 import 'package:lifecycle_lite/life_navigator_observer.dart';
 import 'package:provider/provider.dart';
@@ -141,7 +142,7 @@ class _MyAppState extends State<MyApp> {
           //路由
           routes: routes,
           //主页
-          // home: RootPage(),
+          home: TansitPage(),
 
           //弹窗
           builder: EasyLoading.init(),

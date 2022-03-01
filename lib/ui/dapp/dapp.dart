@@ -124,7 +124,7 @@ class _DappPage extends State<DappPage> {
               Navigator.of(context).pushNamed("Search");
             },
             maxLines: 1,
-            style: TextStyle(fontSize: 14, color: Colors.black),
+            style: const TextStyle(fontSize: 14, color: Colors.black),
             //隐藏文本-密码
             // obscureText: true,
             //输入类型
@@ -143,10 +143,10 @@ class _DappPage extends State<DappPage> {
               border: InputBorder.none,
               //提示
               hintText: S().sreachinfo,
-              hintStyle: TextStyle(fontSize: 14, color: Color(0xFFC1C1C5)),
+              hintStyle: const TextStyle(fontSize: 14, color: Color(0xFFC1C1C5)),
               //左边图标设置
               icon: Padding(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 child: Image.asset(
                   "imgs/ic_search.png",
                   width: 16,
@@ -212,7 +212,7 @@ class _DappPage extends State<DappPage> {
                 ));*/
             Navigator.of(context).pushNamed("PublshDapp");
           },
-          child: Image(
+          child: const Image(
               height: 50.0, width: 50.0, image: AssetImage("imgs/ic_fabu.png")),
         ),
         /*body: CustomScrollView(
@@ -237,7 +237,7 @@ class _DappPage extends State<DappPage> {
               child: GridPage(children: _buildChildren()),
             ),
             //分割线
-            Divider(
+            const Divider(
               //缩进
               // indent: 10.0,
               // endIndent: 20.0,
@@ -252,15 +252,15 @@ class _DappPage extends State<DappPage> {
                 width: double.infinity,
                 alignment: Alignment.centerLeft,
                 color: Colors.white,
-                padding: EdgeInsets.only(left: 14, top: 7),
+                padding: const EdgeInsets.only(left: 14, top: 7),
                 child: Text(S().dapp2,
-                    style: TextStyle(fontSize: 14, color: Color(0xFF4F4F4F)))),
-            Container(
+                    style: const TextStyle(fontSize: 14, color: Color(0xFF4F4F4F)))),
+            SizedBox(
               height: 150,
               child: GridPage(children: _buildChildren()),
             ),
             //分割线
-            Divider(
+            const Divider(
               //缩进
               // indent: 10.0,
               // endIndent: 20.0,

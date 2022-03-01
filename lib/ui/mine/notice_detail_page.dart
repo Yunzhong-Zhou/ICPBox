@@ -8,11 +8,10 @@ import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/model/information_detail_model.dart';
 import 'package:icpbox/model/notice_detail_model.dart';
 import 'package:icpbox/services/information_service.dart';
-import 'package:icpbox/widgets/myappbar.dart';
-import 'package:icpbox/widgets/myclassical.dart';
-import 'package:icpbox/widgets/myemptywidget.dart';
-import 'package:icpbox/widgets/myfirstrefresh.dart';
-import 'package:share/share.dart';
+import 'package:icpbox/widgets/my_appbar.dart';
+import 'package:icpbox/widgets/my_classical.dart';
+import 'package:icpbox/widgets/my_emptywidget.dart';
+import 'package:icpbox/widgets/my_firstrefresh.dart';
 
 class NoticeDetailPage extends StatefulWidget {
   int type = 1; //1、通知，2、帮助中心

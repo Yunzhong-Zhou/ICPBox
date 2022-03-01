@@ -6,9 +6,9 @@ import 'package:icpbox/model/information1_model.dart';
 import 'package:icpbox/model/information_model.dart';
 import 'package:icpbox/services/information_service.dart';
 import 'package:icpbox/ui/Information/information_detail_page.dart';
-import 'package:icpbox/widgets/myclassical.dart';
-import 'package:icpbox/widgets/myemptywidget.dart';
-import 'package:icpbox/widgets/myfirstrefresh.dart';
+import 'package:icpbox/widgets/my_classical.dart';
+import 'package:icpbox/widgets/my_emptywidget.dart';
+import 'package:icpbox/widgets/my_firstrefresh.dart';
 
 ///资讯
 class InforMation1Page extends StatefulWidget {
@@ -295,51 +295,56 @@ class _InforMation1PageState extends State<InforMation1Page>
                             style: const TextStyle(
                                 fontSize: 14, color: Color(0xFF3555FF))),
                       ),
-                    )
-                    ,
-                    Container(
-                      width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
-                      padding: const EdgeInsets.only(right: 36),
-                      // 屏幕宽度
-                      margin: const EdgeInsets.only(top: 19, bottom: 11),
-                      child: Row(
-                        //两端对齐
-                        mainAxisSize: MainAxisSize.max,
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(mylist[index2].keywords,
-                              style: const TextStyle(
-                                  fontSize: 14, color: Color(0xFFDCDCDC))),
-                          Container(
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              //设置 child 居中
-                              alignment: const Alignment(0, 0),
-                              height: 20,
+                    ),
+                    //分享
+                    InkWell(
+                      onTap: (){
+                        
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
+                        padding: const EdgeInsets.only(right: 36),
+                        // 屏幕宽度
+                        margin: const EdgeInsets.only(top: 19, bottom: 11),
+                        child: Row(
+                          //两端对齐
+                          mainAxisSize: MainAxisSize.max,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(mylist[index2].keywords,
+                                style: const TextStyle(
+                                    fontSize: 14, color: Color(0xFFDCDCDC))),
+                            Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                //设置 child 居中
+                                alignment: const Alignment(0, 0),
+                                height: 20,
 
-                              //边框设置
-                              decoration: BoxDecoration(
-                                gradient: const LinearGradient(
-                                    colors: [
-                                      Color(0xFF3555FF),
-                                      Color(0xFF3979F9),
-                                      Color(0xFF3B9BF2),
-                                    ],
-                                    begin: Alignment.centerLeft,
-                                    end: Alignment.centerRight),
-                                //背景
-                                color: Colors.transparent,
-                                //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
-                                borderRadius:
-                                    const BorderRadius.all(Radius.circular(10)),
-                                //设置四周边框
-                                border: Border.all(
-                                    width: 1, color: const Color(0xFF3555FF)),
-                              ),
-                              child: Text(S().infomation5,
-                                  style: const TextStyle(
-                                      fontSize: 14, color: Color(0xFF3555FF)))),
-                        ],
+                                //边框设置
+                                decoration: BoxDecoration(
+                                  gradient: const LinearGradient(
+                                      colors: [
+                                        Color(0xFF3555FF),
+                                        Color(0xFF3979F9),
+                                        Color(0xFF3B9BF2),
+                                      ],
+                                      begin: Alignment.centerLeft,
+                                      end: Alignment.centerRight),
+                                  //背景
+                                  color: Colors.transparent,
+                                  //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
+                                  borderRadius:
+                                      const BorderRadius.all(Radius.circular(10)),
+                                  //设置四周边框
+                                  border: Border.all(
+                                      width: 1, color: const Color(0xFF3555FF)),
+                                ),
+                                child: Text(S().infomation5,
+                                    style: const TextStyle(
+                                        fontSize: 14, color: Color(0xFF3555FF)))),
+                          ],
+                        ),
                       ),
                     ),
                   ],

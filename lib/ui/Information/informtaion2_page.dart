@@ -3,9 +3,9 @@ import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/model/information_model.dart';
 import 'package:icpbox/services/information_service.dart';
-import 'package:icpbox/widgets/myclassical.dart';
-import 'package:icpbox/widgets/myemptywidget.dart';
-import 'package:icpbox/widgets/myfirstrefresh.dart';
+import 'package:icpbox/widgets/my_classical.dart';
+import 'package:icpbox/widgets/my_emptywidget.dart';
+import 'package:icpbox/widgets/my_firstrefresh.dart';
 import 'package:provider/provider.dart';
 
 import 'information_detail_page.dart';

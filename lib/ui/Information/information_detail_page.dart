@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:icpbox/api/Api.dart';
@@ -7,10 +6,10 @@ import 'package:icpbox/config/myapp_colors.dart';
 import 'package:icpbox/generated/l10n.dart';
 import 'package:icpbox/model/information_detail_model.dart';
 import 'package:icpbox/services/information_service.dart';
-import 'package:icpbox/widgets/myappbar.dart';
-import 'package:icpbox/widgets/myclassical.dart';
-import 'package:icpbox/widgets/myemptywidget.dart';
-import 'package:icpbox/widgets/myfirstrefresh.dart';
+import 'package:icpbox/widgets/my_appbar.dart';
+import 'package:icpbox/widgets/my_classical.dart';
+import 'package:icpbox/widgets/my_emptywidget.dart';
+import 'package:icpbox/widgets/my_firstrefresh.dart';
 import 'package:share/share.dart';
 
 class InformationDetailPage extends StatefulWidget {
@@ -97,7 +96,7 @@ class _InformationDetailPageState extends State<InformationDetailPage> {
         IconButton(
           onPressed: () {
             //分享
-            Share.share("https://api.icpbox.org", subject: _article!.title!);
+            Share.share( _article!.title!, subject: _article!.content!);
           },
           icon: const Icon(Icons.more_horiz),
           color: Colors.black,

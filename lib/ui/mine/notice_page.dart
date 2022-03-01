@@ -9,10 +9,10 @@ import 'package:icpbox/provider/AppDataProvider.dart';
 import 'package:icpbox/services/information_service.dart';
 import 'package:icpbox/ui/Information/information_detail_page.dart';
 import 'package:icpbox/ui/mine/notice_detail_page.dart';
-import 'package:icpbox/widgets/myappbar.dart';
-import 'package:icpbox/widgets/myclassical.dart';
-import 'package:icpbox/widgets/myemptywidget.dart';
-import 'package:icpbox/widgets/myfirstrefresh.dart';
+import 'package:icpbox/widgets/my_appbar.dart';
+import 'package:icpbox/widgets/my_classical.dart';
+import 'package:icpbox/widgets/my_emptywidget.dart';
+import 'package:icpbox/widgets/my_firstrefresh.dart';
 import 'package:provider/provider.dart';
 
 ///通知

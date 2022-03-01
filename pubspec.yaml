@@ -52,17 +52,21 @@ dependencies:
   # webview
   webview_flutter: ^3.0.1
   # 分享
+#  share_plus: ^3.1.0
   share: ^2.0.4
   # 加载HTML数据
   flutter_html: ^3.0.0-alpha.2
   # 监听页面的生命周期
   lifecycle_lite: ^0.0.3
-
+  # 图片保存到本地
+  image_gallery_saver: ^1.7.1
 
   #  获取权限
   flutter_easy_permission: ^1.1.1
   #  扫码
   flutter_scankit: ^1.2.2
+  # 二维码
+  qr_flutter: ^4.0.0
   #  应用版本号/版本名字等
   package_info: ^2.0.2
   #  跨组件数据共享

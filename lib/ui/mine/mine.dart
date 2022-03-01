@@ -9,6 +9,7 @@ import 'package:icpbox/ui/mine/about_page.dart';
 import 'package:icpbox/ui/mine/address_page.dart';
 import 'package:icpbox/ui/mine/notice_page.dart';
 import 'package:icpbox/ui/wallet/selectlanguage.dart';
+import 'package:icpbox/ui/webview_page.dart';
 import 'package:icpbox/utils/CurrentLocale.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -202,7 +203,10 @@ class _MyVerticalList extends State<MyVerticalList> {
           color: Color(0xFFF7F7F7),
         ),
         ListTile(
-            onTap: () {},
+            onTap: () {
+              //跳转 分享
+              Navigator.of(context).pushNamed("Share");
+            },
             leading: Image.asset("imgs/ic_mine4.png", width: 22, height: 22),
             title: Text(
               S.of(context).mine5,
@@ -295,7 +299,10 @@ class _MyVerticalList extends State<MyVerticalList> {
           color: Color(0xFFF7F7F7),
         ),
         ListTile(
-            onTap: () {},
+            onTap: () {
+              //跳转 github
+              _jumpWebView(_twitter);
+            },
             leading: Image.asset("imgs/ic_mine7.png", width: 22, height: 22),
             title: Row(
               //两端对齐
@@ -316,7 +323,10 @@ class _MyVerticalList extends State<MyVerticalList> {
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
-            onTap: () {},
+            onTap: () {
+              //跳转 电报
+              _jumpWebView(_telegram);
+            },
             leading: Image.asset("imgs/ic_mine8.png", width: 22, height: 22),
             title: Row(
               //两端对齐
@@ -337,7 +347,10 @@ class _MyVerticalList extends State<MyVerticalList> {
             trailing:
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
-            onTap: () {},
+            onTap: () {
+              //跳转 官方网站
+              _jumpWebView(_email);
+            },
             leading: Image.asset("imgs/ic_mine9.png", width: 22, height: 22),
             title: Row(
               //两端对齐
@@ -360,13 +373,9 @@ class _MyVerticalList extends State<MyVerticalList> {
                 Image.asset("imgs/ic_next_gray.png", width: 12, height: 12)),
         ListTile(
             onTap: () {
-              // EasyLoading.showToast(S.of(context).mine12);
-              /*Fluttertoast.showToast(
-                msg: S.of(context).mine12,
-                // toastLength: Toast.LENGTH_SHORT,
-                // textColor: Colors.white,
-                // gravity: ToastGravity.CENTER
-              );*/
+              //跳转 官方网站
+              _jumpWebView(_site);
+
             },
             leading: Image.asset("imgs/ic_mine10.png", width: 22, height: 22),
             title: Row(
@@ -390,7 +399,15 @@ class _MyVerticalList extends State<MyVerticalList> {
       ],
     );
   }
+  _jumpWebView(String url){
+    Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => WebViewPage(initialUrl: url,),
+        ));
+  }
 }
+
 
 /**
  * 底部弹出框
