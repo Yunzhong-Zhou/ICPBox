@@ -1,6 +1,9 @@
+import 'dart:async';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:icpbox/generated/l10n.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 /// webview 封装
@@ -14,11 +17,16 @@ class WebViewPage extends StatefulWidget {
 }
 
 class _WebViewPageState extends State<WebViewPage> {
-  late WebViewController _webViewController;
+  final Completer<WebViewController> _controller =
+      Completer<WebViewController>();
+
+  ///是否显示加载 true是
+  bool _isShowProgress = false;
 
   @override
   void initState() {
     super.initState();
+
     if (Platform.isAndroid) WebView.platform = SurfaceAndroidWebView();
   }
 
@@ -27,29 +35,43 @@ class _WebViewPageState extends State<WebViewPage> {
     super.dispose();
   }
 
-  @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),//状态栏高度
-      child: WebView(
-        initialUrl: widget.initialUrl,
-        userAgent: 'Android UserAgent',
-        javascriptMode: JavascriptMode.unrestricted,
-        onWebViewCreated: (WebViewController controller) {
-          _webViewController = controller;
-        },
-        onProgress: (int progress) {
-          print('progress=====>$progress');
-        },
-        onPageStarted: (String url) {
-          print('onPageStarted=====>$url');
-        },
-        onPageFinished: (String url) {
-          print('onPageFinished=====>$url');
-        },
-        onWebResourceError: (WebResourceError error) {
-          print('error=====>$error');
-        },
+      margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),
+      child: Stack(
+        alignment: Alignment.center,
+        children: [
+          WebView(
+            javascriptMode: JavascriptMode.unrestricted,
+            initialUrl: widget.initialUrl,
+            onWebViewCreated: (WebViewController webViewController) {
+              //WebView创建完成时调用
+              debugPrint("XWebView onWebViewCreated");
+              _controller.complete(webViewController);
+              setState(() {
+                _isShowProgress = true;
+              });
+            },
+            onPageStarted: (url) {
+              //页面开始加载时调用
+              debugPrint("XWebView onPageStarted : $url");
+              // EasyLoading.show(status: S().loading);
+            },
+            onPageFinished: (url) {
+              //页面加载完成时调用
+              // debugPrint("XWebView onPageFinished : $url");
+              EasyLoading.dismiss();
+              setState(() {
+                _isShowProgress = false;
+              });
+            },
+          ),
+          _isShowProgress
+              ? SpinKitThreeBounce(
+                  color: Theme.of(context).primaryColor,
+                ) //动画控件根据自己需求改动
+              : const SizedBox.shrink(),
+        ],
       ),
     );
   }

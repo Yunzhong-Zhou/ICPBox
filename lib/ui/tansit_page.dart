@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/ui/guide_page.dart';
 import 'package:icpbox/widgets/my_bottomnavigation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'root_page.dart';
 
@@ -96,14 +98,27 @@ class _TansitPageState extends State<TansitPage> {
   }
 
   //跳转首页
-  void _jumpRootPage() {
+  void _jumpRootPage() async{
     //取消计时器
     _timer?.cancel();
-    //跳转到起始页并关闭所有页面
-    Navigator.pushAndRemoveUntil(context,
-        MaterialPageRoute(builder: (BuildContext context) {
-      return MyBottomNavigation();
-    }), (route) => false);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool? isFirst = prefs.getBool("isFirst");
+
+    if(isFirst == null || isFirst == true){
+      //跳转到引导页并关闭所有页面
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+            return GuidePage();
+          }), (route) => false);
+    }else{
+      //跳转到起始页并关闭所有页面
+      Navigator.pushAndRemoveUntil(context,
+          MaterialPageRoute(builder: (BuildContext context) {
+            return MyBottomNavigation();
+          }), (route) => false);
+    }
+
+
     // Navigator.of(context).pushNamedAndRemoveUntil("root", (route) => false);
   }
 }

@@ -20,10 +20,14 @@ Widget MyFirstRefresh(){
                 SizedBox(
                   width: 50.0,
                   height: 50.0,
-                  child: SpinKitFadingCube(
+                  child: SpinKitThreeBounce(
+                    color: Theme.of(navigatorKey.currentState!.context).primaryColor,
+                    size: 25,
+                  ) ,
+                  /*child: SpinKitFadingCube(
                     color: Theme.of(navigatorKey.currentState!.context).primaryColor,
                     size: 25.0,
-                  ),
+                  ),*/
                 ),
                 Text(S().loading)
               ],
