@@ -180,7 +180,7 @@ class _InforMation1PageState extends State<InforMation1Page>
               children: [
                 Container(
                   width: 34,
-                  height: 250,
+                  height: 260,
                   alignment: Alignment.center,
                   //层叠布局-竖线及圆形
                   child: Stack(
@@ -188,7 +188,7 @@ class _InforMation1PageState extends State<InforMation1Page>
                       //定位的组件，参考系为 Stack。
                       const Positioned(
                         width: 34,
-                        height: 250,
+                        height: 260,
                         //垂直分割线
                         child: VerticalDivider(
                           //分割线颜色

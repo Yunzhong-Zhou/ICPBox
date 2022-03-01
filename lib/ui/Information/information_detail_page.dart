@@ -92,16 +92,19 @@ class _InformationDetailPageState extends State<InformationDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MyAppBarActions(context, title, [
-        IconButton(
-          onPressed: () {
-            //分享
-            Share.share( _article!.title!, subject: _article!.content!);
-          },
-          icon: const Icon(Icons.more_horiz),
-          color: Colors.black,
-        )
-      ]),
+      appBar: widget.type == 1
+          ? MyAppBarActions(context, title, [
+              IconButton(
+                onPressed: () {
+                  //分享
+
+                  // Share.share(_article!.title!, subject: _article!.content!);
+                },
+                icon: const Icon(Icons.more_horiz),
+                color: Colors.black,
+              )
+            ])
+          : MyAppBar(context, title),
       body: EasyRefresh(
         controller: _easyRefreshController,
         firstRefreshWidget: MyFirstRefresh(),

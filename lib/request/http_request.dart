@@ -96,6 +96,9 @@ class HttpRequest {
     if (accessToken != null) {
       headers = {
         'Authorization': 'Bearer $accessToken',
+        "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
+            listen: false)
+            .Language,
       };
     }
     return headers;

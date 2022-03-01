@@ -13,12 +13,13 @@ import 'package:path_provider/path_provider.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share/share.dart';
 
-///分享海报
-class SharePage extends StatefulWidget {
-  const SharePage({Key? key}) : super(key: key);
+///分享资讯
+class SharePosterPage extends StatefulWidget {
+
+  const SharePosterPage({Key? key,}) : super(key: key);
 
   @override
-  _SharePageState createState() => _SharePageState();
+  _SharePosterPageState createState() => _SharePosterPageState();
 }
 
 const _permissions = [
@@ -27,7 +28,7 @@ const _permissions = [
 ];
 const _permissionGroup = [PermissionGroup.Photos];
 
-class _SharePageState extends State<SharePage> {
+class _SharePosterPageState extends State<SharePosterPage> {
   final GlobalKey _globalKey = GlobalKey();
 
   /// 保存图片

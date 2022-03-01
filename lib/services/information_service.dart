@@ -11,9 +11,6 @@ class InformationService {
       "count": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
           listen: false)
           .Count,
-      "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
-          listen: false)
-          .Language,
     });
     // Map<String, dynamic> resut = response;
     Map<String, dynamic> resut = response['data'];
@@ -25,9 +22,6 @@ class InformationService {
       "count": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
               listen: false)
           .Count,
-      "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
-              listen: false)
-          .Language,
     });
     Map<String, dynamic> resut = response["data"];
     return resut;
@@ -36,9 +30,6 @@ class InformationService {
   Future getDetail({required String url,required String id}) async {
     var response = await HttpUtils.get(url, params: {
       "id": id,
-      "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
-          listen: false)
-          .Language,
     });
     Map<String, dynamic> resut = response["data"];
     return resut;
@@ -50,9 +41,6 @@ class InformationService {
       "count": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
           listen: false)
           .Count,
-      "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
-          listen: false)
-          .Language,
     });
     Map<String, dynamic> resut = response["data"];
     return resut;
@@ -60,9 +48,6 @@ class InformationService {
   Future getNoticeDetail({required String id}) async {
     var response = await HttpUtils.get(Api.NOTICE_DETAIL, params: {
       "id": id,
-      "lang": Provider.of<AppDataProvider>(navigatorKey.currentState!.context,
-          listen: false)
-          .Language,
     });
     Map<String, dynamic> resut = response["data"];
     return resut;

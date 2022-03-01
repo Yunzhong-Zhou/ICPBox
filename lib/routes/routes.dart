@@ -5,7 +5,7 @@ import 'package:icpbox/ui/dapp/search_page.dart';
 import 'package:icpbox/ui/mine/about_page.dart';
 import 'package:icpbox/ui/mine/address_page.dart';
 import 'package:icpbox/ui/mine/notice_page.dart';
-import 'package:icpbox/ui/mine/share_page.dart';
+import 'package:icpbox/ui/mine/share_poster_page.dart';
 import 'package:icpbox/ui/root_page.dart';
 import 'package:icpbox/ui/tansit_page.dart';
 import 'package:icpbox/ui/wallet/addwallet.dart';
@@ -33,7 +33,7 @@ Map<String, WidgetBuilder> routes = {
 
   /// 我的
   "Address": (BuildContext content) => AddressPage(), //地址薄
-  "Share": (BuildContext content) => SharePage(), //分享
+  "Share": (BuildContext content) => SharePosterPage(), //分享
   "About": (BuildContext content) => AboutPage(), //关于我们
   "search": (BuildContext content) => SearchPage(), //搜索
   "search": (BuildContext content) => SearchPage(), //搜索
