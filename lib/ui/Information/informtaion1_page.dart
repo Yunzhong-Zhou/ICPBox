@@ -1,4 +1,3 @@
-import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:icpbox/generated/l10n.dart';
@@ -6,6 +5,7 @@ import 'package:icpbox/model/information1_model.dart';
 import 'package:icpbox/model/information_model.dart';
 import 'package:icpbox/services/information_service.dart';
 import 'package:icpbox/ui/Information/information_detail_page.dart';
+import 'package:icpbox/ui/Information/share_information_page.dart';
 import 'package:icpbox/widgets/my_classical.dart';
 import 'package:icpbox/widgets/my_emptywidget.dart';
 import 'package:icpbox/widgets/my_firstrefresh.dart';
@@ -23,6 +23,7 @@ class _InforMation1PageState extends State<InforMation1Page>
   late EasyRefreshController _easyRefreshController;
 
   int _page = 1;
+
   // List<InformationItem> _list = InformationList([]).list;
   List<Information1List> _list = [];
   bool hasMore = true;
@@ -115,7 +116,8 @@ class _InforMation1PageState extends State<InforMation1Page>
         onErrorTap: () => _easyRefreshController.callRefresh(),
         onEmptyTap: () => _easyRefreshController.callRefresh(),
       ).build(),*/
-      emptyWidget: MyEmptyWidget(_list.isEmpty,() => _easyRefreshController.callRefresh()),
+      emptyWidget: MyEmptyWidget(
+          _list.isEmpty, () => _easyRefreshController.callRefresh()),
       //首次刷新
       firstRefresh: true,
       //刷新回调
@@ -168,140 +170,146 @@ class _InforMation1PageState extends State<InforMation1Page>
         physics: const NeverScrollableScrollPhysics(),
         itemCount: mylist.length,
         itemBuilder: (context2, index2) {
-          return Container(
-            width: MediaQuery.of(context).size.width, // 屏幕宽度
-            // height: double.infinity,
-            color: Colors.white,
-            alignment: Alignment.topLeft,
-            child: Row(
-              // mainAxisSize: MainAxisSize.min,
-              mainAxisSize: MainAxisSize.max,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  width: 34,
-                  height: 260,
-                  alignment: Alignment.center,
-                  //层叠布局-竖线及圆形
-                  child: Stack(
-                    children: [
-                      //定位的组件，参考系为 Stack。
-                      const Positioned(
-                        width: 34,
-                        height: 260,
-                        //垂直分割线
-                        child: VerticalDivider(
-                          //分割线颜色
-                          color: Color(0xFFF2F2F2),
-                          //分割线区域的高度，并非分割线的高度
+          return InkWell(
+            onTap: (){
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => InformationDetailPage(
+                        type: 1, id: mylist[index2].id),
+                  ));
+            },
+            child: Container(
+              width: MediaQuery.of(context).size.width, // 屏幕宽度
+              // height: double.infinity,
+              color: Colors.white,
+              alignment: Alignment.topLeft,
+              child: Row(
+                // mainAxisSize: MainAxisSize.min,
+                mainAxisSize: MainAxisSize.max,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    width: 34,
+                    height: 260,
+                    alignment: Alignment.center,
+                    //层叠布局-竖线及圆形
+                    child: Stack(
+                      children: [
+                        //定位的组件，参考系为 Stack。
+                        const Positioned(
                           width: 34,
-                          // 分割线的厚度，真正的分割线的高度
-                          thickness: 1,
-                          //起点缩进距离
-                          indent: 0,
-                          // 终点缩进距离
-                          endIndent: 0,
+                          height: 260,
+                          //垂直分割线
+                          child: VerticalDivider(
+                            //分割线颜色
+                            color: Color(0xFFF2F2F2),
+                            //分割线区域的高度，并非分割线的高度
+                            width: 34,
+                            // 分割线的厚度，真正的分割线的高度
+                            thickness: 1,
+                            //起点缩进距离
+                            indent: 0,
+                            // 终点缩进距离
+                            endIndent: 0,
+                          ),
+                        ),
+                        Positioned(
+                          width: 9,
+                          height: 9,
+                          left: 13,
+                          top: 9,
+                          //圆形
+                          child: Container(
+                              width: 9,
+                              height: 9,
+                              // alignment: Alignment.topCenter,
+                              decoration: const BoxDecoration(
+                                color: Color(0xFFF2F2F2),
+                                shape:
+                                    BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
+                              )),
+                        )
+                      ],
+                    ),
+                    /*child: VerticalDivider(
+                color: Color(0xFFF2F2F2),
+                width: 1,
+              ),*/
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.max,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Container(
+                        alignment: Alignment.topLeft,
+                        // width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
+                        padding: const EdgeInsets.only(top: 6),
+                        child: Row(
+                          children: [
+                            Text(
+                              mylist[index2].createdAt,
+                              style: const TextStyle(
+                                  fontSize: 12, color: Color(0xFFBABABA)),
+                            ),
+                            Container(
+                                margin: const EdgeInsets.only(left: 12),
+                                //修饰器-圆角
+                                decoration: BoxDecoration(
+                                  color: const Color(0xFFD8D8D8),
+                                  borderRadius: BorderRadius.circular(2.0),
+                                ),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
+                                child: Text(mylist[index2].tag,
+                                    style: const TextStyle(
+                                        fontSize: 12, color: Color(0xFF4A4A4A))))
+                          ],
                         ),
                       ),
-                      Positioned(
-                        width: 9,
-                        height: 9,
-                        left: 13,
-                        top: 9,
-                        //圆形
-                        child: Container(
-                            width: 9,
-                            height: 9,
-                            // alignment: Alignment.topCenter,
-                            decoration: const BoxDecoration(
-                              color: Color(0xFFF2F2F2),
-                              shape:
-                                  BoxShape.circle, // 圆形，使用圆形时不可以使用borderRadius
-                            )),
-                      )
-                    ],
-                  ),
-                  /*child: VerticalDivider(
-              color: Color(0xFFF2F2F2),
-              width: 1,
-            ),*/
-                ),
-                Column(
-                  mainAxisSize: MainAxisSize.max,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      alignment: Alignment.topLeft,
-                      // width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
-                      padding: const EdgeInsets.only(top: 6),
-                      child: Row(
-                        children: [
-                          Text(
-                            mylist[index2].createdAt,
+                      Container(
+                        // width: double.infinity,
+                        width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
+                        margin: const EdgeInsets.only(top: 6),
+                        padding: const EdgeInsets.only(right: 24),
+                        child: Text(mylist[index2].title,
+                            textAlign: TextAlign.left,
+                            maxLines: 2,
+                            //超出行数显示省略号
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
-                                fontSize: 12, color: Color(0xFFBABABA)),
-                          ),
-                          Container(
-                              margin: const EdgeInsets.only(left: 12),
-                              //修饰器-圆角
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFD8D8D8),
-                                borderRadius: BorderRadius.circular(2.0),
-                              ),
-                              padding:
-                                  const EdgeInsets.symmetric(horizontal: 10),
-                              child: Text(mylist[index2].tag,
-                                  style: const TextStyle(
-                                      fontSize: 12, color: Color(0xFF4A4A4A))))
-                        ],
+                                fontSize: 18, color: Color(0xFF4A4A4A))),
                       ),
-                    ),
-                    Container(
-                      // width: double.infinity,
-                      width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
-                      margin: const EdgeInsets.only(top: 6),
-                      padding: const EdgeInsets.only(right: 24),
-                      child: Text(mylist[index2].title,
-                          textAlign: TextAlign.left,
-                          maxLines: 2,
-                          //超出行数显示省略号
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontSize: 18, color: Color(0xFF4A4A4A))),
-                    ),
-                    Container(
-                      width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
-                      margin: const EdgeInsets.only(top: 15),
-                      padding: const EdgeInsets.only(right: 24),
-                      child: Text(mylist[index2].digest,
-                          maxLines: 5,
-                          //超出行数显示省略号
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                              fontSize: 14, color: Color(0xFF818181))),
-                    ),
-                    InkWell(
-                      onTap: (){
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => InformationDetailPage(type: 1, id: mylist[index2].id),
-                            ));
-                      },
-                      child: Container(
-                        // width: MediaQuery.of(context).size.width, // 屏幕宽度
+                      Container(
+                        width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
                         margin: const EdgeInsets.only(top: 15),
-                        child: Text(S().infomation3,
+                        padding: const EdgeInsets.only(right: 24),
+                        child: Text(mylist[index2].digest,
+                            maxLines: 5,
+                            //超出行数显示省略号
+                            overflow: TextOverflow.ellipsis,
                             style: const TextStyle(
-                                fontSize: 14, color: Color(0xFF3555FF))),
+                                fontSize: 14, color: Color(0xFF818181))),
                       ),
-                    ),
-                    //分享
-                    InkWell(
-                      onTap: (){
-                        
-                      },
-                      child: Container(
+                      //跳转详情
+                      InkWell(
+                        onTap: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => InformationDetailPage(
+                                    type: 1, id: mylist[index2].id),
+                              ));
+                        },
+                        child: Container(
+                          // width: MediaQuery.of(context).size.width, // 屏幕宽度
+                          margin: const EdgeInsets.only(top: 15),
+                          child: Text(S().infomation3,
+                              style: const TextStyle(
+                                  fontSize: 14, color: Color(0xFF3555FF))),
+                        ),
+                      ),
+                      Container(
                         width: MediaQuery.of(context).size.width - 34, // 屏幕宽度
                         padding: const EdgeInsets.only(right: 36),
                         // 屏幕宽度
@@ -314,42 +322,58 @@ class _InforMation1PageState extends State<InforMation1Page>
                             Text(mylist[index2].keywords,
                                 style: const TextStyle(
                                     fontSize: 14, color: Color(0xFFDCDCDC))),
-                            Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 10),
-                                //设置 child 居中
-                                alignment: const Alignment(0, 0),
-                                height: 20,
+                            //分享
+                            InkWell(
+                              onTap: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => ShareInformationPage(
+                                        title: mylist[index2].title,
+                                        time: mylist[index2].createdAt,
+                                        content: mylist[index2].digest,
+                                        tag: mylist[index2].keywords,
+                                      ),
+                                    ));
+                              },
+                              child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 10),
+                                  //设置 child 居中
+                                  alignment: const Alignment(0, 0),
+                                  height: 20,
 
-                                //边框设置
-                                decoration: BoxDecoration(
-                                  gradient: const LinearGradient(
-                                      colors: [
-                                        Color(0xFF3555FF),
-                                        Color(0xFF3979F9),
-                                        Color(0xFF3B9BF2),
-                                      ],
-                                      begin: Alignment.centerLeft,
-                                      end: Alignment.centerRight),
-                                  //背景
-                                  color: Colors.transparent,
-                                  //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
-                                  borderRadius:
-                                      const BorderRadius.all(Radius.circular(10)),
-                                  //设置四周边框
-                                  border: Border.all(
-                                      width: 1, color: const Color(0xFF3555FF)),
-                                ),
-                                child: Text(S().infomation5,
-                                    style: const TextStyle(
-                                        fontSize: 14, color: Color(0xFF3555FF)))),
+                                  //边框设置
+                                  decoration: BoxDecoration(
+                                    gradient: const LinearGradient(
+                                        colors: [
+                                          Color(0xFF3555FF),
+                                          Color(0xFF3979F9),
+                                          Color(0xFF3B9BF2),
+                                        ],
+                                        begin: Alignment.centerLeft,
+                                        end: Alignment.centerRight),
+                                    //背景
+                                    color: Colors.transparent,
+                                    //设置四周圆角 角度 这里的角度应该为 父Container height 的一半
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10)),
+                                    //设置四周边框
+                                    border: Border.all(
+                                        width: 1, color: const Color(0xFF3555FF)),
+                                  ),
+                                  child: Text(S().infomation5,
+                                      style: const TextStyle(
+                                          fontSize: 14,
+                                          color: Color(0xFF3555FF)))),
+                            ),
                           ],
                         ),
                       ),
-                    ),
-                  ],
-                )
-              ],
+                    ],
+                  )
+                ],
+              ),
             ),
           );
         });

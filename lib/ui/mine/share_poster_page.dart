@@ -44,13 +44,13 @@ class _SharePosterPageState extends State<SharePosterPage> {
     //得到本应用文件路径
     final directory = (await getExternalStorageDirectory())!.path;
     //生成图片文件
-    File imgFile = File('$directory/share.png');
+    File imgFile = File('$directory/share_poster.png');
     //写入文件
     imgFile.writeAsBytesSync(list);
 
     //分享
     RenderBox box = globalKey.currentContext.findRenderObject();
-    Share.shareFiles(['$directory/share.png'],
+    Share.shareFiles(['$directory/share_poster.png'],
         sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,subject: "subject",text: "text");
 
    /* ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easy_permission/easy_permissions.dart';
+import 'package:icpbox/config/myapp_colors.dart';
 import 'package:icpbox/generated/l10n.dart';
 
 import 'dart:ui' as ui;
@@ -14,12 +15,19 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:share/share.dart';
 
 ///分享资讯
-class SharePosterPage extends StatefulWidget {
+class ShareInformationPage extends StatefulWidget {
+  String title = "", time = "", content = "", tag = "";
 
-  const SharePosterPage({Key? key,}) : super(key: key);
+  ShareInformationPage({
+    Key? key,
+    required this.title,
+    required this.time,
+    required this.content,
+    required this.tag,
+  }) : super(key: key);
 
   @override
-  _SharePosterPageState createState() => _SharePosterPageState();
+  _ShareInformationPageState createState() => _ShareInformationPageState();
 }
 
 const _permissions = [
@@ -28,12 +36,13 @@ const _permissions = [
 ];
 const _permissionGroup = [PermissionGroup.Photos];
 
-class _SharePosterPageState extends State<SharePosterPage> {
+class _ShareInformationPageState extends State<ShareInformationPage> {
   final GlobalKey _globalKey = GlobalKey();
 
   /// 保存图片
   void _save(globalKey) async {
-    RenderRepaintBoundary boundary = globalKey.currentContext.findRenderObject();
+    RenderRepaintBoundary boundary =
+        globalKey.currentContext.findRenderObject();
     // 获取当前设备的像素比
     double dpr = ui.window.devicePixelRatio;
     //生成图片
@@ -45,16 +54,18 @@ class _SharePosterPageState extends State<SharePosterPage> {
     //得到本应用文件路径
     final directory = (await getExternalStorageDirectory())!.path;
     //生成图片文件
-    File imgFile = File('$directory/share.png');
+    File imgFile = File('$directory/share_information.png');
     //写入文件
     imgFile.writeAsBytesSync(list);
 
     //分享
     RenderBox box = globalKey.currentContext.findRenderObject();
-    Share.shareFiles(['$directory/share.png'],
-        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,subject: "subject",text: "text");
+    Share.shareFiles(['$directory/share_information.png'],
+        sharePositionOrigin: box.localToGlobal(Offset.zero) & box.size,
+        subject: "subject",
+        text: "text");
 
-   /* ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
+    /* ByteData? byteData = await image.toByteData(format: ui.ImageByteFormat.png);
     Uint8List picBytes = byteData!.buffer.asUint8List();
     final result = await ImageGallerySaver.saveImage(
         picBytes,
@@ -93,123 +104,150 @@ class _SharePosterPageState extends State<SharePosterPage> {
       children: [
         RepaintBoundary(
           key: _globalKey,
-          child: Stack(
-            children: [
-              //背景图
-              Image.asset(
-                "imgs/bg_share.png",
-                fit: BoxFit.cover,
-                width: MediaQuery.of(context).size.width,
-                height: MediaQuery.of(context).size.height,
-              ),
+          child: Container(
+            color: Colors.white,
+            child: Column(
+              // mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                //顶部布局
+                Stack(
+                  children: [
+                    //背景图
+                    Image.asset(
+                      "imgs/bg_share_header.png",
+                      width: MediaQuery.of(context).size.width,
+                    ),
 
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const SizedBox(
-                    height: 40,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Image.asset(
-                        "imgs/ic_logo.png",
-                        width: 56,
-                        height: 39,
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      const Text(
-                        "ICPBox",
-                        style: TextStyle(
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold,
-                            color: Color(0xFF3E4F8F)),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    S().mine26,
-                    style: const TextStyle(
-                        fontSize: 30,
-                        fontWeight: FontWeight.bold,
-                        color: Color(0xFF222B36)),
-                  ),
-                  Text(
-                    S().mine27,
-                    style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.normal,
-                        color: Color(0xFFA8ABB6)),
-                  ),
-                  Expanded(child: Container()),
-                  Container(
-                    color: Colors.white,
-                    padding:
-                        const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    child: Row(
-                      children: [
-                        Image.asset(
-                          "imgs/ic_logo.png",
-                          width: 65,
-                          height: 65,
-                        ),
-                        const SizedBox(
-                          width: 17,
-                        ),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                    Padding(
+                      padding: const EdgeInsets.only(left: 70),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: MediaQuery.of(context).padding.top,
+                          ),
+                          Row(
                             children: [
-                              const Text(
-                                "ICPBox",
-                                style: TextStyle(
-                                    fontSize: 26,
-                                    fontWeight: FontWeight.w500,
-                                    color: Color(0xFF3E4F8F)),
+                              Image.asset(
+                                "imgs/icp_logo.png",
+                                width: 40,
+                                height: 40,
+                              ),
+                              const SizedBox(
+                                width: 10,
                               ),
                               Text(
-                                S().mine26,
+                                widget.tag,
                                 style: const TextStyle(
-                                    fontSize: 14,
+                                    fontSize: 20,
                                     fontWeight: FontWeight.normal,
-                                    color: Color(0xFFA8ABB6)),
+                                    color: Colors.white),
                               ),
                             ],
                           ),
+                          Text(
+                            S().mine28,
+                            style: const TextStyle(
+                                fontSize: 44,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white),
+                          ),
+                          Text(
+                            S().mine29,
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              color: MyAppColor.white2, //加透明度
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                //标题
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    widget.title,
+                    style:
+                        const TextStyle(fontSize: 18, color: MyAppColor.black1),
+                  ),
+                ),
+                //时间
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 24),
+                  child: Text(
+                    widget.time,
+                    style: const TextStyle(fontSize: 14, color: MyAppColor.black3),
+                  ),
+                ),
+                //内容
+                Container(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                  child: Text(
+                    widget.content,
+                    style:
+                        const TextStyle(fontSize: 14, color: MyAppColor.black2),
+                  ),
+                ),
+                Expanded(child: Container()),
+                //底部布局
+                Row(
+                  // mainAxisSize: MainAxisSize.max,
+                  // crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    //二维码图片
+                    QrImage(
+                      data: "https://www.icpbox.org/",
+                      size: 78,
+                    ),
+                    const SizedBox(
+                      width: 3,
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const Text(
+                          "ICPBox",
+                          style: TextStyle(
+                              fontSize: 26,
+                              fontWeight: FontWeight.w500,
+                              color: Color(0xFF3E4F8F)),
                         ),
-                        //二维码图片
-                        QrImage(
-                          data: "https://www.icpbox.org/",
-                          size: 65,
+                        Text(
+                          S().mine30,
+                          style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.normal,
+                              color: Color(0xFFA8ABB6)),
                         ),
-                        /*Image.asset(
-                          "imgs/ic_logo.png",
-                          width: 65,
-                          height: 65,
-                        ),*/
                       ],
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+
+                Image.asset(
+                  "imgs/bg_share_footer.png",
+                  width: MediaQuery.of(context).size.width,
+                ),
+              ],
+            ),
           ),
         ),
         //顶部按钮
         Container(
-          margin: EdgeInsets.only(top: MediaQuery.of(context).padding.top),//状态栏高度
+          margin:
+              EdgeInsets.only(top: MediaQuery.of(context).padding.top), //状态栏高度
           child: Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               IconButton(
                 icon: const Icon(Icons.arrow_back_ios_new_rounded),
-                color: Colors.black,
+                color: Colors.white,
                 onPressed: () {
                   Navigator.of(context).pop();
                   // Navigator.of(navigatorKey.currentState!.context).pop();
@@ -220,7 +258,7 @@ class _SharePosterPageState extends State<SharePosterPage> {
               ),
               IconButton(
                 icon: const Icon(Icons.share),
-                color: Colors.black,
+                color: Colors.white,
                 onPressed: () async {
                   //分享
                   if (!await FlutterEasyPermission.has(
