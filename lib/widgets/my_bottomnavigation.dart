@@ -78,12 +78,12 @@ class MyBottomNavigationState extends State<MyBottomNavigation> {
         },
       ),
       //主体显示的页面跟随当前导航标签的位标值在pages页面列表中选择。
-      body: _pages[_currentIndex],
+      // body: _pages[_currentIndex],
       //切换tab不会重新加载页面，有预加载
-      /*body: IndexedStack(
+      body: IndexedStack(
         index: _currentIndex,
         children: _pages,
-      ),*/
+      ),
       //切换tab不会重新加载页面，没有预加载
       /*body: ProsteIndexedStack(
         index: _currentIndex,

@@ -2,13 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easy_permission/easy_permissions.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_scankit/flutter_scankit.dart';
 import 'package:icpbox/generated/l10n.dart';
+import 'package:icpbox/model/dapp_model.dart';
+import 'package:icpbox/services/dapp_service.dart';
+import 'package:icpbox/ui/dapp/dapplist_page.dart';
 import 'package:icpbox/ui/dapp/search_page.dart';
 import 'package:icpbox/widgets/customized_view.dart';
+import 'package:icpbox/widgets/my_classical.dart';
+import 'package:icpbox/widgets/my_emptywidget.dart';
+import 'package:icpbox/widgets/my_firstrefresh.dart';
 
 import 'grid_page.dart';
-import 'publish_dapp_page.dart';
 
 ///DAPP
 class DappPage extends StatefulWidget {
@@ -20,10 +26,14 @@ const _permissions = [Permissions.READ_EXTERNAL_STORAGE, Permissions.CAMERA];
 
 const _permissionGroup = [PermissionGroup.Camera, PermissionGroup.Photos];
 
-int _tab_index = 0;
-List list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+class _DappPage extends State<DappPage> with TickerProviderStateMixin {
+  late EasyRefreshController _easyRefreshController;
+  TabController? _tabController;
 
-class _DappPage extends State<DappPage> {
+  List<Tab> tabs = [];
+  List<Widget> list_hot = [];
+  List<Widget> list_new = [];
+
   //输入监听
   TextEditingController? _controller;
 
@@ -34,9 +44,13 @@ class _DappPage extends State<DappPage> {
   @override
   void initState() {
     super.initState();
+    //数据请求
+    // _getDataList();
     //输入监听
     _controller = TextEditingController();
     _controller?.addListener(() {});
+
+    _easyRefreshController = EasyRefreshController();
 
     //扫码
     scanKit = FlutterScankit();
@@ -56,6 +70,110 @@ class _DappPage extends State<DappPage> {
         onDenied: (requestCode, perms, perm, isPermanent) {});
   }
 
+  //数据请求
+  Future _getDataList() async {
+    try {
+      //获取接口数据
+      Map<String, dynamic> resut = await DappService().getDappList();
+      DappModel model = DappModel.fromJson(resut);
+
+      tabs.clear();
+      list_hot.clear();
+      list_new.clear();
+
+      model.type!.forEach((MyType) {
+        tabs.add(Tab(
+          text: MyType.title,
+        ));
+      });
+      model.hot!.forEach((Hot) {
+        list_hot.add(
+          InkWell(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
+              children: <Widget>[
+                // Image.network("imgs/icp.png", width: 30.0, height: 40.0),
+                // 圆形图片
+                ClipOval(
+                  child: FadeInImage.assetNetwork(
+                    width: 40,
+                    height: 40,
+                    placeholder: "imgs/icp.png",
+                    image: Hot.img!,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+
+                Text(
+                  Hot.name!,
+                  style: TextStyle(fontSize: 10, color: Color(0xFF4F4F4F)),
+                ),
+              ],
+            ),
+            onTap: () {},
+          ),
+        );
+      });
+      model.news!.forEach((Hot) {
+        list_new.add(
+          InkWell(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
+              children: <Widget>[
+                // Image.network("imgs/icp.png", width: 30.0, height: 40.0),
+                // 圆形图片
+                ClipOval(
+                  child: FadeInImage.assetNetwork(
+                    width: 40,
+                    height: 40,
+                    placeholder: "imgs/icp.png",
+                    image: Hot.img!,
+                    fit: BoxFit.cover,
+                  ),
+                ),
+
+                Text(
+                  Hot.name!,
+                  style: TextStyle(fontSize: 10, color: Color(0xFF4F4F4F)),
+                ),
+              ],
+            ),
+            onTap: () {},
+          ),
+        );
+      });
+      //更新页面数据
+      setState(() {
+        if (_tabController == null) {
+          //初始化
+          _tabController = TabController(
+            length: tabs.length,
+            vsync: this,
+            //默认选中第几项
+            initialIndex: 0,
+          );
+          //切换监听
+          _tabController!.addListener(() {
+            // print("切换到了第${_tabController?.index}项");
+          });
+        }
+      });
+    } catch (e) {
+      /*setState(() {
+        error = true;
+        // errorMsg = S().noData;
+        errorMsg = "";
+      });*/
+    }
+  }
+
+//下拉刷新
+  Future _onRefresh() async {
+    await _getDataList();
+    //重置刷新状态
+    _easyRefreshController.resetLoadState();
+  }
+
   /**
    * 生命周期-销毁
    */
@@ -63,6 +181,8 @@ class _DappPage extends State<DappPage> {
   void dispose() {
     super.dispose();
     scanKit.dispose();
+    _controller!.dispose();
+    _tabController!.dispose();
   }
 
   /**
@@ -143,7 +263,8 @@ class _DappPage extends State<DappPage> {
               border: InputBorder.none,
               //提示
               hintText: S().sreachinfo,
-              hintStyle: const TextStyle(fontSize: 14, color: Color(0xFFC1C1C5)),
+              hintStyle:
+                  const TextStyle(fontSize: 14, color: Color(0xFFC1C1C5)),
               //左边图标设置
               icon: Padding(
                 padding: const EdgeInsets.all(8),
@@ -189,41 +310,48 @@ class _DappPage extends State<DappPage> {
           ),
         ],
       ),
-      body: Scaffold(
-        //FAB按钮位置
-        floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
-        //按钮
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.transparent,
-          heroTag: "dapp",
-          //前景色
-          // foregroundColor: Colors.transparent,
-          //未点击的时候的阴影
-          elevation: 0.0,
-          //点击时阴影值，默认 12.0
-          highlightElevation: 0.0,
-          //点击事件回调
-          onPressed: () {
-            //跳转
-            /*Navigator.push(
+      //FAB按钮位置
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      //按钮
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.transparent,
+        heroTag: "dapp",
+        //前景色
+        // foregroundColor: Colors.transparent,
+        //未点击的时候的阴影
+        elevation: 0.0,
+        //点击时阴影值，默认 12.0
+        highlightElevation: 0.0,
+        //点击事件回调
+        onPressed: () {
+          //跳转
+          /*Navigator.push(
                 context,
                 new MaterialPageRoute(
                   builder: (context) => new PublshDappPage(),
                 ));*/
-            Navigator.of(context).pushNamed("PublshDapp");
-          },
-          child: const Image(
-              height: 50.0, width: 50.0, image: AssetImage("imgs/ic_fabu.png")),
-        ),
-        /*body: CustomScrollView(
-          scrollDirection: Axis.vertical,
-          ///反弹效果
-          physics: BouncingScrollPhysics(),
-          slivers: [
-            SliverGridPage(children: _buildChildren()),
-          ],
-        ),*/
-        body: Column(
+          Navigator.of(context).pushNamed("PublshDapp");
+        },
+        child: const Image(
+            height: 50.0, width: 50.0, image: AssetImage("imgs/ic_fabu.png")),
+      ),
+      body: EasyRefresh(
+        controller: _easyRefreshController,
+        firstRefreshWidget: MyFirstRefresh(),
+        emptyWidget: MyEmptyWidget(
+            tabs.isEmpty, () => _easyRefreshController.callRefresh()),
+        //首次刷新
+        firstRefresh: true,
+        //刷新回调
+        onRefresh: _onRefresh,
+        //加载回调
+        onLoad: null,
+        //头部刷新布局
+        header: MyClassicalHeader(),
+        //底部加载更多布局
+        footer: null,
+
+        child: ListView(
           children: [
             Container(
                 width: MediaQuery.of(context).size.width,
@@ -234,7 +362,8 @@ class _DappPage extends State<DappPage> {
                     style: TextStyle(fontSize: 14, color: Color(0xFF4F4F4F)))),
             Container(
               height: 150,
-              child: GridPage(children: _buildChildren()),
+              child:
+                  list_hot.isEmpty ? Container() : GridPage(children: list_hot),
             ),
             //分割线
             const Divider(
@@ -254,10 +383,12 @@ class _DappPage extends State<DappPage> {
                 color: Colors.white,
                 padding: const EdgeInsets.only(left: 14, top: 7),
                 child: Text(S().dapp2,
-                    style: const TextStyle(fontSize: 14, color: Color(0xFF4F4F4F)))),
-            SizedBox(
+                    style: const TextStyle(
+                        fontSize: 14, color: Color(0xFF4F4F4F)))),
+            Container(
               height: 150,
-              child: GridPage(children: _buildChildren()),
+              child:
+                  list_new.isEmpty ? Container() : GridPage(children: list_new),
             ),
             //分割线
             const Divider(
@@ -281,65 +412,21 @@ class _DappPage extends State<DappPage> {
               //   borderRadius:
               //       BorderRadius.vertical(top: Radius.elliptical(30, 30)),
               // ),
-              child: DefaultTabController(
-                length: 6, // 定义tab数量
-                child: TabBar(
-                  // controller: _tabController,
-                  //设置未选中时的字体颜色，tabs里面的字体样式优先级最高
-                  unselectedLabelColor: Color(0xFF878787),
-                  //设置未选中时的字体样式，tabs里面的字体样式优先级最高
-                  unselectedLabelStyle: TextStyle(fontSize: 12),
-                  //设置选中时的字体颜色，tabs里面的字体样式优先级最高
-                  labelColor: Color(0xFF3555FF),
-                  //设置选中时的字体样式，tabs里面的字体样式优先级最高
-                  labelStyle: TextStyle(fontSize: 12),
-                  //允许左右滚动
-                  isScrollable: true,
-                  //选中下划线的颜色
-                  indicatorColor: Color(0xFF3555FF),
-                  //选中下划线的长度，label时跟文字内容长度一样，tab时跟一个Tab的长度一样
-                  indicatorSize: TabBarIndicatorSize.label,
-                  //选中下划线的高度，值越大高度越高，默认为2。0
-                  indicatorWeight: 1,
-                  //用于设定选中状态下的展示样式
-                  /*indicator: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2.0), // 圆角度
-                      // 线性渐变
-                      gradient: LinearGradient(
-                          colors: [Color(0xFF3555FF), Color(0xFF3B9BF2)],
-                          begin: Alignment.centerLeft, end: Alignment.centerRight)),*/
-                  tabs: <Widget>[
-                    Tab(
-                      text: "ETH",
+              child: tabs.isEmpty
+                  ? Container()
+                  : TabBar(
+                      controller: _tabController,
+                      tabs: tabs,
+                      //可滚动
+                      isScrollable: true,
+                      //选中文字大小
+                      labelStyle: const TextStyle(fontSize: 12),
+                      //未选中文字大小
+                      unselectedLabelStyle: const TextStyle(fontSize: 12),
                     ),
-                    Tab(
-                      text: "HECO",
-                    ),
-                    Tab(
-                      text: "BCS",
-                    ),
-                    Tab(
-                      text: "OEC",
-                    ),
-                    Tab(
-                      text: "POLYGON",
-                    ),
-                    Tab(
-                      text: "TRX",
-                    ),
-                  ],
-                  onTap: (i) {
-                    //刷新组件
-                    setState(() {
-                      _tab_index = i;
-                    });
-                  },
-
-                ),
-              ),
             ),
             //分割线
-            Divider(
+            const Divider(
               //缩进
               // indent: 10.0,
               // endIndent: 20.0,
@@ -349,42 +436,15 @@ class _DappPage extends State<DappPage> {
               thickness: 1.0,
               color: Color(0xFFF7F7F7),
             ),
-            //底部列表
-            Expanded(child: myListView1())
+            myListView(),
           ],
         ),
       ),
     );
   }
-
-  ///构建数据
-  List<Widget> _buildChildren() {
-    List<Widget> list = [];
-    for (int i = 0; i < 20; i++) {
-      list.add(
-        GestureDetector(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center, //垂直方向居中对齐
-            children: <Widget>[
-              Image.asset("imgs/icp.png", width: 30.0, height: 40.0),
-              Text(
-                "name",
-                style: TextStyle(fontSize: 10, color: Color(0xFF4F4F4F)),
-              ),
-            ],
-          ),
-          onTap: () {
-            EasyLoading.showToast("item $i on click");
-            // Fluttertoast.showToast(msg: "item $i on click");
-          },
-        ),
-      );
-    }
-    return list;
-  }
 }
 
-class myListView1 extends StatelessWidget {
+class myListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView.builder(

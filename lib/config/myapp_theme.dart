@@ -61,7 +61,7 @@ final ThemeData MyAppTheme = ThemeData(
     //选中下划线的长度，label时跟文字内容长度一样，tab时跟一个Tab的长度一样
     indicatorSize: TabBarIndicatorSize.label,
     //tab之间的间距
-    labelPadding: EdgeInsets.symmetric(horizontal: 0),
+    labelPadding: EdgeInsets.symmetric(horizontal: 14),
   ),
 
   //顶部标题栏颜色
